@@ -10,7 +10,7 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
   const [toast, setToast] = useState('');
 
   const showComingSoon = () => {
-    setToast('该主题正在建设中，敬请期待');
+    setToast('山门未启，敬请期待');
     window.setTimeout(() => setToast(''), 2200);
   };
 
@@ -18,17 +18,17 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
     <div className="page nav-page page-fade">
       <section className="nav-page-hero">
         <p className="eyebrow">文化地图</p>
-        <h1>山河之上，展开主题文化坐标</h1>
+        <h1>山河落笔，万象归图</h1>
         <p className="hero-subtitle">
-          以地图作为第一入口，进入道教名山、佛教寺窟与丝绸之路等文化传播路径。
+          从海岱到西陲，从古刹到云路，文明的足音在山水之间相互照见。
         </p>
       </section>
 
       <section className="section-block">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">地图入口</p>
-            <h2>选择一个主题开始探索</h2>
+            <p className="eyebrow">图中有路</p>
+            <h2>一枚坐标，半部春秋</h2>
           </div>
           <span className="line-label">Map Gate</span>
         </div>
@@ -44,7 +44,7 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
       </section>
 
       <section className="map-process-strip">
-        {['选主题', '看地图', '点地点', '入旅程'].map((item, index) => (
+        {['循山河', '见古迹', '听遗响', '入长卷'].map((item, index) => (
           <div className="process-step" key={item}>
             <span>{String(index + 1).padStart(2, '0')}</span>
             <strong>{item}</strong>

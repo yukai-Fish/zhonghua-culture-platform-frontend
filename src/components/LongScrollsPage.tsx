@@ -10,20 +10,20 @@ export function LongScrollsPage({ onEnterBuddhism }: LongScrollsPageProps) {
     <div className="page nav-page page-fade">
       <section className="nav-page-hero">
         <p className="eyebrow">文脉长图</p>
-        <h1>把文化脉络收进一轴长卷</h1>
+        <h1>卷上风烟，纸中山海</h1>
         <p className="hero-subtitle">
-          以纵向长卷承载历史节点、地理空间与文化意象，适合从上到下慢慢浏览。
+          云气自上而下流转，寺塔、古道与人间愿景在长卷深处相逢。
         </p>
       </section>
 
       <section className="section-block">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">长卷展厅</p>
-            <h2>三类主题长卷预览</h2>
+            <p className="eyebrow">画轴微启</p>
+            <h2>一卷未尽，千里已远</h2>
           </div>
           <button className="gold-button" type="button" onClick={onEnterBuddhism}>
-            进入佛教长图之旅
+            入佛教长卷
           </button>
         </div>
         <div className="scroll-preview-grid long-scroll-gallery">

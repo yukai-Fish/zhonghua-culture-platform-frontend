@@ -12,9 +12,9 @@ export function InteractiveExperiencePage({ onEnterBuddhism }: InteractiveExperi
     <div className="page nav-page page-fade">
       <section className="nav-page-hero">
         <p className="eyebrow">交互体验</p>
-        <h1>让文化内容可以被参与</h1>
+        <h1>一念入境，万籁有声</h1>
         <p className="hero-subtitle">
-          汇集影像、对话、签文和经文释义等本地互动 demo，作为主题文化旅程中的体验节点。
+          石窟光影、禅语回声与签文清风，在屏息之间化作可亲近的文化余韵。
         </p>
       </section>
 
@@ -35,11 +35,11 @@ export function InteractiveExperiencePage({ onEnterBuddhism }: InteractiveExperi
 
       <section className="section-block compact nav-cta">
         <div>
-          <p className="eyebrow">推荐路径</p>
-          <h2>先看佛教长图，再进入体验节点</h2>
+          <p className="eyebrow">循光而行</p>
+          <h2>石窟在前，云水在后</h2>
         </div>
         <button className="gold-button" type="button" onClick={onEnterBuddhism}>
-          前往佛教文化之旅
+          入佛教文化之旅
         </button>
       </section>
     </div>

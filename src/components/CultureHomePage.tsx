@@ -11,7 +11,7 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
   const [toast, setToast] = useState('');
 
   const showComingSoon = () => {
-    setToast('该主题正在建设中，敬请期待');
+    setToast('山门未启，敬请期待');
     window.setTimeout(() => setToast(''), 2200);
   };
 
@@ -19,13 +19,13 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
     <div className="page home-page page-fade">
       <section className="hero-section">
         <div className="hero-copy">
-          <p className="eyebrow">数字展馆 · 山河文脉 · 主题文化地图</p>
-          <h1>中华文化地图</h1>
+          <p className="eyebrow">山河入卷 · 文脉如灯 · 万象同辉</p>
+          <h1>华夏山河文脉</h1>
           <p className="hero-subtitle">
-            沿着山河与文脉，探索佛教、道教、丝绸之路等中华文化主题的传播、交汇与演变。
+            山河有迹，钟磬有声，千年风物在一卷烟岚中缓缓铺陈。
           </p>
           <p className="hero-note">
-            以文化地图、主题长卷与互动体验的方式，构建可浏览、可感知、可参与的中华文化数字平台。
+            从古道、名山与寺观之间拾取文明回响，让散落在天地间的故事重新相逢。
           </p>
         </div>
       </section>
@@ -33,8 +33,8 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       <section className="section-block" id="culture-map">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">主题文化概览</p>
-            <h2>以地图进入中华文明的多重现场</h2>
+            <p className="eyebrow">山川有信</p>
+            <h2>一图铺开千年烟火</h2>
           </div>
           <span className="line-label">Map Atlas</span>
         </div>
@@ -52,8 +52,8 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       <section className="section-block compact" id="coming-themes">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">更多主题</p>
-            <h2>正在展开的文化入口</h2>
+            <p className="eyebrow">未启之门</p>
+            <h2>风物尚在云深处</h2>
           </div>
         </div>
         <div className="coming-theme-grid">
@@ -69,8 +69,8 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       <section className="section-block" id="long-scrolls">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">主题长卷预告</p>
-            <h2>以古画长卷收束文脉与空间</h2>
+            <p className="eyebrow">长卷初展</p>
+            <h2>云水之间，文脉成轴</h2>
           </div>
           <span className="line-label">Scroll Preview</span>
         </div>

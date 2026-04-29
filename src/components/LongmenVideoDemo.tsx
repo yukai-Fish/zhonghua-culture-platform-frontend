@@ -27,7 +27,7 @@ export function LongmenVideoDemo() {
   }, [isOpen]);
 
   const modal = (
-    <div className="video-modal" role="dialog" aria-modal="true" aria-label="龙门石窟沉浸式视频">
+    <div className="video-modal" role="dialog" aria-modal="true" aria-label="龙门石窟影像">
       <div className="video-modal-inner">
         <button className="close-button video-close-button" type="button" onClick={() => setIsOpen(false)}>
           关闭
@@ -35,18 +35,18 @@ export function LongmenVideoDemo() {
         <div className="video-stage">
           <video src={cultureAssets.longmenVideo} controls autoPlay playsInline />
         </div>
-        <p>龙门石窟以北魏至唐代造像闻名，本 demo 用影像呈现石窟空间、佛教造像与东方审美的融合。</p>
+        <p>岩壁千年，伊水无声，光影替沉默的石像重新点亮眉目。</p>
       </div>
     </div>
   );
 
   return (
     <section className="experience-module">
-      <h3>龙门石窟沉浸式体验</h3>
+      <h3>龙门月下，石佛含光</h3>
       <button className="video-demo" type="button" onClick={() => setIsOpen(true)}>
         <span className="play-ring">播放</span>
-        <strong>龙门石窟沉浸式视频 Demo</strong>
-        <small>通过影像进入石窟空间，感受佛教艺术与东方审美的融合。</small>
+        <strong>入石窟光影</strong>
+        <small>山岩无言，佛面有光，一段影像从古龛深处缓缓醒来。</small>
       </button>
 
       {isOpen ? createPortal(modal, document.body) : null}

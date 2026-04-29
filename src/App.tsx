@@ -4,16 +4,14 @@ import { BuddhistDetailPage } from './components/BuddhistDetailPage';
 import { CultureHomePage } from './components/CultureHomePage';
 import { CultureMapPage } from './components/CultureMapPage';
 import { InteractiveExperiencePage } from './components/InteractiveExperiencePage';
-import { LongScrollsPage } from './components/LongScrollsPage';
 import { ThemeActivitiesPage } from './components/ThemeActivitiesPage';
 import { CreativeShopPage } from './components/CreativeShopPage';
 
-export type AppRoute = 'home' | 'culture-map' | 'long-scrolls' | 'experiences' | 'activities' | 'shop' | 'buddhism';
+export type AppRoute = 'home' | 'culture-map' | 'experiences' | 'activities' | 'shop' | 'buddhism';
 
 const routeMap: Record<string, AppRoute> = {
   '#/': 'home',
   '#/culture-map': 'culture-map',
-  '#/long-scrolls': 'long-scrolls',
   '#/experiences': 'experiences',
   '#/activities': 'activities',
   '#/shop': 'shop',
@@ -44,7 +42,6 @@ export default function App() {
     <AppLayout currentRoute={route} onNavigate={navigate}>
       {route === 'home' && <CultureHomePage onEnterBuddhism={() => navigate('buddhism')} />}
       {route === 'culture-map' && <CultureMapPage onEnterBuddhism={() => navigate('buddhism')} />}
-      {route === 'long-scrolls' && <LongScrollsPage />}
       {route === 'experiences' && <InteractiveExperiencePage />}
       {route === 'activities' && <ThemeActivitiesPage onEnterBuddhism={() => navigate('buddhism')} />}
       {route === 'shop' && <CreativeShopPage />}

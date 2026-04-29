@@ -8,7 +8,6 @@ interface TopNavBarProps {
 const navItems: Array<{ route: AppRoute; label: string }> = [
   { route: 'home', label: '首页' },
   { route: 'culture-map', label: '文化地图' },
-  { route: 'long-scrolls', label: '文脉长图' },
   { route: 'experiences', label: '交互体验' },
   { route: 'activities', label: '主题活动' },
   { route: 'shop', label: '文创商城' },

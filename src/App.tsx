@@ -44,8 +44,8 @@ export default function App() {
     <AppLayout currentRoute={route} onNavigate={navigate}>
       {route === 'home' && <CultureHomePage onEnterBuddhism={() => navigate('buddhism')} />}
       {route === 'culture-map' && <CultureMapPage onEnterBuddhism={() => navigate('buddhism')} />}
-      {route === 'long-scrolls' && <LongScrollsPage onEnterBuddhism={() => navigate('buddhism')} />}
-      {route === 'experiences' && <InteractiveExperiencePage onEnterBuddhism={() => navigate('buddhism')} />}
+      {route === 'long-scrolls' && <LongScrollsPage />}
+      {route === 'experiences' && <InteractiveExperiencePage />}
       {route === 'activities' && <ThemeActivitiesPage onEnterBuddhism={() => navigate('buddhism')} />}
       {route === 'shop' && <CreativeShopPage />}
       {route === 'buddhism' && <BuddhistDetailPage onHome={() => navigate('home')} />}

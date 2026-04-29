@@ -222,7 +222,7 @@ button {
 }
 
 .hero-section {
-  max-width: 980px;
+  max-width: none;
 }
 
 .hero-section::after,
@@ -271,6 +271,11 @@ h1 {
   color: #f3dfb6;
   font-size: clamp(1.08rem, 2vw, 1.45rem);
   line-height: 1.85;
+}
+
+.home-page .hero-subtitle {
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 .hero-note,
@@ -1542,6 +1547,10 @@ h1 {
 @media (max-width: 860px) {
   .page {
     width: min(100vw - 1rem, 760px);
+  }
+
+  .home-page .hero-subtitle {
+    white-space: normal;
   }
 
   .theme-grid,

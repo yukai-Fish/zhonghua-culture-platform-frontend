@@ -1,17 +1,17 @@
 import type { ReactNode } from 'react';
+import type { AppRoute } from '../App';
 import { TopNavBar } from './TopNavBar';
 
 interface AppLayoutProps {
   children: ReactNode;
-  currentRoute: 'home' | 'buddhism';
-  onHome: () => void;
-  onBuddhism: () => void;
+  currentRoute: AppRoute;
+  onNavigate: (route: AppRoute) => void;
 }
 
-export function AppLayout({ children, currentRoute, onHome, onBuddhism }: AppLayoutProps) {
+export function AppLayout({ children, currentRoute, onNavigate }: AppLayoutProps) {
   return (
     <div className="museum-shell">
-      <TopNavBar currentRoute={currentRoute} onHome={onHome} onBuddhism={onBuddhism} />
+      <TopNavBar currentRoute={currentRoute} onNavigate={onNavigate} />
       <main>{children}</main>
     </div>
   );

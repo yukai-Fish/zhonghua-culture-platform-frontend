@@ -1,17 +1,29 @@
+import type { AppRoute } from '../App';
+
 interface TopNavBarProps {
-  currentRoute: 'home' | 'buddhism';
-  onHome: () => void;
-  onBuddhism: () => void;
+  currentRoute: AppRoute;
+  onNavigate: (route: AppRoute) => void;
 }
 
-export function TopNavBar({ currentRoute, onHome, onBuddhism }: TopNavBarProps) {
-  const scrollTo = (targetId: string) => {
-    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+const navItems: Array<{ route: AppRoute; label: string }> = [
+  { route: 'home', label: '首页' },
+  { route: 'culture-map', label: '文化地图' },
+  { route: 'long-scrolls', label: '文脉长图' },
+  { route: 'experiences', label: '交互体验' },
+  { route: 'activities', label: '主题活动' },
+  { route: 'shop', label: '文创商城' },
+];
+
+function getActiveRoute(route: AppRoute) {
+  return route === 'buddhism' ? 'culture-map' : route;
+}
+
+export function TopNavBar({ currentRoute, onNavigate }: TopNavBarProps) {
+  const activeRoute = getActiveRoute(currentRoute);
 
   return (
     <header className="top-nav">
-      <button className="brand-mark" type="button" onClick={onHome} aria-label="返回首页">
+      <button className="brand-mark" type="button" onClick={() => onNavigate('home')} aria-label="返回首页">
         <span className="seal">文</span>
         <span>
           <strong>中国文化</strong>
@@ -20,24 +32,16 @@ export function TopNavBar({ currentRoute, onHome, onBuddhism }: TopNavBarProps) 
       </button>
 
       <nav className="nav-links" aria-label="主导航">
-        <button className={currentRoute === 'home' ? 'active' : ''} type="button" onClick={onHome}>
-          首页
-        </button>
-        <button className={currentRoute === 'buddhism' ? 'active' : ''} type="button" onClick={onBuddhism}>
-          文化地图
-        </button>
-        <button type="button" onClick={() => scrollTo('long-scrolls')}>
-          文脉长图
-        </button>
-        <button type="button" onClick={() => scrollTo('experience-center')}>
-          交互体验
-        </button>
-        <button type="button" onClick={() => scrollTo('coming-themes')}>
-          主题活动
-        </button>
-        <button type="button" disabled>
-          文创商城
-        </button>
+        {navItems.map((item) => (
+          <button
+            className={activeRoute === item.route ? 'active' : ''}
+            type="button"
+            key={item.route}
+            onClick={() => onNavigate(item.route)}
+          >
+            {item.label}
+          </button>
+        ))}
       </nav>
 
       <div className="nav-actions">

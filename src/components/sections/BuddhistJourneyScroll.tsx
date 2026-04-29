@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { cultureAssets } from '../data/assets';
+import { cultureAssets } from '../../data/assets';
 
 interface JourneyStop {
   id: string;

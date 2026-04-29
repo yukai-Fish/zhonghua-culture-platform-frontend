@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fortunes, type Fortune } from '../data/fortunes';
+import { fortunes, type Fortune } from '../../data/fortunes';
 
 export function WishFortune() {
   const [wish, setWish] = useState('');

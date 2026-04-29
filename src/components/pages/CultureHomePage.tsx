@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { comingThemes, coreThemes, longScrollPreviews } from '../data/themes';
-import { ThemeLongScrollPreview } from './ThemeLongScrollPreview';
-import { ThemeOverviewCard } from './ThemeOverviewCard';
+import { comingThemes, coreThemes, longScrollPreviews } from '../../data/themes';
+import { ThemeLongScrollPreview } from '../cards/ThemeLongScrollPreview';
+import { ThemeOverviewCard } from '../cards/ThemeOverviewCard';
 
 interface CultureHomePageProps {
   onEnterBuddhism: () => void;

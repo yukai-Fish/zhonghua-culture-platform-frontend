@@ -1,4 +1,4 @@
-import type { CultureTheme } from '../data/themes';
+import type { CultureTheme } from '../../data/themes';
 
 interface ThemeOverviewCardProps {
   theme: CultureTheme;

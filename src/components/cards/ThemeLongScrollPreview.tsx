@@ -1,4 +1,4 @@
-import type { LongScrollPreview } from '../data/themes';
+import type { LongScrollPreview } from '../../data/themes';
 
 interface ThemeLongScrollPreviewProps {
   preview: LongScrollPreview;

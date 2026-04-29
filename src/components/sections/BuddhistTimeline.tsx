@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { buddhistTimeline } from '../data/timeline';
+import { buddhistTimeline } from '../../data/timeline';
 
 export function BuddhistTimeline() {
   const [activeIndex, setActiveIndex] = useState(2);

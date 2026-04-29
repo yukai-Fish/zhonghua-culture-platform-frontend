@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { scriptures } from '../data/scriptures';
+import { scriptures } from '../../data/scriptures';
 
 export function ScriptureExplain() {
   const [index, setIndex] = useState(0);

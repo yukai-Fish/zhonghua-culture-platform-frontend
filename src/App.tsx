@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { AppLayout } from './components/AppLayout';
-import { BuddhistDetailPage } from './components/BuddhistDetailPage';
-import { CultureHomePage } from './components/CultureHomePage';
-import { CultureMapPage } from './components/CultureMapPage';
-import { InteractiveExperiencePage } from './components/InteractiveExperiencePage';
-import { ThemeActivitiesPage } from './components/ThemeActivitiesPage';
-import { CreativeShopPage } from './components/CreativeShopPage';
+import { AppLayout } from './components/layout/AppLayout';
+import { BuddhistDetailPage } from './components/pages/BuddhistDetailPage';
+import { CultureHomePage } from './components/pages/CultureHomePage';
+import { CultureMapPage } from './components/pages/CultureMapPage';
+import { InteractiveExperiencePage } from './components/pages/InteractiveExperiencePage';
+import { ThemeActivitiesPage } from './components/pages/ThemeActivitiesPage';
+import { CreativeShopPage } from './components/pages/CreativeShopPage';
 
 export type AppRoute = 'home' | 'culture-map' | 'experiences' | 'activities' | 'shop' | 'buddhism';
 

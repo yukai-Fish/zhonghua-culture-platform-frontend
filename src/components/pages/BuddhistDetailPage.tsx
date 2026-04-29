@@ -1,8 +1,8 @@
-import { BuddhistJourneyScroll } from './BuddhistJourneyScroll';
-import { BuddhistTimeline } from './BuddhistTimeline';
-import { LongmenVideoDemo } from './LongmenVideoDemo';
-import { ScriptureExplain } from './ScriptureExplain';
-import { WishFortune } from './WishFortune';
+import { BuddhistJourneyScroll } from '../sections/BuddhistJourneyScroll';
+import { BuddhistTimeline } from '../sections/BuddhistTimeline';
+import { LongmenVideoDemo } from '../widgets/LongmenVideoDemo';
+import { ScriptureExplain } from '../widgets/ScriptureExplain';
+import { WishFortune } from '../widgets/WishFortune';
 
 interface BuddhistDetailPageProps {
   onHome: () => void;

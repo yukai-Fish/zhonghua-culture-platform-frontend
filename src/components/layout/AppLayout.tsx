@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { AppRoute } from '../App';
+import type { AppRoute } from '../../App';
 import { TopNavBar } from './TopNavBar';
 
 interface AppLayoutProps {

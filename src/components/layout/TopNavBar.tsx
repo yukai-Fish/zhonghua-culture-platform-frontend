@@ -1,5 +1,5 @@
-import type { AppRoute } from '../App';
-import { cultureAssets } from '../data/assets';
+import type { AppRoute } from '../../App';
+import { cultureAssets } from '../../data/assets';
 
 interface TopNavBarProps {
   currentRoute: AppRoute;

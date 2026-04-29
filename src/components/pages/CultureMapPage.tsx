@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { coreThemes } from '../data/themes';
-import { ThemeOverviewCard } from './ThemeOverviewCard';
+import { coreThemes } from '../../data/themes';
+import { ThemeOverviewCard } from '../cards/ThemeOverviewCard';
 
 interface CultureMapPageProps {
   onEnterBuddhism: () => void;

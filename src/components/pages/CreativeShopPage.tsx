@@ -1,4 +1,4 @@
-import { cultureAssets } from '../data/assets';
+import { cultureAssets } from '../../data/assets';
 
 const products = [
   {

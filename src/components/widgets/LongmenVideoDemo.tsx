@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { cultureAssets } from '../data/assets';
+import { cultureAssets } from '../../data/assets';
 
 export function LongmenVideoDemo() {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { dharmaReplies } from '../data/fortunes';
+import { dharmaReplies } from '../../data/fortunes';
 
 export function DharmaChat() {
   const [question, setQuestion] = useState('');

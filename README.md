@@ -33,6 +33,16 @@ npm run dev
 http://127.0.0.1:5173/
 ```
 
+## 公网部署
+
+项目已配置 GitHub Actions 自动部署到 GitHub Pages。推送到 `main` 分支后会自动构建并发布。
+
+部署地址：
+
+```text
+https://yukai-fish.github.io/-/
+```
+
 ## 构建与检查
 
 ```bash

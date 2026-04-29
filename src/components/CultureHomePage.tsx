@@ -28,12 +28,6 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
             以文化地图、主题长卷与互动体验的方式，构建可浏览、可感知、可参与的中华文化数字平台。
           </p>
         </div>
-        <div className="hero-stat-panel" aria-label="平台主题概览">
-          <span>三大地图主题</span>
-          <strong>3</strong>
-          <span>文脉长卷预览</span>
-          <strong>3</strong>
-        </div>
       </section>
 
       <section className="section-block" id="culture-map">

@@ -40,7 +40,7 @@ http://127.0.0.1:5173/
 部署地址：
 
 ```text
-https://yukai-fish.github.io/-/
+https://yukai-fish.github.io/zhonghua-culture-platform-frontend/
 ```
 
 ## 构建与检查

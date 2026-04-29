@@ -2,19 +2,22 @@ import { cultureAssets } from '../data/assets';
 
 const products = [
   {
-    title: '佛国山河笺',
-    image: cultureAssets.buddhistMap,
+    title: '佛国山河海报',
+    image: cultureAssets.shopPoster,
     tag: '展陈海报',
+    desc: '佛教文化地图化作案头画幅，山河、寺塔与金线纹样同入一纸。',
   },
   {
-    title: '丝路驼铃札',
-    image: cultureAssets.silkRoadMap,
-    tag: '文创预告',
+    title: '丝路驼铃明信片',
+    image: cultureAssets.shopPostcard,
+    tag: '明信片',
+    desc: '把古道风沙与驼铃远影收进掌心，寄给远方的一缕文明回声。',
   },
   {
-    title: '洞天云水卷',
-    image: cultureAssets.daoMap,
-    tag: '文创预告',
+    title: '洞天云水卷轴',
+    image: cultureAssets.shopScroll,
+    tag: '长卷装帧',
+    desc: '道教山水舒展成卷，烟岚、宫观与仙踪在木案上缓缓铺开。',
   },
 ];
 
@@ -36,7 +39,7 @@ export function CreativeShopPage() {
             <div>
               <span>{product.tag}</span>
               <h2>{product.title}</h2>
-              <p>静候上架</p>
+              <p>{product.desc}</p>
             </div>
           </article>
         ))}

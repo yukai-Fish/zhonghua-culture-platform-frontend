@@ -1,4 +1,5 @@
 import type { AppRoute } from '../App';
+import { cultureAssets } from '../data/assets';
 
 interface TopNavBarProps {
   currentRoute: AppRoute;
@@ -23,7 +24,7 @@ export function TopNavBar({ currentRoute, onNavigate }: TopNavBarProps) {
   return (
     <header className="top-nav">
       <button className="brand-mark" type="button" onClick={() => onNavigate('home')} aria-label="返回首页">
-        <span className="seal">文</span>
+        <img className="brand-logo" src={cultureAssets.brandLogo} alt="中国文化" />
         <span>
           <strong>中国文化</strong>
           <small>中华文明数字平台</small>

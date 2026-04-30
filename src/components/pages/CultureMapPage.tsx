@@ -82,6 +82,13 @@ const buddhistSites: MapSite[] = [
 
 const timelineMarks = ['东汉', '魏晋', '隋唐', '宋元', '明清', '近现代'];
 
+const experienceEntries = [
+  { title: '与达摩交流', icon: cultureAssets.iconDharmaDialog },
+  { title: '经文释义', icon: cultureAssets.iconScriptureScroll },
+  { title: '愿望摇签', icon: cultureAssets.iconWishLot },
+  { title: '石窟影像', icon: cultureAssets.iconGrottoVideo },
+];
+
 export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
   const [toast, setToast] = useState('');
   const [activeSiteId, setActiveSiteId] = useState('longmen');
@@ -166,10 +173,12 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
             <div className="side-card culture-center-card">
               <p className="eyebrow">佛教文化体验中心</p>
               <div className="experience-icons">
-                {['与达摩交流', '经文释义', '愿望摇签', '石窟影像'].map((item) => (
-                  <button type="button" key={item} onClick={onEnterBuddhism}>
-                    <span>{item.slice(0, 1)}</span>
-                    <small>{item}</small>
+                {experienceEntries.map((item) => (
+                  <button type="button" key={item.title} onClick={onEnterBuddhism}>
+                    <span>
+                      <img src={item.icon} alt="" aria-hidden="true" />
+                    </span>
+                    <small>{item.title}</small>
                   </button>
                 ))}
               </div>

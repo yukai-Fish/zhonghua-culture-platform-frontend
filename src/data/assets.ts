@@ -17,4 +17,8 @@ export const cultureAssets = {
   siteLongmen: `${assetBase}assets/sites/longmen-grottoes.jpg`,
   sitePotala: `${assetBase}assets/sites/potala-palace.jpg`,
   siteWutai: `${assetBase}assets/sites/mount-wutai.jpg`,
+  iconDharmaDialog: `${assetBase}assets/icons/dharma-dialog.svg`,
+  iconScriptureScroll: `${assetBase}assets/icons/scripture-scroll.svg`,
+  iconWishLot: `${assetBase}assets/icons/wish-lot.svg`,
+  iconGrottoVideo: `${assetBase}assets/icons/grotto-video.svg`,
 } as const;

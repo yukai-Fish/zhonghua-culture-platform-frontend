@@ -19,7 +19,7 @@ const routeMap: Record<string, AppRoute> = {
 };
 
 function getInitialRoute(): AppRoute {
-  return routeMap[window.location.hash] ?? 'home';
+  return routeMap[window.location.hash] ?? 'culture-map';
 }
 
 export default function App() {

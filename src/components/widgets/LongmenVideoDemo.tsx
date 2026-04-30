@@ -54,16 +54,15 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
 
   return (
     <section className="experience-module longmen-exhibit">
-      <h3>龙门月照，石佛含光</h3>
       <button
         className="video-demo"
         type="button"
         style={{ '--longmen-poster': `url(${cultureAssets.siteLongmen})` } as CSSProperties}
         onClick={() => setIsOpen(true)}
       >
-        <span className="play-ring" aria-hidden="true">播放</span>
+        <span className="play-ring" aria-hidden="true">游览</span>
         <strong>龙门月照，石佛含光</strong>
-        <small>通过影像进入石窟空间，感受佛教艺术与东方审美的融合。</small>
+        <small>从地图节点进入石窟空间，以影像模拟漫游视角，感受佛教造像与东方审美的融合。</small>
       </button>
 
       {isOpen ? createPortal(modal, document.body) : null}

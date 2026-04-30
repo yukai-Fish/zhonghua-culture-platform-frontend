@@ -2624,9 +2624,21 @@ h1 {
     rgba(38, 24, 14, 0.98);
 }
 
+.scroll-viewer-stage {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 .scroll-viewer-inner img {
+  display: block;
   width: min(100%, 860px);
   padding: 1rem 0;
+}
+
+.viewer-node {
+  z-index: 5;
 }
 
 .video-stage {

@@ -507,6 +507,14 @@ function getInitialSite(theme: CultureMapTheme) {
   return theme.sites[Math.min(2, theme.sites.length - 1)].id;
 }
 
+const scrollTourNodes = [
+  { id: 'longmen', name: '龙门石窟', x: 52, y: 44 },
+  { id: 'putuo', name: '普陀山', x: 74, y: 62 },
+  { id: 'lingyin', name: '灵隐寺', x: 34, y: 24 },
+  { id: 'potala', name: '布达拉宫', x: 47, y: 70 },
+  { id: 'wutai', name: '五台山', x: 30, y: 86 },
+];
+
 export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMapPageProps) {
   const [toast, setToast] = useState('');
   const [isScrollViewerOpen, setIsScrollViewerOpen] = useState(false);
@@ -543,15 +551,13 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
     }));
   };
 
-  const startLongmenTour = () => {
-    setActiveSiteIdByTheme((current) => ({ ...current, buddhism: 'longmen' }));
-    setTourSignal((current) => current + 1);
-  };
-
-  const selectScrollNode = (siteId: string) => {
+  const selectScrollNode = (siteId: string, shouldCloseViewer = false) => {
     setActiveSiteIdByTheme((current) => ({ ...current, buddhism: siteId }));
     if (siteId === 'longmen') {
       setTourSignal((current) => current + 1);
+    }
+    if (shouldCloseViewer) {
+      setIsScrollViewerOpen(false);
     }
   };
 
@@ -561,7 +567,20 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
         <button className="close-button" type="button" onClick={() => setIsScrollViewerOpen(false)}>
           关闭
         </button>
-        <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图全屏预览" />
+        <div className="scroll-viewer-stage">
+          <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图全屏预览" />
+          {scrollTourNodes.map((node) => (
+            <button
+              className={`scroll-site-node viewer-node ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
+              type="button"
+              key={node.id}
+              style={{ left: `${node.x}%`, top: `${node.y}%` }}
+              onClick={() => selectScrollNode(node.id, true)}
+            >
+              {node.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>,
     document.body,
@@ -662,24 +681,16 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="flat-section-copy">
               <p className="eyebrow">沿图入境</p>
               <h3>佛教圣地巡礼</h3>
-              <button className="ghost-button" type="button" onClick={startLongmenTour}>
+              <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
                 开启时空漫游
               </button>
             </div>
             <div className="immersive-tour-grid">
               <div className="flat-scroll-frame">
                 <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
-                <button className="scroll-site-node is-selected" type="button" onClick={startLongmenTour}>
-                  龙门石窟
-                </button>
-                {[
-                  { id: 'putuo', name: '普陀山', x: 74, y: 62 },
-                  { id: 'lingyin', name: '灵隐寺', x: 34, y: 24 },
-                  { id: 'potala', name: '布达拉宫', x: 47, y: 70 },
-                  { id: 'wutai', name: '五台山', x: 30, y: 86 },
-                ].map((node) => (
+                {scrollTourNodes.map((node) => (
                   <button
-                    className="scroll-site-node secondary-node"
+                    className={`scroll-site-node ${node.id === 'longmen' ? '' : 'secondary-node'} ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
                     type="button"
                     key={node.id}
                     style={{ left: `${node.x}%`, top: `${node.y}%` }}

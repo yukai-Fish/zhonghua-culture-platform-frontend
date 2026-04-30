@@ -670,7 +670,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             </div>
             <WishFortune />
             <div className="inline-video-card">
-              <video src={cultureAssets.blessingVideo} controls playsInline />
+              <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
             </div>
           </div>
 
@@ -682,7 +682,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             </div>
             <ScriptureExplain />
             <div className="inline-video-card">
-              <video src={cultureAssets.scriptureVideo} controls playsInline />
+              <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
             </div>
           </div>
 

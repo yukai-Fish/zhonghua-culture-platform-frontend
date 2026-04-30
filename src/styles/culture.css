@@ -988,6 +988,11 @@ h1 {
   padding: 0.76rem;
 }
 
+.culture-map-grid.flat-map-grid {
+  grid-template-columns: minmax(560px, 1fr) minmax(310px, 0.38fr);
+  align-items: stretch;
+}
+
 .map-scroll-rail,
 .map-stage-panel,
 .map-side-panel .side-card {
@@ -1088,6 +1093,11 @@ h1 {
   margin: 0;
   color: rgba(242, 223, 179, 0.76);
   line-height: 1.7;
+}
+
+.map-entry-button {
+  margin-top: 0.9rem;
+  padding: 0.58rem 1.12rem;
 }
 
 .map-compass {
@@ -1220,6 +1230,7 @@ h1 {
 .map-side-panel {
   display: grid;
   gap: 0.72rem;
+  align-content: start;
 }
 
 .map-side-panel .side-card {
@@ -1337,6 +1348,99 @@ h1 {
 
 .site-list-card small {
   color: rgba(242, 223, 179, 0.52);
+}
+
+.flat-buddhist-content {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(2.6rem, 6vw, 5rem);
+}
+
+.flat-content-heading,
+.flat-content-section,
+.flat-widgets-grid {
+  border: 1px solid rgba(217, 173, 102, 0.22);
+  border-radius: 0.72rem;
+  background:
+    linear-gradient(145deg, rgba(217, 173, 102, 0.08), transparent 38%),
+    rgba(20, 13, 8, 0.48);
+  box-shadow: var(--shadow);
+}
+
+.flat-content-heading {
+  padding: clamp(1rem, 2.3vw, 1.6rem);
+}
+
+.flat-content-heading h2 {
+  margin-bottom: 0.45rem;
+  color: #ffe2a7;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+}
+
+.flat-content-heading p:last-child,
+.flat-section-copy p {
+  margin-bottom: 0;
+  color: rgba(242, 223, 179, 0.74);
+  line-height: 1.75;
+}
+
+.flat-content-section {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.42fr) minmax(360px, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+  padding: 1rem;
+}
+
+.flat-section-copy {
+  align-self: center;
+}
+
+.flat-section-copy h3 {
+  margin-bottom: 0.55rem;
+  color: #ffe7ad;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+}
+
+.flat-content-section .experience-module {
+  padding: 1rem;
+  border: 1px solid rgba(217, 173, 102, 0.22);
+  border-radius: 0.58rem;
+  background: rgba(12, 8, 6, 0.42);
+}
+
+.flat-content-section .video-demo {
+  min-height: 18rem;
+}
+
+.flat-scroll-frame {
+  overflow: auto;
+  max-height: 40rem;
+  border: 1px solid rgba(217, 173, 102, 0.26);
+  border-radius: 0.55rem;
+  background: rgba(8, 5, 3, 0.72);
+  box-shadow: inset 0 0 42px rgba(0, 0, 0, 0.46);
+}
+
+.flat-scroll-frame img {
+  display: block;
+  width: min(100%, 760px);
+  margin: 0 auto;
+}
+
+.flat-widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.flat-widgets-grid .experience-module {
+  min-height: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(217, 173, 102, 0.22);
+  border-radius: 0.58rem;
+  background: rgba(12, 8, 6, 0.42);
 }
 
 .focus-grid .theme-card {
@@ -2161,9 +2265,18 @@ h1 {
     grid-template-columns: minmax(190px, 0.56fr) minmax(0, 1fr);
   }
 
+  .culture-map-grid.flat-map-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.46fr);
+  }
+
   .map-side-panel {
     grid-column: 1 / -1;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .flat-map-grid .map-side-panel {
+    grid-column: auto;
+    grid-template-columns: 1fr;
   }
 
   .journey-scroll-layout {
@@ -2226,6 +2339,12 @@ h1 {
   .culture-theme-tabs,
   .culture-map-grid,
   .map-side-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .culture-map-grid.flat-map-grid,
+  .flat-content-section,
+  .flat-widgets-grid {
     grid-template-columns: 1fr;
   }
 

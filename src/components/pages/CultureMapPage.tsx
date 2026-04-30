@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import { cultureAssets } from '../../data/assets';
+import { BuddhistTimeline } from '../sections/BuddhistTimeline';
+import { DharmaChat } from '../widgets/DharmaChat';
+import { LongmenVideoDemo } from '../widgets/LongmenVideoDemo';
+import { ScriptureExplain } from '../widgets/ScriptureExplain';
+import { WishFortune } from '../widgets/WishFortune';
 
 interface CultureMapPageProps {
   onEnterBuddhism: () => void;
@@ -35,7 +40,6 @@ interface CultureMapTheme {
   mapImage: string;
   scrollImage: string;
   scrollTitle: string;
-  centerTitle: string;
   actionText: string;
   sites: MapSite[];
   timeline: string[];
@@ -63,8 +67,7 @@ const cultureMapThemes: CultureMapTheme[] = [
     mapImage: cultureAssets.buddhistMap,
     scrollImage: cultureAssets.buddhistScroll,
     scrollTitle: '佛教文脉长图',
-    centerTitle: '佛教文化体验中心',
-    actionText: '进入佛教行旅',
+    actionText: '入卷观影',
     timeline: ['东汉', '魏晋', '隋唐', '宋元', '明清', '近现代'],
     experiences: [
       { title: '与达摩交流', icon: sharedIcons.dialogue },
@@ -133,7 +136,6 @@ const cultureMapThemes: CultureMapTheme[] = [
     mapImage: cultureAssets.daoMap,
     scrollImage: cultureAssets.daoScroll,
     scrollTitle: '道教文脉长图',
-    centerTitle: '道教文化体验中心',
     actionText: '循山访道',
     timeline: ['先秦', '两汉', '魏晋', '唐宋', '元明', '近现代'],
     experiences: [
@@ -194,7 +196,6 @@ const cultureMapThemes: CultureMapTheme[] = [
     mapImage: cultureAssets.silkRoadMap,
     scrollImage: cultureAssets.oceanScroll,
     scrollTitle: '丝路风物长卷',
-    centerTitle: '丝路文化体验中心',
     actionText: '沿路西行',
     timeline: ['张骞', '汉唐', '敦煌', '高昌', '长安', '海陆互通'],
     experiences: [
@@ -255,7 +256,6 @@ const cultureMapThemes: CultureMapTheme[] = [
     mapImage: cultureAssets.daoMap,
     scrollImage: cultureAssets.shopScroll,
     scrollTitle: '茶事风雅长卷',
-    centerTitle: '茶文化体验中心',
     actionText: '入席闻香',
     timeline: ['神农', '唐煎茶', '宋点茶', '明清', '茶马道', '今日茶席'],
     experiences: [
@@ -316,7 +316,6 @@ const cultureMapThemes: CultureMapTheme[] = [
     mapImage: cultureAssets.oceanScroll,
     scrollImage: cultureAssets.shopPoster,
     scrollTitle: '非遗百工长卷',
-    centerTitle: '非遗文化体验中心',
     actionText: '观作入艺',
     timeline: ['口传', '家学', '行会', '展演', '保护', '新生'],
     experiences: [
@@ -377,7 +376,6 @@ const cultureMapThemes: CultureMapTheme[] = [
     mapImage: cultureAssets.oceanScroll,
     scrollImage: cultureAssets.oceanScroll,
     scrollTitle: '海洋信俗长卷',
-    centerTitle: '民俗文化体验中心',
     actionText: '随潮观礼',
     timeline: ['岁首', '上元', '清明', '端午', '中秋', '岁暮'],
     experiences: [
@@ -431,8 +429,9 @@ function getInitialSite(theme: CultureMapTheme) {
   return theme.sites[Math.min(2, theme.sites.length - 1)].id;
 }
 
-export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
+export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMapPageProps) {
   const [toast, setToast] = useState('');
+  const [videoSignal, setVideoSignal] = useState(0);
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>('buddhism');
   const activeTheme = cultureMapThemes.find((theme) => theme.id === activeThemeId) ?? cultureMapThemes[0];
   const [activeSiteIdByTheme, setActiveSiteIdByTheme] = useState<Record<string, string>>({
@@ -467,7 +466,7 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
 
   const handleThemeAction = () => {
     if (activeTheme.id === 'buddhism') {
-      onEnterBuddhism();
+      setVideoSignal((value) => value + 1);
     }
   };
 
@@ -492,26 +491,18 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
           ))}
         </div>
 
-        <div className="culture-map-grid">
-          <aside className="map-scroll-rail">
-            <div className="rail-title">{activeTheme.scrollTitle}</div>
-            <div className="rail-scroll-frame">
-              <img src={activeTheme.scrollImage} alt={activeTheme.scrollTitle} />
-              <button type="button" onClick={handleThemeAction} aria-label={activeTheme.actionText}>
-                入卷
-              </button>
-            </div>
-            <button className="rail-action" type="button" onClick={handleThemeAction}>
-              {activeTheme.actionText}
-            </button>
-          </aside>
-
+        <div className="culture-map-grid flat-map-grid">
           <main className="map-stage-panel">
             <div className="map-stage-heading">
               <div>
                 <p className="eyebrow">{activeTheme.eyebrow}</p>
                 <h1>{activeTheme.headline}</h1>
                 <p>{activeTheme.intro}</p>
+                {activeTheme.id === 'buddhism' && (
+                  <button className="gold-button map-entry-button" type="button" onClick={handleThemeAction}>
+                    入卷观影
+                  </button>
+                )}
               </div>
               <div className="map-compass" aria-hidden="true">
                 <span>北</span>
@@ -533,32 +524,9 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
                 </button>
               ))}
             </div>
-
-            <div className="map-era-strip" aria-label={`${activeTheme.shortTitle}时间轴`}>
-              <button className="play-orb" type="button" onClick={handleThemeAction} aria-label={activeTheme.actionText}>
-                ▶
-              </button>
-              {activeTheme.timeline.map((mark) => (
-                <span key={mark}>{mark}</span>
-              ))}
-            </div>
           </main>
 
           <aside className="map-side-panel">
-            <div className="side-card culture-center-card">
-              <p className="eyebrow">{activeTheme.centerTitle}</p>
-              <div className="experience-icons">
-                {activeTheme.experiences.map((item) => (
-                  <button type="button" key={item.title} onClick={handleThemeAction}>
-                    <span>
-                      <img src={item.icon} alt="" aria-hidden="true" />
-                    </span>
-                    <small>{item.title}</small>
-                  </button>
-                ))}
-              </div>
-            </div>
-
             <div className="side-card site-portrait-card" aria-live="polite">
               <p className="eyebrow">画中一隅</p>
               <img src={activeSite.photo} alt={`${activeSite.name}图景`} />
@@ -566,24 +534,47 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
               <h2>{activeSite.name}</h2>
               <p>{activeSite.description}</p>
             </div>
-
-            <div className="side-card site-list-card">
-              <p className="eyebrow">热门节点</p>
-              {activeTheme.sites.map((site) => (
-                <button
-                  className={activeSite.id === site.id ? 'active' : ''}
-                  type="button"
-                  key={site.id}
-                  onClick={() => selectSite(site.id)}
-                >
-                  <span>{site.name}</span>
-                  <small>{site.label}</small>
-                </button>
-              ))}
-            </div>
           </aside>
         </div>
       </section>
+
+      {activeTheme.id === 'buddhism' && (
+        <section className="flat-buddhist-content" aria-label="佛教文化平铺内容">
+          <div className="flat-content-heading">
+            <p className="eyebrow">沿卷而下</p>
+            <h2>佛教文化内容在此展开</h2>
+            <p>不再进入二级页面，影像、长图、对话、签文、经义与时间脉络顺着页面向下铺开。</p>
+          </div>
+
+          <div className="flat-content-section video-flat-section">
+            <div className="flat-section-copy">
+              <p className="eyebrow">石窟生辉</p>
+              <h3>龙门月照万龛明</h3>
+              <p>点击上方“入卷观影”或下方视频入口，即可直接播放龙门石窟沉浸式影像。</p>
+            </div>
+            <LongmenVideoDemo openSignal={videoSignal} />
+          </div>
+
+          <div className="flat-content-section scroll-flat-section">
+            <div className="flat-section-copy">
+              <p className="eyebrow">长卷初展</p>
+              <h3>佛教文脉长图</h3>
+              <p>沿着圣地营建、石窟造像与传播路线，纵览佛教文化在山河之间的历史展开。</p>
+            </div>
+            <div className="flat-scroll-frame">
+              <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
+            </div>
+          </div>
+
+          <div className="flat-widgets-grid">
+            <DharmaChat />
+            <WishFortune />
+            <ScriptureExplain />
+          </div>
+
+          <BuddhistTimeline />
+        </section>
+      )}
       {toast && <div className="toast-panel">{toast}</div>}
     </div>
   );

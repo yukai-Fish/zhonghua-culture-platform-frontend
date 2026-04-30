@@ -1,9 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
 
-export function LongmenVideoDemo() {
+interface LongmenVideoDemoProps {
+  openSignal?: number;
+}
+
+export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const previousSignal = useRef(openSignal);
+
+  useEffect(() => {
+    if (openSignal !== previousSignal.current) {
+      previousSignal.current = openSignal;
+      setIsOpen(true);
+    }
+  }, [openSignal]);
 
   useEffect(() => {
     if (!isOpen) {

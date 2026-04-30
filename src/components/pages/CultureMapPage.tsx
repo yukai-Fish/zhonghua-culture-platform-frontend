@@ -679,10 +679,10 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 </div>
               </div>
               <div className="inline-video-card narrative-video-card">
-                <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
+                <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
                 <div className="video-caption">
-                  <span>红丝带祈福</span>
-                  <p>红色愿带随风摇曳，象征人们把祝愿寄托于山门、古树与清风之间。</p>
+                  <span>大佛静观</span>
+                  <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
                 </div>
               </div>
             </div>
@@ -705,10 +705,10 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 </div>
               </div>
               <div className="inline-video-card narrative-video-card">
-                <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
+                <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
                 <div className="video-caption">
-                  <span>大佛影像</span>
-                  <p>以近景影像呈现佛像面容、衣纹与石壁肌理，让经文释义落回可感知的艺术现场。</p>
+                  <span>红丝带祈福</span>
+                  <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>
                 </div>
               </div>
             </div>

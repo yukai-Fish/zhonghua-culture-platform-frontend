@@ -666,7 +666,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="flat-section-copy exhibit-section-heading">
               <p className="eyebrow">禅意互动</p>
               <h3>经文释义与愿望摇签</h3>
-              <p>把经文、签文、红丝带与大佛影像编排成四宫格展项，阅读、祈愿与观影彼此穿插，形成更舒缓的浏览节奏。</p>
             </div>
             <div className="quadrant-exhibit-grid">
               <div className="quadrant-column">

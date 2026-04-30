@@ -1553,24 +1553,29 @@ h1 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.45rem;
   min-width: 0;
+  align-items: start;
+}
+
+.quadrant-column {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
 }
 
 .quadrant-cell {
   min-width: 0;
-  min-height: clamp(20rem, 29vw, 28rem);
 }
 
 .quadrant-cell .experience-module {
-  height: 100%;
-  min-height: clamp(20rem, 29vw, 28rem);
+  min-height: clamp(18rem, 24vw, 24rem);
 }
 
 .quadrant-cell .inline-video-card {
-  height: 100%;
+  min-height: clamp(18rem, 26vw, 25rem);
 }
 
 .quadrant-cell .narrative-video-card video {
-  min-height: clamp(15rem, 23vw, 22rem);
+  min-height: clamp(14rem, 21vw, 20rem);
 }
 
 .interaction-column {
@@ -2752,6 +2757,7 @@ h1 {
   .flat-widgets-grid,
   .immersive-tour-grid,
   .quadrant-exhibit-grid,
+  .quadrant-column,
   .exhibit-content-grid,
   .exhibit-guide-strip {
     grid-template-columns: 1fr;

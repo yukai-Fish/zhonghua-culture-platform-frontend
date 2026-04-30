@@ -669,34 +669,38 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <p>把经文、签文、红丝带与大佛影像编排成四宫格展项，阅读、祈愿与观影彼此穿插，形成更舒缓的浏览节奏。</p>
             </div>
             <div className="quadrant-exhibit-grid">
-              <div className="quadrant-cell interaction-cell">
-                <ScriptureExplain />
-              </div>
-              <div className="quadrant-cell">
-                <div className="inline-video-card narrative-video-card">
-                  <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
-                  <div className="video-caption">
-                    <span>红丝带祈福</span>
-                    <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>
+              <div className="quadrant-column">
+                <div className="quadrant-cell interaction-cell">
+                  <ScriptureExplain />
+                </div>
+                <div className="quadrant-cell">
+                  <div className="inline-video-card narrative-video-card">
+                    <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
+                    <div className="video-caption">
+                      <span>大佛静观</span>
+                      <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="quadrant-cell">
-                <div className="inline-video-card narrative-video-card">
-                  <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
-                  <div className="video-caption">
-                    <span>大佛静观</span>
-                    <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
+              <div className="quadrant-column">
+                <div className="quadrant-cell">
+                  <div className="inline-video-card narrative-video-card">
+                    <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
+                    <div className="video-caption">
+                      <span>红丝带祈福</span>
+                      <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="quadrant-cell interaction-cell">
-                <WishFortune />
-                <div className="exhibit-note-grid" aria-label="摇签祈福导览">
-                  <span>写愿</span>
-                  <span>摇签</span>
-                  <span>读偈</span>
-                  <span>观影</span>
+                <div className="quadrant-cell interaction-cell">
+                  <WishFortune />
+                  <div className="exhibit-note-grid" aria-label="摇签祈福导览">
+                    <span>写愿</span>
+                    <span>摇签</span>
+                    <span>读偈</span>
+                    <span>观影</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -45,7 +45,7 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
           关闭
         </button>
         <div className="video-stage">
-          <video src={cultureAssets.longmenVideo} controls autoPlay playsInline />
+          <video src={cultureAssets.longmenVideo} poster={cultureAssets.siteLongmen} controls autoPlay playsInline />
         </div>
         <p>通过影像进入石窟空间，感受佛教艺术与东方审美的融合。</p>
       </div>

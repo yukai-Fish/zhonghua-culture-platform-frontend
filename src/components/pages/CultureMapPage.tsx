@@ -662,27 +662,55 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             </div>
           </div>
 
-          <div className="flat-content-section ritual-flat-section">
-            <div className="flat-section-copy">
+          <div className="flat-content-section ritual-flat-section exhibit-stack-section">
+            <div className="flat-section-copy exhibit-section-heading">
               <p className="eyebrow">清风一签</p>
               <h3>摇签与红丝带祈福</h3>
-              <p>把一念愿望交给签文，也让红丝带在风中留下温柔的祈愿。</p>
+              <p>把一念愿望交给签文，也让红丝带在风中留下温柔的祈愿。展项以签文互动、祈福影像和愿望回响共同组成一段静心仪式。</p>
             </div>
-            <WishFortune />
-            <div className="inline-video-card">
-              <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
+            <div className="exhibit-content-grid">
+              <div className="interaction-column">
+                <WishFortune />
+                <div className="exhibit-note-grid" aria-label="摇签祈福导览">
+                  <span>写愿</span>
+                  <span>摇签</span>
+                  <span>读偈</span>
+                  <span>观带</span>
+                </div>
+              </div>
+              <div className="inline-video-card narrative-video-card">
+                <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
+                <div className="video-caption">
+                  <span>红丝带祈福</span>
+                  <p>红色愿带随风摇曳，象征人们把祝愿寄托于山门、古树与清风之间。</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flat-content-section scripture-flat-section">
-            <div className="flat-section-copy">
+          <div className="flat-content-section scripture-flat-section exhibit-stack-section">
+            <div className="flat-section-copy exhibit-section-heading">
               <p className="eyebrow">经声如水</p>
               <h3>经文释义与大佛影像</h3>
-              <p>在经文释义中理解佛教思想，再以影像回望大佛的庄严与静默。</p>
+              <p>在经文释义中理解佛教思想，再以影像回望大佛的庄严与静默。文字、白话释义与造像影像彼此呼应，形成可读、可观的展陈单元。</p>
             </div>
-            <ScriptureExplain />
-            <div className="inline-video-card">
-              <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
+            <div className="exhibit-content-grid">
+              <div className="interaction-column">
+                <ScriptureExplain />
+                <div className="exhibit-note-grid" aria-label="经文释义导览">
+                  <span>选句</span>
+                  <span>释义</span>
+                  <span>换读</span>
+                  <span>观佛</span>
+                </div>
+              </div>
+              <div className="inline-video-card narrative-video-card">
+                <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
+                <div className="video-caption">
+                  <span>大佛影像</span>
+                  <p>以近景影像呈现佛像面容、衣纹与石壁肌理，让经文释义落回可感知的艺术现场。</p>
+                </div>
+              </div>
             </div>
           </div>
 

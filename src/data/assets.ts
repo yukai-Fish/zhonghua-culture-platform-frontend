@@ -18,6 +18,7 @@ export const cultureAssets = {
   sitePutuo: `${assetBase}assets/sites/putuo-mountain.jpg`,
   siteLingyin: `${assetBase}assets/sites/lingyin-temple.jpg`,
   siteLongmen: `${assetBase}assets/sites/longmen-grottoes.jpg`,
+  siteLongmenBuddha: `${assetBase}assets/sites/longmen-buddha.png`,
   sitePotala: `${assetBase}assets/sites/potala-palace.jpg`,
   siteWutai: `${assetBase}assets/sites/mount-wutai.jpg`,
   iconDharmaDialog: `${assetBase}assets/icons/dharma-dialog.svg`,

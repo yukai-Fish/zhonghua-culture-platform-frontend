@@ -109,7 +109,7 @@ const cultureMapThemes: CultureMapTheme[] = [
         label: '石窟造像',
         x: 57,
         y: 43,
-        photo: cultureAssets.siteLongmen,
+        photo: cultureAssets.siteLongmenBuddha,
         description: '伊水两岸，万龛向光，北魏至唐的刀锋把慈悲与盛世一同刻入山岩。',
         location: '河南洛阳',
         period: '北魏至唐',

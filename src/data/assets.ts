@@ -12,4 +12,9 @@ export const cultureAssets = {
   shopPostcard: `${assetBase}assets/shop-postcard.png`,
   shopScroll: `${assetBase}assets/shop-scroll.png`,
   longmenVideo: `${assetBase}assets/longmen-demo.mp4`,
+  sitePutuo: `${assetBase}assets/sites/putuo-mountain.jpg`,
+  siteLingyin: `${assetBase}assets/sites/lingyin-temple.jpg`,
+  siteLongmen: `${assetBase}assets/sites/longmen-grottoes.jpg`,
+  sitePotala: `${assetBase}assets/sites/potala-palace.jpg`,
+  siteWutai: `${assetBase}assets/sites/mount-wutai.jpg`,
 } as const;

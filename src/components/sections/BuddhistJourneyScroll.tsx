@@ -8,6 +8,8 @@ interface JourneyStop {
   x: number;
   y: number;
   description: string;
+  photo: string;
+  sourceUrl: string;
 }
 
 const journeyStops: JourneyStop[] = [
@@ -18,6 +20,8 @@ const journeyStops: JourneyStop[] = [
     x: 68,
     y: 12,
     description: '潮声绕岛，香云接海，观音信愿在海天之间化作温柔灯火。',
+    photo: cultureAssets.sitePutuo,
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:20090606_Putuoshan_8711.jpg',
   },
   {
     id: 'lingyin',
@@ -26,6 +30,8 @@ const journeyStops: JourneyStop[] = [
     x: 38,
     y: 27,
     description: '飞来峰下苔痕深浅，钟声穿过松影，把江南山水染成一片清寂。',
+    photo: cultureAssets.siteLingyin,
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:20231124_Lingyin_Temple_01.jpg',
   },
   {
     id: 'longmen',
@@ -34,6 +40,8 @@ const journeyStops: JourneyStop[] = [
     x: 55,
     y: 43,
     description: '伊水两岸，万龛向光，北魏至唐的刀锋把慈悲与盛世一同刻入山岩。',
+    photo: cultureAssets.siteLongmen,
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:2010_CHINE_(4591388042).jpg',
   },
   {
     id: 'potala',
@@ -42,6 +50,8 @@ const journeyStops: JourneyStop[] = [
     x: 49,
     y: 60,
     description: '白墙红宫倚雪域而起，云影、经幡与晨光共同托起高原的庄严。',
+    photo: cultureAssets.sitePotala,
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:20140505_Potala_Palace.jpg',
   },
   {
     id: 'wutai',
@@ -50,6 +60,8 @@ const journeyStops: JourneyStop[] = [
     x: 58,
     y: 79,
     description: '五峰环抱，清凉入怀，朝山人的脚步在风雪与香火中绵延不息。',
+    photo: cultureAssets.siteWutai,
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mount_Wutai_%E4%BA%94%E5%8F%B0%E5%B1%B1_-_panoramio_(2).jpg',
   },
 ];
 
@@ -107,6 +119,15 @@ export function BuddhistJourneyScroll() {
         <aside className="journey-info-card" aria-live="polite">
           <p className="eyebrow">画中一隅</p>
           <span>{activeStop.label}</span>
+          <figure className="journey-site-photo">
+            <img src={activeStop.photo} alt={`${activeStop.name}实景照片`} />
+            <figcaption>
+              实景照片 ·{' '}
+              <a href={activeStop.sourceUrl} target="_blank" rel="noreferrer">
+                Wikimedia Commons
+              </a>
+            </figcaption>
+          </figure>
           <h3>{activeStop.name}</h3>
           <p>{activeStop.description}</p>
           <button className="gold-button" type="button" onClick={() => document.getElementById('experience-center')?.scrollIntoView({ behavior: 'smooth' })}>

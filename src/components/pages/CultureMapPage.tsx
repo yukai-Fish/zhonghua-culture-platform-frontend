@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
 import { BuddhistTimeline } from '../sections/BuddhistTimeline';
-import { DharmaChat } from '../widgets/DharmaChat';
 import { LongmenVideoDemo } from '../widgets/LongmenVideoDemo';
 import { ScriptureExplain } from '../widgets/ScriptureExplain';
 import { WishFortune } from '../widgets/WishFortune';
@@ -510,7 +509,6 @@ function getInitialSite(theme: CultureMapTheme) {
 
 export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMapPageProps) {
   const [toast, setToast] = useState('');
-  const [videoSignal, setVideoSignal] = useState(0);
   const [isScrollViewerOpen, setIsScrollViewerOpen] = useState(false);
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>('buddhism');
   const activeTheme = cultureMapThemes.find((theme) => theme.id === activeThemeId) ?? cultureMapThemes[0];
@@ -542,12 +540,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
       ...current,
       [activeTheme.id]: siteId,
     }));
-  };
-
-  const handleThemeAction = () => {
-    if (activeTheme.id === 'buddhism') {
-      setVideoSignal((value) => value + 1);
-    }
   };
 
   const scrollViewer = isScrollViewerOpen ? createPortal(
@@ -590,11 +582,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 <p className="eyebrow">{activeTheme.eyebrow}</p>
                 <h1>{activeTheme.headline}</h1>
                 <p>{activeTheme.intro}</p>
-                {activeTheme.id === 'buddhism' && (
-                  <button className="gold-button map-entry-button" type="button" onClick={handleThemeAction}>
-                    入卷观影
-                  </button>
-                )}
               </div>
               <div className="map-compass" aria-hidden="true">
                 <span>北</span>
@@ -636,16 +623,21 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 ))}
               </div>
               <p>{activeSite.description}</p>
-              {activeTheme.id === 'buddhism' && (
-                <div className="site-action-row">
-                  <button className="gold-button" type="button" onClick={handleThemeAction}>
-                    进入石窟影像
-                  </button>
-                  <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
-                    查看相关长图
-                  </button>
-                </div>
-              )}
+            </div>
+
+            <div className="side-card site-list-card">
+              <p className="eyebrow">热门节点</p>
+              {activeTheme.sites.map((site) => (
+                <button
+                  className={activeSite.id === site.id ? 'active' : ''}
+                  type="button"
+                  key={site.id}
+                  onClick={() => selectSite(site.id)}
+                >
+                  <span>{site.name}</span>
+                  <small>{site.label}</small>
+                </button>
+              ))}
             </div>
           </aside>
         </div>
@@ -653,42 +645,45 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
 
       {activeTheme.id === 'buddhism' && (
         <section className="flat-buddhist-content" aria-label="佛教文化平铺内容">
-          <nav className="exhibit-guide-strip" aria-label="佛教文化导览">
-            {['地图节点', '石窟影像', '文脉长图', '禅意互动', '历史时间轴'].map((item, index) => (
-              <span key={item}>
-                <i>{index + 1}</i>
-                {item}
-              </span>
-            ))}
-          </nav>
-
           <div className="flat-content-section video-flat-section">
             <div className="flat-section-copy">
-              <p className="eyebrow">石窟生辉</p>
-              <h3>龙门月照万龛明</h3>
-              <p>点击上方“入卷观影”或下方视频入口，即可直接播放龙门石窟沉浸式影像。</p>
-            </div>
-            <LongmenVideoDemo openSignal={videoSignal} />
-          </div>
-
-          <div className="flat-content-section scroll-flat-section">
-            <div className="flat-section-copy">
-              <p className="eyebrow">长卷初展</p>
-              <h3>佛教文脉长图</h3>
-              <p>沿着圣地营建、石窟造像与传播路线，纵览佛教文化在山河之间的历史展开。</p>
+              <p className="eyebrow">时空漫游</p>
+              <h3>沉浸式游览</h3>
+              <p>以长图与影像并置，沿佛教圣地与石窟造像的路径向前游览。</p>
               <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
                 全屏查看长卷
               </button>
             </div>
-            <div className="flat-scroll-frame">
-              <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
+            <div className="immersive-tour-grid">
+              <div className="flat-scroll-frame">
+                <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
+              </div>
+              <LongmenVideoDemo />
             </div>
           </div>
 
-          <div className="flat-widgets-grid">
-            <DharmaChat />
+          <div className="flat-content-section ritual-flat-section">
+            <div className="flat-section-copy">
+              <p className="eyebrow">清风一签</p>
+              <h3>摇签与红丝带祈福</h3>
+              <p>把一念愿望交给签文，也让红丝带在风中留下温柔的祈愿。</p>
+            </div>
             <WishFortune />
+            <div className="inline-video-card">
+              <video src={cultureAssets.blessingVideo} controls playsInline />
+            </div>
+          </div>
+
+          <div className="flat-content-section scripture-flat-section">
+            <div className="flat-section-copy">
+              <p className="eyebrow">经声如水</p>
+              <h3>经文释义与大佛影像</h3>
+              <p>在经文释义中理解佛教思想，再以影像回望大佛的庄严与静默。</p>
+            </div>
             <ScriptureExplain />
+            <div className="inline-video-card">
+              <video src={cultureAssets.scriptureVideo} controls playsInline />
+            </div>
           </div>
 
           <BuddhistTimeline />

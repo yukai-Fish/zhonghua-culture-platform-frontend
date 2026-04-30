@@ -1250,6 +1250,10 @@ h1 {
   align-content: start;
 }
 
+.flat-map-grid .map-side-panel {
+  padding-top: clamp(10.8rem, 14vw, 13.6rem);
+}
+
 .map-side-panel .side-card {
   padding: 1rem;
   transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
@@ -1515,6 +1519,11 @@ h1 {
   transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
+.ritual-flat-section,
+.scripture-flat-section {
+  grid-template-columns: minmax(220px, 0.42fr) minmax(300px, 0.86fr) minmax(320px, 0.92fr);
+}
+
 .flat-section-copy {
   align-self: center;
 }
@@ -1536,9 +1545,16 @@ h1 {
   min-height: 21rem;
 }
 
+.immersive-tour-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.56fr) minmax(360px, 1fr);
+  gap: 1rem;
+  min-width: 0;
+}
+
 .flat-scroll-frame {
   overflow: auto;
-  max-height: 40rem;
+  max-height: 31rem;
   border: 1px solid rgba(217, 173, 102, 0.38);
   border-radius: 0.65rem;
   background:
@@ -1558,6 +1574,27 @@ h1 {
   width: min(100%, 680px);
   margin: 0 auto;
   padding: 1rem 0;
+}
+
+.inline-video-card {
+  overflow: hidden;
+  align-self: stretch;
+  min-height: 17rem;
+  border: 1px solid rgba(217, 173, 102, 0.26);
+  border-radius: 0.72rem;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(217, 173, 102, 0.1), transparent 18rem),
+    #0a0604;
+  box-shadow: inset 0 0 0 1px rgba(255, 239, 189, 0.04);
+}
+
+.inline-video-card video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 17rem;
+  object-fit: cover;
+  background: #000;
 }
 
 .flat-widgets-grid {
@@ -2545,6 +2582,7 @@ h1 {
   .flat-map-grid .map-side-panel {
     grid-column: auto;
     grid-template-columns: 1fr;
+    padding-top: clamp(10rem, 16vw, 12rem);
   }
 
   .journey-scroll-layout {
@@ -2613,8 +2651,13 @@ h1 {
   .culture-map-grid.flat-map-grid,
   .flat-content-section,
   .flat-widgets-grid,
+  .immersive-tour-grid,
   .exhibit-guide-strip {
     grid-template-columns: 1fr;
+  }
+
+  .flat-map-grid .map-side-panel {
+    padding-top: 0;
   }
 
   .exhibit-guide-strip span:not(:last-child)::after {

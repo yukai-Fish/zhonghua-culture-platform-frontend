@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { type CSSProperties, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
 
@@ -47,18 +47,23 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
         <div className="video-stage">
           <video src={cultureAssets.longmenVideo} controls autoPlay playsInline />
         </div>
-        <p>岩壁千年，伊水无声，光影替沉默的石像重新点亮眉目。</p>
+        <p>通过影像进入石窟空间，感受佛教艺术与东方审美的融合。</p>
       </div>
     </div>
   );
 
   return (
-    <section className="experience-module">
-      <h3>龙门月下，石佛含光</h3>
-      <button className="video-demo" type="button" onClick={() => setIsOpen(true)}>
-        <span className="play-ring">播放</span>
-        <strong>入石窟光影</strong>
-        <small>山岩无言，佛面有光，一段影像从古龛深处缓缓醒来。</small>
+    <section className="experience-module longmen-exhibit">
+      <h3>龙门月照，石佛含光</h3>
+      <button
+        className="video-demo"
+        type="button"
+        style={{ '--longmen-poster': `url(${cultureAssets.siteLongmen})` } as CSSProperties}
+        onClick={() => setIsOpen(true)}
+      >
+        <span className="play-ring" aria-hidden="true">播放</span>
+        <strong>龙门月照，石佛含光</strong>
+        <small>通过影像进入石窟空间，感受佛教艺术与东方审美的融合。</small>
       </button>
 
       {isOpen ? createPortal(modal, document.body) : null}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
 import { BuddhistTimeline } from '../sections/BuddhistTimeline';
 import { DharmaChat } from '../widgets/DharmaChat';
@@ -20,6 +21,9 @@ interface MapSite {
   y: number;
   photo: string;
   description: string;
+  location: string;
+  period: string;
+  keywords: string[];
 }
 
 interface ThemeExperience {
@@ -84,6 +88,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 58,
         photo: cultureAssets.sitePutuo,
         description: '潮声绕岛，香云接海，观音信愿在海天之间化作温柔灯火。',
+        location: '浙江舟山',
+        period: '唐宋以后',
+        keywords: ['观音道场', '海天佛国', '朝圣名山'],
       },
       {
         id: 'lingyin',
@@ -93,6 +100,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 55,
         photo: cultureAssets.siteLingyin,
         description: '飞来峰下苔痕深浅，钟声穿过松影，把江南山水染成一片清寂。',
+        location: '浙江杭州',
+        period: '东晋以来',
+        keywords: ['江南禅林', '飞来峰', '寺院山水'],
       },
       {
         id: 'longmen',
@@ -102,6 +112,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 43,
         photo: cultureAssets.siteLongmen,
         description: '伊水两岸，万龛向光，北魏至唐的刀锋把慈悲与盛世一同刻入山岩。',
+        location: '河南洛阳',
+        period: '北魏至唐',
+        keywords: ['石窟造像', '皇家营建', '中原审美'],
       },
       {
         id: 'potala',
@@ -111,6 +124,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 57,
         photo: cultureAssets.sitePotala,
         description: '白墙红宫倚雪域而起，云影、经幡与晨光共同托起高原的庄严。',
+        location: '西藏拉萨',
+        period: '吐蕃至清',
+        keywords: ['高原佛宫', '藏传佛教', '宫堡建筑'],
       },
       {
         id: 'wutai',
@@ -120,6 +136,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 30,
         photo: cultureAssets.siteWutai,
         description: '五峰环抱，清凉入怀，朝山人的脚步在风雪与香火中绵延不息。',
+        location: '山西忻州',
+        period: '北魏以来',
+        keywords: ['文殊道场', '清凉圣境', '佛教名山'],
       },
     ],
   },
@@ -153,6 +172,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 58,
         photo: cultureAssets.daoScroll,
         description: '山色深处藏着清响，石径与宫观在云雾间缓缓相接。',
+        location: '四川成都',
+        period: '东汉以来',
+        keywords: ['洞天福地', '青城幽意', '道教名山'],
       },
       {
         id: 'wudang',
@@ -162,6 +184,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 50,
         photo: cultureAssets.daoMap,
         description: '金殿映日，群峰拱卫，武当把山势与道法凝成一线庄严。',
+        location: '湖北十堰',
+        period: '明代鼎盛',
+        keywords: ['玄岳仙山', '真武信仰', '宫观群'],
       },
       {
         id: 'longhu',
@@ -171,6 +196,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 60,
         photo: cultureAssets.daoScroll,
         description: '碧水绕丹崖而过，符箓与山水在此留下悠远的回声。',
+        location: '江西鹰潭',
+        period: '东汉以来',
+        keywords: ['天师道', '丹霞水府', '符箓传统'],
       },
       {
         id: 'maoshan',
@@ -180,6 +208,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 52,
         photo: cultureAssets.daoMap,
         description: '松风入殿，古坛沉静，上清一脉在江南烟雨里绵延。',
+        location: '江苏句容',
+        period: '魏晋南北朝',
+        keywords: ['上清派', '江南道脉', '坛观遗韵'],
       },
     ],
   },
@@ -213,6 +244,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 45,
         photo: cultureAssets.silkRoadMap,
         description: '城阙之下车马汇聚，东方都城成为古道启程的灿烂灯火。',
+        location: '陕西西安',
+        period: '汉唐',
+        keywords: ['都城起点', '万邦来朝', '商旅汇聚'],
       },
       {
         id: 'dunhuang',
@@ -222,6 +256,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 42,
         photo: cultureAssets.siteLongmen,
         description: '鸣沙与月牙相望，壁画、经卷和胡旋舞在洞窟中留住远方。',
+        location: '甘肃敦煌',
+        period: '十六国至元',
+        keywords: ['莫高窟', '壁画经变', '沙州绿洲'],
       },
       {
         id: 'jiayuguan',
@@ -231,6 +268,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 39,
         photo: cultureAssets.silkRoadMap,
         description: '关城横卧戈壁，出入之间便是中原与西域的辽阔交界。',
+        location: '甘肃嘉峪关',
+        period: '明代',
+        keywords: ['关城', '河西走廊', '边塞交通'],
       },
       {
         id: 'turpan',
@@ -240,6 +280,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 36,
         photo: cultureAssets.oceanScroll,
         description: '葡萄沟与古城遗址相互照面，绿洲托住往来商旅的歇脚处。',
+        location: '新疆吐鲁番',
+        period: '汉唐以来',
+        keywords: ['绿洲', '高昌故城', '西域交通'],
       },
     ],
   },
@@ -273,6 +316,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 62,
         photo: cultureAssets.shopPoster,
         description: '岩壁与溪声养出茶香，焙火之后仍有山骨清气。',
+        location: '福建武夷山',
+        period: '宋元以来',
+        keywords: ['岩茶', '山场', '焙火'],
       },
       {
         id: 'longjing',
@@ -282,6 +328,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 55,
         photo: cultureAssets.shopPostcard,
         description: '一湖春水映着茶垄，新芽把江南的清明留在杯中。',
+        location: '浙江杭州',
+        period: '明清以来',
+        keywords: ['绿茶', '江南春芽', '西湖山水'],
       },
       {
         id: 'yunnan',
@@ -291,6 +340,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 72,
         photo: cultureAssets.shopScroll,
         description: '古茶树扎根云岭，岁月在一饼茶里慢慢陈成温润。',
+        location: '云南茶山',
+        period: '唐宋以来',
+        keywords: ['古树茶', '茶马古道', '陈化'],
       },
       {
         id: 'anjxi',
@@ -300,6 +352,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 68,
         photo: cultureAssets.daoScroll,
         description: '兰香入盏，山风穿堂，乌龙茶韵在闽南丘陵间流转。',
+        location: '福建安溪',
+        period: '清代以来',
+        keywords: ['乌龙茶', '铁观音', '兰韵'],
       },
     ],
   },
@@ -333,6 +388,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 54,
         photo: cultureAssets.shopPoster,
         description: '丝线在指尖交错，花鸟楼阁被一寸寸织进光影。',
+        location: '江苏苏州',
+        period: '宋元以来',
+        keywords: ['缂丝', '织造', '丝线工艺'],
       },
       {
         id: 'jingdezhen',
@@ -342,6 +400,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 61,
         photo: cultureAssets.shopPostcard,
         description: '窑火昼夜不息，泥土经由火焰成为温润如玉的器物。',
+        location: '江西景德镇',
+        period: '宋代以来',
+        keywords: ['瓷都', '窑火', '青白瓷'],
       },
       {
         id: 'yangzhou',
@@ -351,6 +412,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 51,
         photo: cultureAssets.shopScroll,
         description: '刀锋行于木上，字迹与书香从刻痕里慢慢醒来。',
+        location: '江苏扬州',
+        period: '明清',
+        keywords: ['雕版印刷', '书坊', '墨香'],
       },
       {
         id: 'foshan',
@@ -360,6 +424,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 74,
         photo: cultureAssets.oceanScroll,
         description: '鼓声一响，狮头昂起，岭南街巷便有了热烈的精神。',
+        location: '广东佛山',
+        period: '明清以来',
+        keywords: ['醒狮', '鼓点', '岭南民俗'],
       },
     ],
   },
@@ -393,6 +460,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 68,
         photo: cultureAssets.oceanScroll,
         description: '潮水拍岸，香火连船，人们把远航的祈愿交给海风。',
+        location: '福建莆田',
+        period: '宋代以来',
+        keywords: ['妈祖信俗', '海祭', '祖庭'],
       },
       {
         id: 'quanzhou',
@@ -402,6 +472,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 66,
         photo: cultureAssets.silkRoadMap,
         description: '古港回声仍在，多元信俗随着商船与市井一同生长。',
+        location: '福建泉州',
+        period: '宋元',
+        keywords: ['海丝古港', '多元信俗', '商贸城市'],
       },
       {
         id: 'chaoshan',
@@ -411,6 +484,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 72,
         photo: cultureAssets.shopPostcard,
         description: '锣鼓、灯彩与街巷人潮汇成节庆，热闹里藏着乡土秩序。',
+        location: '广东潮汕',
+        period: '明清以来',
+        keywords: ['游神赛会', '灯彩', '乡土礼俗'],
       },
       {
         id: 'tianjin',
@@ -420,6 +496,9 @@ const cultureMapThemes: CultureMapTheme[] = [
         y: 32,
         photo: cultureAssets.oceanScroll,
         description: '河海交会之处，庙宇守着商旅与船家的平安愿望。',
+        location: '天津',
+        period: '元明以来',
+        keywords: ['天后宫', '漕运', '河海祈愿'],
       },
     ],
   },
@@ -432,6 +511,7 @@ function getInitialSite(theme: CultureMapTheme) {
 export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMapPageProps) {
   const [toast, setToast] = useState('');
   const [videoSignal, setVideoSignal] = useState(0);
+  const [isScrollViewerOpen, setIsScrollViewerOpen] = useState(false);
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>('buddhism');
   const activeTheme = cultureMapThemes.find((theme) => theme.id === activeThemeId) ?? cultureMapThemes[0];
   const [activeSiteIdByTheme, setActiveSiteIdByTheme] = useState<Record<string, string>>({
@@ -469,6 +549,18 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
       setVideoSignal((value) => value + 1);
     }
   };
+
+  const scrollViewer = isScrollViewerOpen ? createPortal(
+    <div className="image-viewer scroll-viewer" role="dialog" aria-modal="true" aria-label="佛教文脉长图全屏预览">
+      <div className="image-viewer-inner scroll-viewer-inner">
+        <button className="close-button" type="button" onClick={() => setIsScrollViewerOpen(false)}>
+          关闭
+        </button>
+        <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图全屏预览" />
+      </div>
+    </div>,
+    document.body,
+  ) : null;
 
   return (
     <div className="page culture-map-page page-fade">
@@ -529,10 +621,31 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
           <aside className="map-side-panel">
             <div className="side-card site-portrait-card" aria-live="polite">
               <p className="eyebrow">画中一隅</p>
-              <img src={activeSite.photo} alt={`${activeSite.name}图景`} />
-              <span>{activeSite.label}</span>
+              <figure className="site-portrait-figure">
+                <img src={activeSite.photo} alt={`${activeSite.name}图景`} />
+                <figcaption>{activeSite.label}</figcaption>
+              </figure>
+              <div className="site-meta-grid">
+                <span>位置：{activeSite.location}</span>
+                <span>时期：{activeSite.period}</span>
+              </div>
               <h2>{activeSite.name}</h2>
+              <div className="keyword-row">
+                {activeSite.keywords.map((keyword) => (
+                  <em key={keyword}>{keyword}</em>
+                ))}
+              </div>
               <p>{activeSite.description}</p>
+              {activeTheme.id === 'buddhism' && (
+                <div className="site-action-row">
+                  <button className="gold-button" type="button" onClick={handleThemeAction}>
+                    进入石窟影像
+                  </button>
+                  <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
+                    查看相关长图
+                  </button>
+                </div>
+              )}
             </div>
           </aside>
         </div>
@@ -540,11 +653,14 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
 
       {activeTheme.id === 'buddhism' && (
         <section className="flat-buddhist-content" aria-label="佛教文化平铺内容">
-          <div className="flat-content-heading">
-            <p className="eyebrow">沿卷而下</p>
-            <h2>佛教文化内容在此展开</h2>
-            <p>不再进入二级页面，影像、长图、对话、签文、经义与时间脉络顺着页面向下铺开。</p>
-          </div>
+          <nav className="exhibit-guide-strip" aria-label="佛教文化导览">
+            {['地图节点', '石窟影像', '文脉长图', '禅意互动', '历史时间轴'].map((item, index) => (
+              <span key={item}>
+                <i>{index + 1}</i>
+                {item}
+              </span>
+            ))}
+          </nav>
 
           <div className="flat-content-section video-flat-section">
             <div className="flat-section-copy">
@@ -560,6 +676,9 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <p className="eyebrow">长卷初展</p>
               <h3>佛教文脉长图</h3>
               <p>沿着圣地营建、石窟造像与传播路线，纵览佛教文化在山河之间的历史展开。</p>
+              <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
+                全屏查看长卷
+              </button>
             </div>
             <div className="flat-scroll-frame">
               <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
@@ -575,6 +694,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
           <BuddhistTimeline />
         </section>
       )}
+      {scrollViewer}
       {toast && <div className="toast-panel">{toast}</div>}
     </div>
   );

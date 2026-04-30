@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
 
 interface LongmenVideoDemoProps {
@@ -7,65 +6,58 @@ interface LongmenVideoDemoProps {
 }
 
 export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const previousSignal = useRef(openSignal);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const playVideo = () => {
+    void videoRef.current?.play();
+  };
+
+  const toggleVideo = () => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    if (video.paused) {
+      void video.play();
+      return;
+    }
+
+    video.pause();
+  };
 
   useEffect(() => {
     if (openSignal !== previousSignal.current) {
       previousSignal.current = openSignal;
-      setIsOpen(true);
+      playVideo();
     }
   }, [openSignal]);
 
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen]);
-
-  const modal = (
-    <div className="video-modal" role="dialog" aria-modal="true" aria-label="龙门石窟影像">
-      <div className="video-modal-inner">
-        <button className="close-button video-close-button" type="button" onClick={() => setIsOpen(false)}>
-          关闭
-        </button>
-        <div className="video-stage">
-          <video src={cultureAssets.longmenVideo} poster={cultureAssets.siteLongmen} controls autoPlay playsInline />
-        </div>
-        <p>通过影像进入石窟空间，感受佛教艺术与东方审美的融合。</p>
-      </div>
-    </div>
-  );
-
   return (
     <section className="experience-module longmen-exhibit">
-      <button
-        className="video-demo"
-        type="button"
-        onClick={() => setIsOpen(true)}
-      >
-        <img className="video-poster-blur" src={cultureAssets.siteLongmen} alt="" aria-hidden="true" />
-        <span className="play-ring" aria-hidden="true">游览</span>
-        <strong>龙门月照，石佛含光</strong>
-        <small>从地图节点进入石窟空间，以影像模拟漫游视角，感受佛教造像与东方审美的融合。</small>
-      </button>
-
-      {isOpen ? createPortal(modal, document.body) : null}
+      <h3 className="longmen-video-title">龙门月照，石佛含光</h3>
+      <div className={`longmen-player ${isPlaying ? 'is-playing' : ''}`}>
+        <video
+          ref={videoRef}
+          src={cultureAssets.longmenVideo}
+          poster={cultureAssets.siteLongmen}
+          playsInline
+          preload="metadata"
+          onClick={toggleVideo}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          onEnded={() => setIsPlaying(false)}
+        />
+        {!isPlaying && (
+          <img className="longmen-player-poster" src={cultureAssets.siteLongmen} alt="" aria-hidden="true" />
+        )}
+        <button className="longmen-play-button" type="button" onClick={toggleVideo}>
+          {isPlaying ? '暂停' : '播放'}
+        </button>
+      </div>
     </section>
   );
 }

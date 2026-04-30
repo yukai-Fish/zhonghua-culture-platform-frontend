@@ -65,7 +65,6 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
         {!isPlaying && (
           <img className="longmen-player-poster" src={cultureAssets.siteLongmen} alt="" aria-hidden="true" />
         )}
-        {!isPlaying && <span className="longmen-play-hint">点击画面开始播放，再点击暂停</span>}
       </div>
     </section>
   );

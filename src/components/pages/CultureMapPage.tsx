@@ -510,6 +510,7 @@ function getInitialSite(theme: CultureMapTheme) {
 export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMapPageProps) {
   const [toast, setToast] = useState('');
   const [isScrollViewerOpen, setIsScrollViewerOpen] = useState(false);
+  const [tourSignal, setTourSignal] = useState(0);
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>('buddhism');
   const activeTheme = cultureMapThemes.find((theme) => theme.id === activeThemeId) ?? cultureMapThemes[0];
   const [activeSiteIdByTheme, setActiveSiteIdByTheme] = useState<Record<string, string>>({
@@ -540,6 +541,11 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
       ...current,
       [activeTheme.id]: siteId,
     }));
+  };
+
+  const startLongmenTour = () => {
+    setActiveSiteIdByTheme((current) => ({ ...current, buddhism: 'longmen' }));
+    setTourSignal((current) => current + 1);
   };
 
   const scrollViewer = isScrollViewerOpen ? createPortal(
@@ -650,15 +656,18 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <p className="eyebrow">沿图入境</p>
               <h3>佛教圣地巡礼</h3>
               <p>以长图串联佛教胜地，再从地图节点进入代表性空间。</p>
-              <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
+              <button className="ghost-button" type="button" onClick={startLongmenTour}>
                 开启时空漫游
               </button>
             </div>
             <div className="immersive-tour-grid">
               <div className="flat-scroll-frame">
                 <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
+                <button className="scroll-site-node is-selected" type="button" onClick={startLongmenTour}>
+                  龙门石窟
+                </button>
               </div>
-              <LongmenVideoDemo />
+              <LongmenVideoDemo openSignal={tourSignal} />
             </div>
           </div>
 

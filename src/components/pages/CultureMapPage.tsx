@@ -28,6 +28,7 @@ interface CultureMapTheme {
   shortTitle: string;
   subtitle: string;
   icon: string;
+  enabled: boolean;
   eyebrow: string;
   headline: string;
   intro: string;
@@ -54,7 +55,8 @@ const cultureMapThemes: CultureMapTheme[] = [
     title: '佛教文化地图',
     shortTitle: '佛教',
     subtitle: '石窟寺院',
-    icon: '卍',
+    icon: cultureAssets.iconThemeBuddhism,
+    enabled: true,
     eyebrow: '莲开东土 · 梵音入山河',
     headline: '佛教文化地图',
     intro: '古道带来经声，石壁留住光影，寺塔在山河间静候一次回望。',
@@ -123,7 +125,8 @@ const cultureMapThemes: CultureMapTheme[] = [
     title: '道教文化地图',
     shortTitle: '道教',
     subtitle: '洞天福地',
-    icon: '山',
+    icon: cultureAssets.iconThemeDao,
+    enabled: true,
     eyebrow: '云篆开山 · 清气归洞天',
     headline: '道教文化地图',
     intro: '宫观隐入青山，洞天沿着云气展开，丹炉、松风与古道相互照映。',
@@ -183,7 +186,8 @@ const cultureMapThemes: CultureMapTheme[] = [
     title: '丝绸之路文化地图',
     shortTitle: '丝路',
     subtitle: '古道商旅',
-    icon: '驼',
+    icon: cultureAssets.iconThemeSilkRoad,
+    enabled: true,
     eyebrow: '驼铃穿沙 · 星河照关山',
     headline: '丝绸之路文化地图',
     intro: '商旅沿着风沙与绿洲前行，语言、器物、信仰与乐舞在古道上相逢。',
@@ -243,7 +247,8 @@ const cultureMapThemes: CultureMapTheme[] = [
     title: '茶文化地图',
     shortTitle: '茶文化',
     subtitle: '茶烟入山',
-    icon: '茶',
+    icon: cultureAssets.iconThemeTea,
+    enabled: false,
     eyebrow: '松风煮水 · 一盏见山河',
     headline: '茶文化地图',
     intro: '茶烟从山野升起，流入市井、文会与远行之路，清苦回甘之间藏着风雅。',
@@ -303,7 +308,8 @@ const cultureMapThemes: CultureMapTheme[] = [
     title: '非遗文化地图',
     shortTitle: '非遗文化',
     subtitle: '百工百艺',
-    icon: '艺',
+    icon: cultureAssets.iconThemeIntangible,
+    enabled: false,
     eyebrow: '手上山河 · 人间百艺',
     headline: '非遗文化地图',
     intro: '一针一线，一锤一火，技艺把生活磨成光，也把乡土记忆留给后来人。',
@@ -363,7 +369,8 @@ const cultureMapThemes: CultureMapTheme[] = [
     title: '民俗信仰地图',
     shortTitle: '更多主题',
     subtitle: '万象待启',
-    icon: '···',
+    icon: cultureAssets.iconThemeMore,
+    enabled: false,
     eyebrow: '海潮有信 · 人间同愿',
     headline: '民俗信仰地图',
     intro: '灯会、庙会、海祭与岁时仪式，托起人们对平安、丰收与远行的共同想象。',
@@ -425,6 +432,7 @@ function getInitialSite(theme: CultureMapTheme) {
 }
 
 export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
+  const [toast, setToast] = useState('');
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>('buddhism');
   const activeTheme = cultureMapThemes.find((theme) => theme.id === activeThemeId) ?? cultureMapThemes[0];
   const [activeSiteIdByTheme, setActiveSiteIdByTheme] = useState<Record<string, string>>({
@@ -436,6 +444,11 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
   const selectTheme = (themeId: ThemeId) => {
     const nextTheme = cultureMapThemes.find((theme) => theme.id === themeId);
     if (!nextTheme) {
+      return;
+    }
+    if (!nextTheme.enabled) {
+      setToast('此卷尚未启封，敬请期待');
+      window.setTimeout(() => setToast(''), 2200);
       return;
     }
     setActiveThemeId(themeId);
@@ -467,9 +480,12 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
               className={activeTheme.id === theme.id ? 'active' : ''}
               type="button"
               key={theme.id}
+              aria-disabled={!theme.enabled}
               onClick={() => selectTheme(theme.id)}
             >
-              <i>{theme.icon}</i>
+              <i>
+                <img src={theme.icon} alt="" aria-hidden="true" />
+              </i>
               <span>{theme.shortTitle}</span>
               <small>{theme.subtitle}</small>
             </button>
@@ -568,6 +584,7 @@ export function CultureMapPage({ onEnterBuddhism }: CultureMapPageProps) {
           </aside>
         </div>
       </section>
+      {toast && <div className="toast-panel">{toast}</div>}
     </div>
   );
 }

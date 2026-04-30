@@ -939,6 +939,19 @@ h1 {
   transform: translateY(-2px);
 }
 
+.culture-theme-tabs button[aria-disabled="true"] {
+  opacity: 0.58;
+}
+
+.culture-theme-tabs button[aria-disabled="true"]:hover {
+  border-color: rgba(217, 173, 102, 0.18);
+  background:
+    linear-gradient(145deg, rgba(217, 173, 102, 0.06), transparent),
+    rgba(31, 20, 12, 0.7);
+  color: rgba(242, 223, 179, 0.72);
+  transform: none;
+}
+
 .culture-theme-tabs i {
   display: grid;
   grid-row: 1 / span 2;
@@ -948,9 +961,13 @@ h1 {
   border: 1px solid rgba(217, 173, 102, 0.3);
   border-radius: 50%;
   background: rgba(217, 173, 102, 0.1);
-  color: var(--gold-bright);
-  font-style: normal;
-  font-weight: 700;
+}
+
+.culture-theme-tabs i img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
 }
 
 .culture-theme-tabs span {

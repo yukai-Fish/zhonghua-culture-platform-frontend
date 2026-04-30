@@ -21,4 +21,10 @@ export const cultureAssets = {
   iconScriptureScroll: `${assetBase}assets/icons/scripture-scroll.svg`,
   iconWishLot: `${assetBase}assets/icons/wish-lot.svg`,
   iconGrottoVideo: `${assetBase}assets/icons/grotto-video.svg`,
+  iconThemeBuddhism: `${assetBase}assets/icons/theme-buddhism.svg`,
+  iconThemeDao: `${assetBase}assets/icons/theme-dao.svg`,
+  iconThemeSilkRoad: `${assetBase}assets/icons/theme-silk-road.svg`,
+  iconThemeTea: `${assetBase}assets/icons/theme-tea.svg`,
+  iconThemeIntangible: `${assetBase}assets/icons/theme-intangible.svg`,
+  iconThemeMore: `${assetBase}assets/icons/theme-more.svg`,
 } as const;

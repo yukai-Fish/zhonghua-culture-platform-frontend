@@ -662,53 +662,41 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             </div>
           </div>
 
-          <div className="flat-content-section ritual-flat-section exhibit-stack-section">
+          <div className="flat-content-section ritual-scripture-section exhibit-stack-section">
             <div className="flat-section-copy exhibit-section-heading">
-              <p className="eyebrow">清风一签</p>
-              <h3>摇签与红丝带祈福</h3>
-              <p>把一念愿望交给签文，也让红丝带在风中留下温柔的祈愿。展项以签文互动、祈福影像和愿望回响共同组成一段静心仪式。</p>
+              <p className="eyebrow">禅意互动</p>
+              <h3>经文释义与愿望摇签</h3>
+              <p>把经文、签文、红丝带与大佛影像编排成四宫格展项，阅读、祈愿与观影彼此穿插，形成更舒缓的浏览节奏。</p>
             </div>
-            <div className="exhibit-content-grid">
-              <div className="interaction-column">
+            <div className="quadrant-exhibit-grid">
+              <div className="quadrant-cell interaction-cell">
+                <ScriptureExplain />
+              </div>
+              <div className="quadrant-cell">
+                <div className="inline-video-card narrative-video-card">
+                  <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
+                  <div className="video-caption">
+                    <span>红丝带祈福</span>
+                    <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>
+                  </div>
+                </div>
+              </div>
+              <div className="quadrant-cell">
+                <div className="inline-video-card narrative-video-card">
+                  <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
+                  <div className="video-caption">
+                    <span>大佛静观</span>
+                    <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
+                  </div>
+                </div>
+              </div>
+              <div className="quadrant-cell interaction-cell">
                 <WishFortune />
                 <div className="exhibit-note-grid" aria-label="摇签祈福导览">
                   <span>写愿</span>
                   <span>摇签</span>
                   <span>读偈</span>
-                  <span>观带</span>
-                </div>
-              </div>
-              <div className="inline-video-card narrative-video-card">
-                <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
-                <div className="video-caption">
-                  <span>大佛静观</span>
-                  <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flat-content-section scripture-flat-section exhibit-stack-section">
-            <div className="flat-section-copy exhibit-section-heading">
-              <p className="eyebrow">经声如水</p>
-              <h3>经文释义与大佛影像</h3>
-              <p>在经文释义中理解佛教思想，再以影像回望大佛的庄严与静默。文字、白话释义与造像影像彼此呼应，形成可读、可观的展陈单元。</p>
-            </div>
-            <div className="exhibit-content-grid">
-              <div className="interaction-column">
-                <ScriptureExplain />
-                <div className="exhibit-note-grid" aria-label="经文释义导览">
-                  <span>选句</span>
-                  <span>释义</span>
-                  <span>换读</span>
-                  <span>观佛</span>
-                </div>
-              </div>
-              <div className="inline-video-card narrative-video-card">
-                <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
-                <div className="video-caption">
-                  <span>红丝带祈福</span>
-                  <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>
+                  <span>观影</span>
                 </div>
               </div>
             </div>

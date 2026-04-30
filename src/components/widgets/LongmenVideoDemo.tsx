@@ -1,4 +1,4 @@
-import { type CSSProperties, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
 
@@ -57,9 +57,9 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
       <button
         className="video-demo"
         type="button"
-        style={{ '--longmen-poster': `url(${cultureAssets.siteLongmen})` } as CSSProperties}
         onClick={() => setIsOpen(true)}
       >
+        <img className="video-poster-blur" src={cultureAssets.siteLongmen} alt="" aria-hidden="true" />
         <span className="play-ring" aria-hidden="true">游览</span>
         <strong>龙门月照，石佛含光</strong>
         <small>从地图节点进入石窟空间，以影像模拟漫游视角，感受佛教造像与东方审美的融合。</small>

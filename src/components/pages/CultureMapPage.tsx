@@ -548,6 +548,13 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
     setTourSignal((current) => current + 1);
   };
 
+  const selectScrollNode = (siteId: string) => {
+    setActiveSiteIdByTheme((current) => ({ ...current, buddhism: siteId }));
+    if (siteId === 'longmen') {
+      setTourSignal((current) => current + 1);
+    }
+  };
+
   const scrollViewer = isScrollViewerOpen ? createPortal(
     <div className="image-viewer scroll-viewer" role="dialog" aria-modal="true" aria-label="佛教文脉长图全屏预览">
       <div className="image-viewer-inner scroll-viewer-inner">
@@ -666,6 +673,22 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 <button className="scroll-site-node is-selected" type="button" onClick={startLongmenTour}>
                   龙门石窟
                 </button>
+                {[
+                  { id: 'putuo', name: '普陀山', x: 74, y: 62 },
+                  { id: 'lingyin', name: '灵隐寺', x: 34, y: 24 },
+                  { id: 'potala', name: '布达拉宫', x: 47, y: 70 },
+                  { id: 'wutai', name: '五台山', x: 30, y: 86 },
+                ].map((node) => (
+                  <button
+                    className="scroll-site-node secondary-node"
+                    type="button"
+                    key={node.id}
+                    style={{ left: `${node.x}%`, top: `${node.y}%` }}
+                    onClick={() => selectScrollNode(node.id)}
+                  >
+                    {node.name}
+                  </button>
+                ))}
               </div>
               <LongmenVideoDemo openSignal={tourSignal} />
             </div>

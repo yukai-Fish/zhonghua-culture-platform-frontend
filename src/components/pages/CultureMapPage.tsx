@@ -662,7 +662,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="flat-section-copy">
               <p className="eyebrow">沿图入境</p>
               <h3>佛教圣地巡礼</h3>
-              <p>以长图串联佛教胜地，再从地图节点进入代表性空间。</p>
               <button className="ghost-button" type="button" onClick={startLongmenTour}>
                 开启时空漫游
               </button>

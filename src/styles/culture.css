@@ -2462,6 +2462,7 @@ h1 {
   background:
     radial-gradient(circle at 50% 34%, rgba(255, 212, 124, 0.18), transparent 15rem),
     #080504;
+  cursor: pointer;
 }
 
 .longmen-player::after {
@@ -2482,7 +2483,6 @@ h1 {
   height: 100%;
   object-fit: cover;
   background: #000;
-  cursor: pointer;
 }
 
 .longmen-player-poster {
@@ -2498,35 +2498,24 @@ h1 {
   pointer-events: none;
 }
 
-.longmen-play-button {
+.longmen-play-hint {
   position: relative;
   z-index: 2;
-  display: grid;
-  width: 4.8rem;
-  height: 4.8rem;
-  place-items: center;
-  border: 1px solid rgba(255, 215, 138, 0.82);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 215, 138, 0.3), rgba(10, 7, 5, 0.66));
+  max-width: min(84%, 25rem);
+  padding: 0.52rem 0.9rem;
+  border: 1px solid rgba(255, 215, 138, 0.48);
+  border-radius: 999px;
+  background: rgba(12, 8, 5, 0.68);
   color: var(--gold-bright);
+  font-size: 0.95rem;
   font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 0 36px rgba(255, 215, 138, 0.26);
-  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+  text-align: center;
+  box-shadow: 0 0 32px rgba(255, 215, 138, 0.22);
 }
 
-.longmen-player.is-playing .longmen-play-button {
-  opacity: 0.28;
-}
-
-.longmen-player.is-playing:hover .longmen-play-button,
-.longmen-play-button:focus-visible {
-  opacity: 1;
-}
-
-.longmen-play-button:hover {
-  box-shadow: 0 0 46px rgba(255, 215, 138, 0.36);
-  transform: scale(1.05);
+.longmen-player:focus-visible {
+  outline: 2px solid rgba(255, 215, 138, 0.76);
+  outline-offset: 3px;
 }
 
 .image-viewer,

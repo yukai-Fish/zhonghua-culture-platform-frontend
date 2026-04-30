@@ -12,6 +12,7 @@ export const cultureAssets = {
   shopPostcard: `${assetBase}assets/shop-postcard.png`,
   shopScroll: `${assetBase}assets/shop-scroll.png`,
   longmenVideo: `${assetBase}assets/longmen-demo.mp4`,
+  longmenCover: `${assetBase}assets/longmen-cover.png`,
   blessingVideo: `${assetBase}assets/blessing-video.mp4`,
   scriptureVideo: `${assetBase}assets/scripture-video.mp4`,
   sitePutuo: `${assetBase}assets/sites/putuo-mountain.jpg`,

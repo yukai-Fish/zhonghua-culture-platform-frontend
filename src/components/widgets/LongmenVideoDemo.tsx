@@ -55,7 +55,7 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
         <video
           ref={videoRef}
           src={cultureAssets.longmenVideo}
-          poster={cultureAssets.siteLongmen}
+          poster={cultureAssets.longmenCover}
           playsInline
           preload="metadata"
           onPlay={() => setIsPlaying(true)}
@@ -63,7 +63,7 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
           onEnded={() => setIsPlaying(false)}
         />
         {!isPlaying && (
-          <img className="longmen-player-poster" src={cultureAssets.siteLongmen} alt="" aria-hidden="true" />
+          <img className="longmen-player-poster" src={cultureAssets.longmenCover} alt="" aria-hidden="true" />
         )}
       </div>
     </section>

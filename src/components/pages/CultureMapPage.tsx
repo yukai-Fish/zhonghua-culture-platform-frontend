@@ -647,8 +647,8 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
         <section className="flat-buddhist-content" aria-label="佛教文化平铺内容">
           <div className="flat-content-section video-flat-section">
             <div className="flat-section-copy">
-              <p className="eyebrow">佛教胜地时空漫游</p>
-              <h3>沉浸式游览</h3>
+              <p className="eyebrow">沿图入境</p>
+              <h3>佛教胜地时空漫游</h3>
               <p>以长图串联佛教胜地，再从地图节点进入代表性空间，模拟一段可感知的石窟漫游。</p>
               <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
                 全屏查看长卷

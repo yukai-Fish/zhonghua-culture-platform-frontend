@@ -708,9 +708,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="flat-section-copy">
               <p className="eyebrow">沿图入境</p>
               <h3>龙门石窟沉浸式体验</h3>
-              <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
-                查看左侧长图
-              </button>
             </div>
             <div className="immersive-tour-grid video-only">
               <LongmenVideoDemo openSignal={tourSignal} />

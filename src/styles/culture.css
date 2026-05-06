@@ -1009,10 +1009,11 @@ h1 {
 }
 
 .map-scroll-rail {
+  align-self: start;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto auto;
   gap: 0.7rem;
-  min-height: 48rem;
+  min-height: 0;
   padding: 0.66rem;
 }
 
@@ -1025,8 +1026,10 @@ h1 {
 
 .rail-scroll-frame {
   position: relative;
-  overflow: auto;
-  min-height: 31rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: clamp(28rem, 58vh, 33rem);
+  min-height: 0;
   border: 1px solid rgba(217, 173, 102, 0.28);
   border-radius: 0.45rem;
   background: #160e09;
@@ -1036,13 +1039,13 @@ h1 {
 
 .rail-scroll-canvas {
   position: relative;
-  min-height: 100%;
+  min-height: 0;
 }
 
 .rail-scroll-frame img {
   display: block;
   width: 100%;
-  min-height: 100%;
+  min-height: 0;
   height: auto;
   filter: saturate(0.86) contrast(1.04);
 }

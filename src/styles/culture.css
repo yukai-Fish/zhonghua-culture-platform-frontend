@@ -2886,7 +2886,7 @@ h1 {
 
 @media (max-width: 860px) {
   .page {
-    width: min(100vw - 1rem, 760px);
+    width: min(100vw - 0.75rem, 760px);
   }
 
   .home-page .hero-subtitle {
@@ -2899,13 +2899,32 @@ h1 {
   }
 
   .culture-map-page {
-    width: min(100vw - 1rem, 760px);
+    width: min(100vw - 0.75rem, 760px);
   }
 
-  .culture-theme-tabs,
   .culture-map-grid,
   .map-side-panel {
     grid-template-columns: 1fr;
+  }
+
+  .culture-theme-tabs {
+    position: relative;
+    top: auto;
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding: 0.5rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .culture-theme-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .culture-theme-tabs button {
+    flex: 0 0 min(58vw, 13.5rem);
+    scroll-snap-align: start;
   }
 
   .culture-map-grid.flat-map-grid,
@@ -2933,18 +2952,27 @@ h1 {
   }
 
   .video-flat-section,
-  .immersive-tour-grid,
-  .flat-scroll-frame,
-  .longmen-player {
+  .immersive-tour-grid {
     min-height: auto;
   }
 
   .flat-scroll-frame {
     height: clamp(28rem, 86vh, 42rem);
+    min-height: 0;
   }
 
   .flat-scroll-frame img {
     max-height: none;
+  }
+
+  .longmen-exhibit {
+    min-height: auto;
+  }
+
+  .longmen-player {
+    width: 100%;
+    min-height: 22rem;
+    height: min(72vh, 36rem);
   }
 
   .exhibit-guide-strip span:not(:last-child)::after {
@@ -2953,11 +2981,6 @@ h1 {
     bottom: -0.7rem;
     width: 1px;
     height: 0.58rem;
-  }
-
-  .culture-theme-tabs {
-    position: relative;
-    top: auto;
   }
 
   .map-scroll-rail,
@@ -2978,7 +3001,24 @@ h1 {
   }
 
   .china-map-canvas img {
-    min-height: 24rem;
+    min-height: auto;
+    aspect-ratio: 1 / 0.78;
+    object-fit: contain;
+  }
+
+  .culture-map-hotspot span {
+    display: none;
+  }
+
+  .culture-map-hotspot.active span {
+    display: block;
+  }
+
+  .culture-map-hotspot.active span {
+    display: block;
+    max-width: 5.5rem;
+    white-space: normal;
+    line-height: 1.2;
   }
 
   .map-era-strip {
@@ -3003,6 +3043,14 @@ h1 {
 
   .site-inspector {
     grid-template-columns: 1fr;
+  }
+
+  .site-portrait-card {
+    order: 1;
+  }
+
+  .site-list-card {
+    order: 2;
   }
 
   .timeline-track {
@@ -3067,20 +3115,42 @@ h1 {
 
 @media (max-width: 560px) {
   .top-nav {
-    padding: 0.65rem;
+    gap: 0.55rem;
+    padding: 0.55rem;
+  }
+
+  .brand-mark {
+    gap: 0.52rem;
+  }
+
+  .brand-logo,
+  .seal {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .brand-mark strong {
+    font-size: 0.95rem;
+  }
+
+  .brand-mark small {
+    font-size: 0.66rem;
   }
 
   .nav-links {
     justify-content: flex-start;
+    width: 100%;
+    border-radius: 0.65rem;
   }
 
   .nav-links button {
-    padding: 0 0.72rem;
+    min-height: 2.45rem;
+    padding: 0 0.68rem;
+    font-size: 0.86rem;
   }
 
   .nav-actions {
-    flex-direction: column;
-    align-items: stretch;
+    display: none;
   }
 
   .search-box input {
@@ -3088,11 +3158,25 @@ h1 {
   }
 
   .culture-map-grid {
+    gap: 0.6rem;
     padding: 0.5rem;
   }
 
   .culture-theme-tabs button {
-    grid-template-columns: 1.8rem 1fr;
+    flex-basis: 10.5rem;
+    grid-template-columns: 1.65rem 1fr;
+    min-height: 3.05rem;
+    padding: 0.42rem;
+  }
+
+  .culture-theme-tabs i,
+  .culture-theme-tabs i img {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .culture-theme-tabs small {
+    font-size: 0.62rem;
   }
 
   .china-map-canvas {
@@ -3100,12 +3184,27 @@ h1 {
   }
 
   .china-map-canvas img {
-    min-height: 18rem;
+    aspect-ratio: 1 / 0.86;
+    min-height: 0;
   }
 
   .map-side-panel .side-card,
   .map-stage-heading {
     padding: 0.75rem;
+  }
+
+  .map-stage-heading h1 {
+    font-size: clamp(2.15rem, 13vw, 3.25rem);
+    line-height: 1.05;
+  }
+
+  .map-stage-heading p:last-child {
+    font-size: 0.86rem;
+  }
+
+  .site-portrait-figure img,
+  .site-portrait-card img {
+    aspect-ratio: 16 / 10;
   }
 
   .site-meta-grid,
@@ -3123,7 +3222,7 @@ h1 {
   }
 
   h1 {
-    font-size: 2.8rem;
+    font-size: clamp(2.4rem, 13vw, 2.8rem);
   }
 
   .section-title-row {
@@ -3152,6 +3251,92 @@ h1 {
 
   .culture-map-hotspot span {
     display: none;
+  }
+
+  .flat-buddhist-content {
+    gap: 1rem;
+  }
+
+  .flat-content-section {
+    gap: 0.85rem;
+    padding: 0.78rem;
+  }
+
+  .flat-section-copy {
+    align-self: start;
+  }
+
+  .flat-section-copy h3,
+  .exhibit-section-heading h3 {
+    font-size: clamp(1.45rem, 8vw, 2rem);
+  }
+
+  .flat-scroll-frame {
+    height: min(78vh, 34rem);
+  }
+
+  .scroll-site-node {
+    padding: 0.28rem 0.46rem;
+    font-size: 0.68rem;
+  }
+
+  .secondary-node {
+    font-size: 0;
+    width: 1.35rem;
+    height: 1.35rem;
+    padding: 0;
+  }
+
+  .secondary-node::before {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .longmen-player {
+    min-height: 19rem;
+    height: min(68vh, 31rem);
+  }
+
+  .longmen-video-title {
+    font-size: 1rem;
+  }
+
+  .quadrant-exhibit-grid {
+    gap: 0.65rem;
+  }
+
+  .quadrant-cell .inline-video-card,
+  .quadrant-cell .experience-module {
+    min-height: auto;
+  }
+
+  .narrative-video-card video,
+  .quadrant-cell .narrative-video-card video {
+    min-height: 14rem;
+  }
+
+  .experience-module textarea,
+  .experience-module input {
+    width: 100%;
+  }
+
+  .scroll-viewer {
+    padding: 0.45rem;
+  }
+
+  .scroll-viewer-inner {
+    width: 100%;
+    max-height: 92vh;
+    padding: 0.65rem;
+  }
+
+  .scroll-viewer-inner img {
+    width: min(100%, 520px);
+    padding: 0.65rem 0;
+  }
+
+  .viewer-node {
+    font-size: 0.68rem;
   }
 
   .journey-page {

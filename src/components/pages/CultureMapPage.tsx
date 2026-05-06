@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
 import { BuddhistTimeline } from '../sections/BuddhistTimeline';
@@ -519,6 +519,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   const [toast, setToast] = useState('');
   const [isScrollViewerOpen, setIsScrollViewerOpen] = useState(false);
   const [tourSignal, setTourSignal] = useState(0);
+  const videoSectionRef = useRef<HTMLDivElement | null>(null);
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>('buddhism');
   const activeTheme = cultureMapThemes.find((theme) => theme.id === activeThemeId) ?? cultureMapThemes[0];
   const [activeSiteIdByTheme, setActiveSiteIdByTheme] = useState<Record<string, string>>({
@@ -555,6 +556,9 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
     setActiveSiteIdByTheme((current) => ({ ...current, buddhism: siteId }));
     if (siteId === 'longmen') {
       setTourSignal((current) => current + 1);
+      window.setTimeout(() => {
+        videoSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
     }
     if (shouldCloseViewer) {
       setIsScrollViewerOpen(false);
@@ -608,6 +612,29 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
         </div>
 
         <div className="culture-map-grid flat-map-grid">
+          <aside className="map-scroll-rail" aria-label={activeTheme.scrollTitle}>
+            <div className="rail-title">{activeTheme.scrollTitle}</div>
+            <div className="rail-scroll-frame">
+              <div className="rail-scroll-canvas">
+                <img src={activeTheme.scrollImage} alt={activeTheme.scrollTitle} />
+                {activeTheme.id === 'buddhism' && scrollTourNodes.map((node) => (
+                  <button
+                    className={`rail-site-node ${node.id === 'longmen' ? 'rail-longmen-node' : ''} ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
+                    type="button"
+                    key={node.id}
+                    style={{ left: `${node.x}%`, top: `${node.y}%` }}
+                    onClick={() => selectScrollNode(node.id)}
+                  >
+                    {node.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <button className="rail-action" type="button" onClick={() => setIsScrollViewerOpen(true)}>
+              {activeTheme.actionText}
+            </button>
+          </aside>
+
           <main className="map-stage-panel">
             <div className="map-stage-heading">
               <div>
@@ -677,29 +704,15 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
 
       {activeTheme.id === 'buddhism' && (
         <section className="flat-buddhist-content" aria-label="佛教文化平铺内容">
-          <div className="flat-content-section video-flat-section">
+          <div className="flat-content-section video-flat-section" ref={videoSectionRef}>
             <div className="flat-section-copy">
               <p className="eyebrow">沿图入境</p>
-              <h3>佛教圣地巡礼</h3>
+              <h3>龙门石窟沉浸式体验</h3>
               <button className="ghost-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
-                开启时空漫游
+                查看左侧长图
               </button>
             </div>
-            <div className="immersive-tour-grid">
-              <div className="flat-scroll-frame">
-                <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
-                {scrollTourNodes.map((node) => (
-                  <button
-                    className={`scroll-site-node ${node.id === 'longmen' ? '' : 'secondary-node'} ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
-                    type="button"
-                    key={node.id}
-                    style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                    onClick={() => selectScrollNode(node.id)}
-                  >
-                    {node.name}
-                  </button>
-                ))}
-              </div>
+            <div className="immersive-tour-grid video-only">
               <LongmenVideoDemo openSignal={tourSignal} />
             </div>
           </div>

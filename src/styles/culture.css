@@ -2971,8 +2971,9 @@ h1 {
 
   .longmen-player {
     width: 100%;
-    min-height: 22rem;
-    height: min(72vh, 36rem);
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 9 / 16;
   }
 
   .exhibit-guide-strip span:not(:last-child)::after {
@@ -3293,8 +3294,20 @@ h1 {
   }
 
   .longmen-player {
-    min-height: 19rem;
-    height: min(68vh, 31rem);
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 9 / 16;
+  }
+
+  .longmen-player-poster {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+    transform: none;
+    background: #000;
   }
 
   .longmen-video-title {

@@ -2845,6 +2845,57 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .video-flat-section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .video-flat-section .flat-section-copy {
+    align-self: start;
+  }
+
+  .immersive-tour-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .flat-scroll-frame {
+    height: clamp(30rem, 82vh, 44rem);
+    min-height: 0;
+  }
+
+  .flat-scroll-frame img {
+    height: 100%;
+    max-height: none;
+  }
+
+  .longmen-exhibit {
+    min-height: auto;
+  }
+
+  .longmen-player {
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 9 / 16;
+  }
+
+  .longmen-player-poster {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+    transform: none;
+    background: #000;
+  }
+
+  .quadrant-exhibit-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
   .journey-scroll-layout {
     grid-template-columns: minmax(190px, 0.7fr) minmax(330px, 1fr);
   }

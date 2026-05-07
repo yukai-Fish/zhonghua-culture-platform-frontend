@@ -10,7 +10,7 @@ export function ThemeOverviewCard({ theme, onOpen }: ThemeOverviewCardProps) {
 
   return (
     <article className={`theme-card ${isOpen ? 'is-open' : 'is-coming'}`}>
-      <img src={theme.image} alt={theme.title} />
+      <img src={theme.image} alt={theme.title} loading="lazy" decoding="async" />
       <div className="theme-card-overlay" />
       <div className="theme-card-content">
         <span className="theme-card-status">{isOpen ? '已开放' : '敬请期待'}</span>

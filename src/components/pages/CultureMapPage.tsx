@@ -664,7 +664,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
           关闭
         </button>
         <div className="scroll-viewer-stage">
-          <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图全屏预览" />
+          <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图全屏预览" loading="lazy" decoding="async" />
           {scrollTourNodes.map((node) => (
             <button
               className={`scroll-site-node viewer-node ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
@@ -695,7 +695,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               onClick={() => selectTheme(theme.id)}
             >
               <i>
-                <img src={theme.icon} alt="" aria-hidden="true" />
+                <img src={theme.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
               </i>
               <span>{theme.shortTitle}</span>
               <small>{theme.subtitle}</small>
@@ -743,7 +743,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             </div>
 
             <div className="china-map-canvas">
-              <img src={activeTheme.mapImage} alt={activeTheme.title} />
+              <img src={activeTheme.mapImage} alt={activeTheme.title} loading="lazy" decoding="async" />
               {activeTheme.sites.map((site) => (
                 <button
                   className={`culture-map-hotspot ${activeSite.id === site.id ? 'active' : ''}`}
@@ -890,7 +890,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                       key={item.id}
                       onClick={() => setActiveMobileFeature(item.id)}
                     >
-                      <img src={item.icon} alt="" aria-hidden="true" />
+                      <img src={item.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
                       <span>{item.title}</span>
                     </button>
                   ))}

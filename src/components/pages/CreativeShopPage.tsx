@@ -35,7 +35,7 @@ export function CreativeShopPage() {
       <section className="shop-grid">
         {products.map((product) => (
           <article className="shop-card" key={product.title}>
-            <img src={product.image} alt={product.title} />
+            <img src={product.image} alt={product.title} loading="lazy" decoding="async" />
             <div>
               <span>{product.tag}</span>
               <h2>{product.title}</h2>

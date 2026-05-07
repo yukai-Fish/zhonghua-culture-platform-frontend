@@ -84,7 +84,7 @@ export function BuddhistJourneyScroll() {
       <div className="journey-scroll-layout">
         <aside className="journey-map-guide">
           <p className="eyebrow">山河小引</p>
-          <img src={cultureAssets.buddhistMap} alt="佛教文化地图导览" />
+          <img src={cultureAssets.buddhistMap} alt="佛教文化地图导览" loading="lazy" decoding="async" />
           <div className="journey-stop-list">
             {journeyStops.map((stop) => (
               <button
@@ -101,7 +101,7 @@ export function BuddhistJourneyScroll() {
         </aside>
 
         <div className="journey-long-image">
-          <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
+          <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" loading="lazy" decoding="async" />
           {journeyStops.map((stop) => (
             <button
               className={`journey-pin ${activeStop.id === stop.id ? 'active' : ''}`}
@@ -120,7 +120,7 @@ export function BuddhistJourneyScroll() {
           <p className="eyebrow">画中一隅</p>
           <span>{activeStop.label}</span>
           <figure className="journey-site-photo">
-            <img src={activeStop.photo} alt={`${activeStop.name}实景照片`} />
+            <img src={activeStop.photo} alt={`${activeStop.name}实景照片`} loading="lazy" decoding="async" />
             <figcaption>
               实景照片 ·{' '}
               <a href={activeStop.sourceUrl} target="_blank" rel="noreferrer">

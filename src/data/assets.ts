@@ -7,6 +7,7 @@ export const cultureAssets = {
   silkRoadMap: `${assetBase}assets/silk-road-map.png`,
   daoScroll: `${assetBase}assets/dao-scroll.png`,
   buddhistScroll: `${assetBase}assets/buddhist-scroll.png`,
+  buddhistScrollPreview: `${assetBase}assets/buddhist-scroll-preview.jpg`,
   oceanScroll: `${assetBase}assets/ocean-scroll.png`,
   shopPoster: `${assetBase}assets/shop-poster.png`,
   shopPostcard: `${assetBase}assets/shop-postcard.png`,

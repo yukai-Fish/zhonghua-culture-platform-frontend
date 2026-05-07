@@ -71,7 +71,7 @@ const cultureMapThemes: CultureMapTheme[] = [
     headline: '佛教文化地图',
     intro: '古道带来经声，石壁留住光影，寺塔在山河间静候一次回望。',
     mapImage: cultureAssets.buddhistMap,
-    scrollImage: cultureAssets.buddhistScroll,
+    scrollImage: cultureAssets.buddhistScrollPreview,
     scrollTitle: '佛教文脉长图',
     actionText: '入卷观影',
     timeline: ['东汉', '魏晋', '隋唐', '宋元', '明清', '近现代'],
@@ -849,7 +849,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
 
                 <div className="mobile-scroll-card">
                   <div className="mobile-scroll-image">
-                    <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
+                    <img src={cultureAssets.buddhistScrollPreview} alt="佛教文脉长图" />
                     {scrollTourNodes.map((node) => (
                       <button
                         className={`mobile-scroll-node ${node.id === 'longmen' ? 'is-longmen' : ''} ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}

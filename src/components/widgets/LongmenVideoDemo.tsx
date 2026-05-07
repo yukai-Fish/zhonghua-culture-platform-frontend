@@ -62,12 +62,6 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
             decoding="async"
           />
         )}
-        {!isPlaying && (
-          <button className="longmen-play-button" type="button" onClick={toggleVideo}>
-            <span aria-hidden="true">▶</span>
-            <small>点击播放</small>
-          </button>
-        )}
       </div>
     </section>
   );

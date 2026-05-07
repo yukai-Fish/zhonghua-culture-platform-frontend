@@ -2617,39 +2617,6 @@ h1 {
   pointer-events: none;
 }
 
-.longmen-play-button {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 4;
-  display: inline-grid;
-  min-width: 7.2rem;
-  min-height: 7.2rem;
-  place-items: center;
-  padding: 0.9rem 1rem;
-  border: 1px solid rgba(255, 224, 158, 0.68);
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 50% 38%, rgba(255, 239, 190, 0.28), transparent 3.8rem),
-    linear-gradient(180deg, rgba(173, 107, 39, 0.94), rgba(86, 43, 16, 0.94));
-  color: #fff3c8;
-  box-shadow:
-    0 18px 42px rgba(0, 0, 0, 0.38),
-    0 0 34px rgba(255, 210, 126, 0.26);
-  cursor: pointer;
-  transform: translate(-50%, -50%);
-}
-
-.longmen-play-button span {
-  font-size: 2rem;
-  line-height: 1;
-}
-
-.longmen-play-button small {
-  color: rgba(255, 243, 200, 0.86);
-  font-weight: 800;
-}
-
 .longmen-player:focus-visible {
   outline: 2px solid rgba(255, 215, 138, 0.76);
   outline-offset: 3px;

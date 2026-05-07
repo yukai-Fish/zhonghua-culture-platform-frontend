@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
 import { fortunes } from '../../data/fortunes';
@@ -11,9 +11,64 @@ interface CultureMapPageProps {
   onEnterBuddhism: () => void;
 }
 
+interface DeferredRenderProps {
+  children: ReactNode;
+  className?: string;
+  forceRender?: boolean;
+  minHeight?: string;
+  rootMargin?: string;
+}
+
 type ThemeId = 'buddhism' | 'dao' | 'silk-road' | 'tea' | 'intangible' | 'folk';
 type MobilePanel = 'scroll' | 'experience';
 type MobileFeature = 'chat' | 'scripture' | 'wish' | 'fortune';
+
+function DeferredRender({
+  children,
+  className,
+  forceRender = false,
+  minHeight = '24rem',
+  rootMargin = '560px 0px',
+}: DeferredRenderProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [shouldRender, setShouldRender] = useState(forceRender);
+
+  useEffect(() => {
+    if (forceRender) {
+      setShouldRender(true);
+      return;
+    }
+
+    if (shouldRender) {
+      return;
+    }
+
+    const node = containerRef.current;
+    if (!node || !('IntersectionObserver' in window)) {
+      setShouldRender(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldRender(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [forceRender, rootMargin, shouldRender]);
+
+  return (
+    <div className={className} ref={containerRef}>
+      {shouldRender ? children : <div className="deferred-section-placeholder" style={{ minHeight }} aria-hidden="true" />}
+    </div>
+  );
+}
 
 interface MapSite {
   id: string;
@@ -981,9 +1036,9 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <p className="eyebrow">沿图入境</p>
               <h3>龙门石窟沉浸式体验</h3>
             </div>
-            <div className="immersive-tour-grid video-only">
+            <DeferredRender className="immersive-tour-grid video-only" forceRender={tourSignal > 0} minHeight="42rem">
               <LongmenVideoDemo openSignal={tourSignal} />
-            </div>
+            </DeferredRender>
           </div>
 
           <div className="flat-content-section ritual-scripture-section exhibit-stack-section">
@@ -991,14 +1046,14 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <p className="eyebrow">禅意互动</p>
               <h3>经文释义与愿望摇签</h3>
             </div>
-            <div className="quadrant-exhibit-grid">
+            <DeferredRender className="quadrant-exhibit-grid" minHeight="38rem">
               <div className="quadrant-column">
                 <div className="quadrant-cell interaction-cell">
                   <ScriptureExplain />
                 </div>
                 <div className="quadrant-cell">
                   <div className="inline-video-card narrative-video-card">
-                    <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
+                    <video src={cultureAssets.scriptureVideo} muted loop controls playsInline preload="none" />
                     <div className="video-caption">
                       <span>大佛静观</span>
                       <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
@@ -1009,7 +1064,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <div className="quadrant-column">
                 <div className="quadrant-cell">
                   <div className="inline-video-card narrative-video-card">
-                    <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
+                    <video src={cultureAssets.blessingVideo} muted loop controls playsInline preload="none" />
                     <div className="video-caption">
                       <span>红丝带祈福</span>
                       <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>
@@ -1026,10 +1081,12 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                   </div>
                 </div>
               </div>
-            </div>
+            </DeferredRender>
           </div>
 
-          <BuddhistTimeline />
+          <DeferredRender minHeight="28rem">
+            <BuddhistTimeline />
+          </DeferredRender>
         </section>
       )}
       {scrollViewer}

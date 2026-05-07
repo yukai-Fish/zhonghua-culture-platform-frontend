@@ -7,7 +7,7 @@ interface LongmenVideoDemoProps {
 
 export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const previousSignal = useRef(openSignal);
+  const previousSignal = useRef(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const playVideo = () => {

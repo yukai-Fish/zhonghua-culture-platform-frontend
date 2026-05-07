@@ -39,25 +39,15 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
   return (
     <section className="experience-module longmen-exhibit">
       <h3 className="longmen-video-title">龙门月照，石佛含光</h3>
-      <div
-        className={`longmen-player ${isPlaying ? 'is-playing' : ''}`}
-        role="button"
-        tabIndex={0}
-        onClick={toggleVideo}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            toggleVideo();
-          }
-        }}
-        aria-label="点击画面开始播放，再点击暂停"
-      >
+      <div className={`longmen-player ${isPlaying ? 'is-playing' : ''}`}>
         <video
           ref={videoRef}
           src={cultureAssets.longmenVideo}
           poster={cultureAssets.longmenCover}
+          controls
           playsInline
           preload="metadata"
+          onClick={(event) => event.stopPropagation()}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           onEnded={() => setIsPlaying(false)}
@@ -71,6 +61,12 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
             loading="lazy"
             decoding="async"
           />
+        )}
+        {!isPlaying && (
+          <button className="longmen-play-button" type="button" onClick={toggleVideo}>
+            <span aria-hidden="true">▶</span>
+            <small>点击播放</small>
+          </button>
         )}
       </div>
     </section>

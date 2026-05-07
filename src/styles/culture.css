@@ -2877,7 +2877,7 @@ h1 {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-device-width: 767px), (hover: none) and (pointer: coarse) {
   body {
     background:
       radial-gradient(circle at 50% 0%, rgba(217, 173, 102, 0.14), transparent 18rem),
@@ -4128,7 +4128,7 @@ h1 {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-device-width: 767px), (hover: none) and (pointer: coarse) {
   .top-nav {
     grid-template-columns: minmax(6.8rem, auto) minmax(0, 1fr);
     gap: 0.35rem;

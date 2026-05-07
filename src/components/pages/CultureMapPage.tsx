@@ -554,7 +554,8 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   const [isScrollViewerOpen, setIsScrollViewerOpen] = useState(false);
   const [tourSignal, setTourSignal] = useState(0);
   const videoSectionRef = useRef<HTMLDivElement | null>(null);
-  const [isMobileViewport, setIsMobileViewport] = useState(() => window.matchMedia('(max-width: 767px)').matches);
+  const mobileViewportQuery = '(max-width: 767px), (max-device-width: 767px), (hover: none) and (pointer: coarse)';
+  const [isMobileViewport, setIsMobileViewport] = useState(() => window.matchMedia(mobileViewportQuery).matches);
   const [activeMobilePanel, setActiveMobilePanel] = useState<MobilePanel>('scroll');
   const [activeMobileMilestone, setActiveMobileMilestone] = useState('longmen');
   const [activeMobileFeature, setActiveMobileFeature] = useState<MobileFeature>('chat');
@@ -577,7 +578,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   const mobileFortune = fortunes[mobileFortuneIndex % fortunes.length];
 
   useEffect(() => {
-    const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const mobileQuery = window.matchMedia(mobileViewportQuery);
     const syncViewport = () => setIsMobileViewport(mobileQuery.matches);
 
     syncViewport();

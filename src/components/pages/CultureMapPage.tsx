@@ -528,8 +528,8 @@ const mobileTimelineNodes: Array<{ id: string; title: string; period: string; si
 ];
 
 const mobileFeatureItems: Array<{ id: MobileFeature; title: string; icon: string }> = [
-  { id: 'chat', title: '与神灵交流', icon: sharedIcons.dialogue },
-  { id: 'scripture', title: '经文翻译', icon: sharedIcons.scroll },
+  { id: 'chat', title: '禅心问答', icon: sharedIcons.dialogue },
+  { id: 'scripture', title: '经文释义', icon: sharedIcons.scroll },
   { id: 'wish', title: '许愿祈福', icon: sharedIcons.wish },
   { id: 'fortune', title: '摇签问卜', icon: sharedIcons.video },
 ];
@@ -645,7 +645,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
 
   const translateMobileScripture = () => {
     const trimmed = mobileScriptureText.trim();
-    setMobileScriptureResult(trimmed ? '可译为：放下执着，照见本心，在平常处生出清明与慈悲。' : '请输入一段经文，再开始翻译。');
+    setMobileScriptureResult(trimmed ? '释义：放下执着，照见本心，在平常处生出清明与慈悲。' : '请输入一段经文，再查看释义。');
   };
 
   const saveMobileWish = () => {
@@ -928,14 +928,14 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
 
                 <article className="mobile-experience-card">
                   <div className="mobile-card-copy">
-                    <h3>经文翻译</h3>
+                    <h3>经文释义</h3>
                     <textarea
                       value={mobileScriptureText}
                       onChange={(event) => setMobileScriptureText(event.target.value)}
                       placeholder="请输入经文或偈语..."
                       rows={3}
                     />
-                    <button type="button" onClick={translateMobileScripture}>立即翻译</button>
+                    <button type="button" onClick={translateMobileScripture}>立即释义</button>
                     {mobileScriptureResult && <small>{mobileScriptureResult}</small>}
                   </div>
                   <img src={cultureAssets.shopScroll} alt="经卷书册" />

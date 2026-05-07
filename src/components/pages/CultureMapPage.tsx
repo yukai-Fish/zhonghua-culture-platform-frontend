@@ -19,6 +19,11 @@ interface DeferredRenderProps {
   rootMargin?: string;
 }
 
+interface AuxiliaryVideoSources {
+  scripture: string;
+  blessing: string;
+}
+
 type ThemeId = 'buddhism' | 'dao' | 'silk-road' | 'tea' | 'intangible' | 'folk';
 type MobilePanel = 'scroll' | 'experience';
 type MobileFeature = 'chat' | 'scripture' | 'wish' | 'fortune';
@@ -631,6 +636,10 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   const activeSite = activeTheme.sites.find((site) => site.id === activeSiteId) ?? activeTheme.sites[0];
   const mobileVerse = mobileVerses[mobileVerseIndex];
   const mobileFortune = fortunes[mobileFortuneIndex % fortunes.length];
+  const [auxiliaryVideoSources, setAuxiliaryVideoSources] = useState<AuxiliaryVideoSources>({
+    scripture: cultureAssets.scriptureVideo,
+    blessing: cultureAssets.blessingVideo,
+  });
 
   useEffect(() => {
     const mobileQuery = window.matchMedia(mobileViewportQuery);
@@ -640,6 +649,59 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
     mobileQuery.addEventListener('change', syncViewport);
     return () => mobileQuery.removeEventListener('change', syncViewport);
   }, []);
+
+  useEffect(() => {
+    if (isMobileViewport || activeTheme.id !== 'buddhism') {
+      setAuxiliaryVideoSources({
+        scripture: cultureAssets.scriptureVideo,
+        blessing: cultureAssets.blessingVideo,
+      });
+      return;
+    }
+
+    let isActive = true;
+    const objectUrls: string[] = [];
+
+    const preloadVideo = async (url: string) => {
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`Failed to preload video: ${url}`);
+      }
+
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      objectUrls.push(objectUrl);
+      return objectUrl;
+    };
+
+    void Promise
+      .all([
+        preloadVideo(cultureAssets.scriptureVideo),
+        preloadVideo(cultureAssets.blessingVideo),
+      ])
+      .then(([scripture, blessing]) => {
+        if (isActive) {
+          setAuxiliaryVideoSources({ scripture, blessing });
+        } else {
+          URL.revokeObjectURL(scripture);
+          URL.revokeObjectURL(blessing);
+        }
+      })
+      .catch(() => {
+        if (isActive) {
+          setAuxiliaryVideoSources({
+            scripture: cultureAssets.scriptureVideo,
+            blessing: cultureAssets.blessingVideo,
+          });
+        }
+      });
+
+    return () => {
+      isActive = false;
+      objectUrls.forEach((objectUrl) => URL.revokeObjectURL(objectUrl));
+    };
+  }, [activeTheme.id, isMobileViewport]);
 
   const selectTheme = (themeId: ThemeId) => {
     const nextTheme = cultureMapThemes.find((theme) => theme.id === themeId);
@@ -1053,7 +1115,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 </div>
                 <div className="quadrant-cell">
                   <div className="inline-video-card narrative-video-card">
-                    <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
+                    <video src={auxiliaryVideoSources.scripture} autoPlay muted loop controls playsInline />
                     <div className="video-caption">
                       <span>大佛静观</span>
                       <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
@@ -1064,7 +1126,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <div className="quadrant-column">
                 <div className="quadrant-cell">
                   <div className="inline-video-card narrative-video-card">
-                    <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
+                    <video src={auxiliaryVideoSources.blessing} autoPlay muted loop controls playsInline />
                     <div className="video-caption">
                       <span>红丝带祈福</span>
                       <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>

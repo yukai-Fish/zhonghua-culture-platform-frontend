@@ -1,6 +1,6 @@
-const CACHE_NAME = 'zhonghua-culture-static-v20260507-1';
-const STATIC_DESTINATIONS = new Set(['script', 'style', 'image', 'font']);
-const STATIC_FILE_PATTERN = /\.(?:css|js|mjs|png|jpe?g|webp|svg|ico|woff2?)$/i;
+const CACHE_NAME = 'zhonghua-culture-static-v20260507-2';
+const STATIC_DESTINATIONS = new Set(['script', 'style', 'image', 'font', 'video']);
+const STATIC_FILE_PATTERN = /\.(?:css|js|mjs|png|jpe?g|webp|svg|ico|woff2?|mp4)$/i;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(self.skipWaiting());

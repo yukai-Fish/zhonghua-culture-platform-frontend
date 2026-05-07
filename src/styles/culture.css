@@ -1486,6 +1486,20 @@ h1 {
   margin-bottom: clamp(2.6rem, 6vw, 5rem);
 }
 
+.auxiliary-video-preloaders {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.auxiliary-video-preloaders video {
+  width: 1px;
+  height: 1px;
+}
+
 .exhibit-guide-strip,
 .flat-content-section,
 .flat-widgets-grid {

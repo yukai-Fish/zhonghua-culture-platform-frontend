@@ -709,7 +709,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="rail-title">{activeTheme.scrollTitle}</div>
             <div className="rail-scroll-frame">
               <div className="rail-scroll-canvas">
-                <img src={activeTheme.scrollImage} alt={activeTheme.scrollTitle} />
+                <img src={activeTheme.scrollImage} alt={activeTheme.scrollTitle} loading="lazy" decoding="async" />
                 {activeTheme.id === 'buddhism' && scrollTourNodes.map((node) => (
                   <button
                     className={`rail-site-node ${node.id === 'longmen' ? 'rail-longmen-node' : ''} ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
@@ -764,7 +764,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="side-card site-portrait-card" aria-live="polite">
               <p className="eyebrow">画中一隅</p>
               <figure className="site-portrait-figure">
-                <img src={activeSite.photo} alt={`${activeSite.name}图景`} />
+                <img src={activeSite.photo} alt={`${activeSite.name}图景`} loading="lazy" decoding="async" />
                 <figcaption>{activeSite.label}</figcaption>
               </figure>
               <div className="site-meta-grid">
@@ -849,7 +849,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
 
                 <div className="mobile-scroll-card">
                   <div className="mobile-scroll-image">
-                    <img src={cultureAssets.buddhistScrollPreview} alt="佛教文脉长图" />
+                    <img src={cultureAssets.buddhistScrollPreview} alt="佛教文脉长图" loading="lazy" decoding="async" />
                     {scrollTourNodes.map((node) => (
                       <button
                         className={`mobile-scroll-node ${node.id === 'longmen' ? 'is-longmen' : ''} ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
@@ -909,7 +909,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                     <button type="button" onClick={askMobileGuanyin}>开始对话</button>
                     <small>{mobileChatReply}</small>
                   </div>
-                  <img src={cultureAssets.siteLongmenBuddha} alt="观音菩萨造像" />
+                  <img src={cultureAssets.siteLongmenBuddha} alt="观音菩萨造像" loading="lazy" decoding="async" />
                 </article>
 
                 <article className="mobile-experience-card verse-card">
@@ -923,7 +923,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                       换一句
                     </button>
                   </div>
-                  <img src={cultureAssets.siteLongmen} alt="佛教造像石刻" />
+                  <img src={cultureAssets.siteLongmen} alt="佛教造像石刻" loading="lazy" decoding="async" />
                 </article>
 
                 <article className="mobile-experience-card">
@@ -938,7 +938,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                     <button type="button" onClick={translateMobileScripture}>立即释义</button>
                     {mobileScriptureResult && <small>{mobileScriptureResult}</small>}
                   </div>
-                  <img src={cultureAssets.shopScroll} alt="经卷书册" />
+                  <img src={cultureAssets.shopScroll} alt="经卷书册" loading="lazy" decoding="async" />
                 </article>
 
                 <article className="mobile-experience-card">
@@ -952,7 +952,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                     <button type="button" onClick={saveMobileWish}>写下愿望</button>
                     {mobileWishSaved && <small>{mobileWishSaved}</small>}
                   </div>
-                  <img src={cultureAssets.longmenCover} alt="祈福灯影" />
+                  <img src={cultureAssets.longmenCover} alt="祈福灯影" loading="lazy" decoding="async" />
                 </article>
 
                 <article className="mobile-experience-card fortune-mobile-card">

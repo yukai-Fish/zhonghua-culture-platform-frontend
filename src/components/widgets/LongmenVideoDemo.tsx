@@ -63,7 +63,14 @@ export function LongmenVideoDemo({ openSignal = 0 }: LongmenVideoDemoProps) {
           onEnded={() => setIsPlaying(false)}
         />
         {!isPlaying && (
-          <img className="longmen-player-poster" src={cultureAssets.longmenCover} alt="" aria-hidden="true" />
+          <img
+            className="longmen-player-poster"
+            src={cultureAssets.longmenCover}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+          />
         )}
       </div>
     </section>

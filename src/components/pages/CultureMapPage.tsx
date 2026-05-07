@@ -1053,7 +1053,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 </div>
                 <div className="quadrant-cell">
                   <div className="inline-video-card narrative-video-card">
-                    <video src={cultureAssets.scriptureVideo} muted loop controls playsInline preload="none" />
+                    <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline />
                     <div className="video-caption">
                       <span>大佛静观</span>
                       <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
@@ -1064,7 +1064,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <div className="quadrant-column">
                 <div className="quadrant-cell">
                   <div className="inline-video-card narrative-video-card">
-                    <video src={cultureAssets.blessingVideo} muted loop controls playsInline preload="none" />
+                    <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline />
                     <div className="video-caption">
                       <span>红丝带祈福</span>
                       <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>

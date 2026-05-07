@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { cultureAssets } from '../../data/assets';
+import { fortunes } from '../../data/fortunes';
 import { BuddhistTimeline } from '../sections/BuddhistTimeline';
 import { LongmenVideoDemo } from '../widgets/LongmenVideoDemo';
 import { ScriptureExplain } from '../widgets/ScriptureExplain';
@@ -11,6 +12,8 @@ interface CultureMapPageProps {
 }
 
 type ThemeId = 'buddhism' | 'dao' | 'silk-road' | 'tea' | 'intangible' | 'folk';
+type MobilePanel = 'scroll' | 'experience';
+type MobileFeature = 'chat' | 'scripture' | 'wish' | 'fortune';
 
 interface MapSite {
   id: string;
@@ -515,11 +518,54 @@ const scrollTourNodes = [
   { id: 'wutai', name: '五台山', x: 30, y: 86 },
 ];
 
+const mobileTimelineNodes: Array<{ id: string; title: string; period: string; siteId?: string }> = [
+  { id: 'arrival', title: '佛教传入中国', period: '东汉时期' },
+  { id: 'changan', title: '长安题壁', period: '隋唐时期' },
+  { id: 'longmen', title: '龙门石窟', period: '北魏时期', siteId: 'longmen' },
+  { id: 'wutai', title: '五台山', period: '文殊道场', siteId: 'wutai' },
+  { id: 'putuo', title: '普陀山', period: '观音圣地', siteId: 'putuo' },
+  { id: 'potala', title: '布达拉宫', period: '藏传佛教', siteId: 'potala' },
+];
+
+const mobileFeatureItems: Array<{ id: MobileFeature; title: string; icon: string }> = [
+  { id: 'chat', title: '与神灵交流', icon: sharedIcons.dialogue },
+  { id: 'scripture', title: '经文翻译', icon: sharedIcons.scroll },
+  { id: 'wish', title: '许愿祈福', icon: sharedIcons.wish },
+  { id: 'fortune', title: '摇签问卜', icon: sharedIcons.video },
+];
+
+const mobileVerses = [
+  {
+    text: '一切有为法，如梦幻泡影，如露亦如电，应作如是观。',
+    source: '《金刚经》',
+  },
+  {
+    text: '心若不动，万法皆安；念起觉照，处处清明。',
+    source: '禅修偈语',
+  },
+  {
+    text: '观自在，照见当下，愿以慈悲安住一念。',
+    source: '观音偈语',
+  },
+];
+
 export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMapPageProps) {
   const [toast, setToast] = useState('');
   const [isScrollViewerOpen, setIsScrollViewerOpen] = useState(false);
   const [tourSignal, setTourSignal] = useState(0);
   const videoSectionRef = useRef<HTMLDivElement | null>(null);
+  const [isMobileViewport, setIsMobileViewport] = useState(() => window.matchMedia('(max-width: 767px)').matches);
+  const [activeMobilePanel, setActiveMobilePanel] = useState<MobilePanel>('scroll');
+  const [activeMobileMilestone, setActiveMobileMilestone] = useState('longmen');
+  const [activeMobileFeature, setActiveMobileFeature] = useState<MobileFeature>('chat');
+  const [mobileChatText, setMobileChatText] = useState('');
+  const [mobileChatReply, setMobileChatReply] = useState('静心片刻，把愿望说清楚，答案便会从当下的行动里慢慢显现。');
+  const [mobileVerseIndex, setMobileVerseIndex] = useState(0);
+  const [mobileScriptureText, setMobileScriptureText] = useState('');
+  const [mobileScriptureResult, setMobileScriptureResult] = useState('');
+  const [mobileWishText, setMobileWishText] = useState('');
+  const [mobileWishSaved, setMobileWishSaved] = useState('');
+  const [mobileFortuneIndex, setMobileFortuneIndex] = useState(0);
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>('buddhism');
   const activeTheme = cultureMapThemes.find((theme) => theme.id === activeThemeId) ?? cultureMapThemes[0];
   const [activeSiteIdByTheme, setActiveSiteIdByTheme] = useState<Record<string, string>>({
@@ -527,6 +573,17 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   });
   const activeSiteId = activeSiteIdByTheme[activeTheme.id] ?? getInitialSite(activeTheme);
   const activeSite = activeTheme.sites.find((site) => site.id === activeSiteId) ?? activeTheme.sites[0];
+  const mobileVerse = mobileVerses[mobileVerseIndex];
+  const mobileFortune = fortunes[mobileFortuneIndex % fortunes.length];
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const syncViewport = () => setIsMobileViewport(mobileQuery.matches);
+
+    syncViewport();
+    mobileQuery.addEventListener('change', syncViewport);
+    return () => mobileQuery.removeEventListener('change', syncViewport);
+  }, []);
 
   const selectTheme = (themeId: ThemeId) => {
     const nextTheme = cultureMapThemes.find((theme) => theme.id === themeId);
@@ -563,6 +620,40 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
     if (shouldCloseViewer) {
       setIsScrollViewerOpen(false);
     }
+  };
+
+  const selectMobileMilestone = (node: (typeof mobileTimelineNodes)[number]) => {
+    setActiveMobileMilestone(node.id);
+    if (node.siteId) {
+      setActiveSiteIdByTheme((current) => ({ ...current, buddhism: node.siteId ?? current.buddhism }));
+    }
+  };
+
+  const openMobileImmersiveExperience = () => {
+    setActiveMobilePanel('experience');
+    setTourSignal((current) => current + 1);
+    window.setTimeout(() => {
+      videoSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  };
+
+  const askMobileGuanyin = () => {
+    const trimmed = mobileChatText.trim();
+    setMobileChatReply(trimmed ? `愿你安住此心，先把“${trimmed}”化成今日能做的一小步。` : '愿你先静心呼吸，再把心愿慢慢说给自己听。');
+  };
+
+  const translateMobileScripture = () => {
+    const trimmed = mobileScriptureText.trim();
+    setMobileScriptureResult(trimmed ? '可译为：放下执着，照见本心，在平常处生出清明与慈悲。' : '请输入一段经文，再开始翻译。');
+  };
+
+  const saveMobileWish = () => {
+    const trimmed = mobileWishText.trim();
+    setMobileWishSaved(trimmed ? `已写下愿望：${trimmed}` : '请先写下一个愿望。');
+  };
+
+  const drawMobileFortune = () => {
+    setMobileFortuneIndex((current) => (current + 1) % fortunes.length);
   };
 
   const scrollViewer = isScrollViewerOpen ? createPortal(
@@ -612,6 +703,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
         </div>
 
         <div className="culture-map-grid flat-map-grid">
+          {!isMobileViewport && (
           <aside className="map-scroll-rail" aria-label={activeTheme.scrollTitle}>
             <div className="rail-title">{activeTheme.scrollTitle}</div>
             <div className="rail-scroll-frame">
@@ -634,6 +726,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               {activeTheme.actionText}
             </button>
           </aside>
+          )}
 
           <main className="map-stage-panel">
             <div className="map-stage-heading">
@@ -662,8 +755,10 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 </button>
               ))}
             </div>
+            <p className="mobile-map-hint">点击地图上的标记，查看详细介绍。</p>
           </main>
 
+          {!isMobileViewport && (
           <aside className="map-side-panel">
             <div className="side-card site-portrait-card" aria-live="polite">
               <p className="eyebrow">画中一隅</p>
@@ -699,10 +794,186 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               ))}
             </div>
           </aside>
+          )}
         </div>
+
+        {activeTheme.id === 'buddhism' && isMobileViewport && (
+          <div className="mobile-buddhist-panels">
+            <div className="mobile-panel-tabs" role="tablist" aria-label="佛教文化移动端面板">
+              <button
+                className={activeMobilePanel === 'scroll' ? 'active' : ''}
+                type="button"
+                role="tab"
+                aria-selected={activeMobilePanel === 'scroll'}
+                onClick={() => setActiveMobilePanel('scroll')}
+              >
+                佛教文脉长图
+              </button>
+              <button
+                className={activeMobilePanel === 'experience' ? 'active' : ''}
+                type="button"
+                role="tab"
+                aria-selected={activeMobilePanel === 'experience'}
+                onClick={() => setActiveMobilePanel('experience')}
+              >
+                佛教文化体验中心
+              </button>
+            </div>
+
+            {activeMobilePanel === 'scroll' && (
+              <section className="mobile-scroll-panel" aria-label="佛教文脉长图">
+                <div className="mobile-panel-heading">
+                  <div>
+                    <p className="eyebrow">文脉长卷</p>
+                    <h2>佛教文脉长图</h2>
+                  </div>
+                  <button type="button" onClick={openMobileImmersiveExperience}>
+                    沉浸式体验
+                  </button>
+                </div>
+
+                <div className="mobile-timeline" aria-label="佛教文脉时间节点">
+                  {mobileTimelineNodes.map((node) => (
+                    <button
+                      className={activeMobileMilestone === node.id ? 'active' : ''}
+                      type="button"
+                      key={node.id}
+                      onClick={() => selectMobileMilestone(node)}
+                    >
+                      <span>{node.title}</span>
+                      <small>{node.period}</small>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mobile-scroll-card">
+                  <div className="mobile-scroll-image">
+                    <img src={cultureAssets.buddhistScroll} alt="佛教文脉长图" />
+                    {scrollTourNodes.map((node) => (
+                      <button
+                        className={`mobile-scroll-node ${node.id === 'longmen' ? 'is-longmen' : ''} ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
+                        type="button"
+                        key={node.id}
+                        style={{ left: `${node.x}%`, top: `${node.y}%` }}
+                        onClick={() => {
+                          setActiveMobileMilestone(node.id);
+                          setActiveSiteIdByTheme((current) => ({ ...current, buddhism: node.id }));
+                        }}
+                      >
+                        {node.name}
+                      </button>
+                    ))}
+                  </div>
+                  <span>上滑查看更多</span>
+                </div>
+
+                <button className="mobile-fullscreen-button" type="button" onClick={() => setIsScrollViewerOpen(true)}>
+                  全屏查看长卷
+                </button>
+              </section>
+            )}
+
+            {activeMobilePanel === 'experience' && (
+              <section className="mobile-experience-panel" aria-label="佛教文化体验中心" ref={videoSectionRef}>
+                <div className="mobile-experience-heading">
+                  <p className="eyebrow">互动体验</p>
+                  <h2>佛教文化体验中心</h2>
+                  <p>探索佛教智慧，感悟心灵启迪</p>
+                </div>
+
+                <div className="mobile-feature-grid">
+                  {mobileFeatureItems.map((item) => (
+                    <button
+                      className={activeMobileFeature === item.id ? 'active' : ''}
+                      type="button"
+                      key={item.id}
+                      onClick={() => setActiveMobileFeature(item.id)}
+                    >
+                      <img src={item.icon} alt="" aria-hidden="true" />
+                      <span>{item.title}</span>
+                    </button>
+                  ))}
+                </div>
+
+                <article className="mobile-experience-card">
+                  <div className="mobile-card-copy">
+                    <h3>与观音菩萨对话</h3>
+                    <p>以虔诚之心，向观音菩萨诉说您的心愿</p>
+                    <textarea
+                      value={mobileChatText}
+                      onChange={(event) => setMobileChatText(event.target.value)}
+                      placeholder="请输入您想倾诉的心愿..."
+                      rows={3}
+                    />
+                    <button type="button" onClick={askMobileGuanyin}>开始对话</button>
+                    <small>{mobileChatReply}</small>
+                  </div>
+                  <img src={cultureAssets.siteLongmenBuddha} alt="观音菩萨造像" />
+                </article>
+
+                <article className="mobile-experience-card verse-card">
+                  <div className="mobile-card-copy">
+                    <h3>今日偈语</h3>
+                    <blockquote>
+                      “{mobileVerse.text}”
+                      <cite>——{mobileVerse.source}</cite>
+                    </blockquote>
+                    <button type="button" onClick={() => setMobileVerseIndex((current) => (current + 1) % mobileVerses.length)}>
+                      换一句
+                    </button>
+                  </div>
+                  <img src={cultureAssets.siteLongmen} alt="佛教造像石刻" />
+                </article>
+
+                <article className="mobile-experience-card">
+                  <div className="mobile-card-copy">
+                    <h3>经文翻译</h3>
+                    <textarea
+                      value={mobileScriptureText}
+                      onChange={(event) => setMobileScriptureText(event.target.value)}
+                      placeholder="请输入经文或偈语..."
+                      rows={3}
+                    />
+                    <button type="button" onClick={translateMobileScripture}>立即翻译</button>
+                    {mobileScriptureResult && <small>{mobileScriptureResult}</small>}
+                  </div>
+                  <img src={cultureAssets.shopScroll} alt="经卷书册" />
+                </article>
+
+                <article className="mobile-experience-card">
+                  <div className="mobile-card-copy">
+                    <h3>许愿祈福</h3>
+                    <input
+                      value={mobileWishText}
+                      onChange={(event) => setMobileWishText(event.target.value)}
+                      placeholder="写下您的愿望"
+                    />
+                    <button type="button" onClick={saveMobileWish}>写下愿望</button>
+                    {mobileWishSaved && <small>{mobileWishSaved}</small>}
+                  </div>
+                  <img src={cultureAssets.longmenCover} alt="祈福灯影" />
+                </article>
+
+                <article className="mobile-experience-card fortune-mobile-card">
+                  <div className="mobile-card-copy">
+                    <h3>摇签问卜</h3>
+                    <p>{mobileFortune.name}：{mobileFortune.verse}</p>
+                    <button type="button" onClick={drawMobileFortune}>开始摇签</button>
+                    <small className="mobile-disclaimer">本功能仅为文化互动体验，不具有真实预测或宗教占卜含义。</small>
+                  </div>
+                  <div className="fortune-tube" aria-hidden="true">上上签</div>
+                </article>
+
+                <div className="mobile-longmen-video">
+                  <LongmenVideoDemo openSignal={tourSignal} />
+                </div>
+              </section>
+            )}
+          </div>
+        )}
       </section>
 
-      {activeTheme.id === 'buddhism' && (
+      {activeTheme.id === 'buddhism' && !isMobileViewport && (
         <section className="flat-buddhist-content" aria-label="佛教文化平铺内容">
           <div className="flat-content-section video-flat-section" ref={videoSectionRef}>
             <div className="flat-section-copy">

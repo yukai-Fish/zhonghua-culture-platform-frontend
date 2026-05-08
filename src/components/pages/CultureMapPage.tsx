@@ -640,6 +640,25 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
     return () => mobileQuery.removeEventListener('change', syncViewport);
   }, []);
 
+  useEffect(() => {
+    if (isMobileViewport || activeTheme.id !== 'buddhism') {
+      return;
+    }
+
+    const abortController = new AbortController();
+    const warmVideoCache = (url: string) => {
+      void fetch(url, {
+        cache: 'force-cache',
+        signal: abortController.signal,
+      }).catch(() => undefined);
+    };
+
+    warmVideoCache(cultureAssets.scriptureVideo);
+    warmVideoCache(cultureAssets.blessingVideo);
+
+    return () => abortController.abort();
+  }, [activeTheme.id, isMobileViewport]);
+
   const selectTheme = (themeId: ThemeId) => {
     const nextTheme = cultureMapThemes.find((theme) => theme.id === themeId);
     if (!nextTheme) {

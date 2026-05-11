@@ -2,21 +2,21 @@ interface ThemeActivitiesPageProps {
   onEnterBuddhism: () => void;
 }
 
-const activities = [
+const books = [
   {
-    title: '石窟灯影夜游',
-    status: '已开放',
-    desc: '龙门、云冈与敦煌的岩壁之间，佛光、线刻与壁画余音一同苏醒。',
+    title: '心经',
+    status: '可阅读',
+    desc: '展示原文、现代汉语翻译、关键词解释和段落释义，适合一期经典译解演示。',
   },
   {
-    title: '丝路驼铃入梦',
-    status: '筹备中',
-    desc: '大漠风声穿过关塞，商旅、器物与信仰在古道上彼此相认。',
+    title: '金刚经',
+    status: '可阅读',
+    desc: '用于演示选段解释、收藏批注和公域阅读到私域感悟的路径闭环。',
   },
   {
-    title: '洞天云水雅集',
-    status: '筹备中',
-    desc: '名山深处有松风鹤影，宫观灯火与修真旧闻隐入烟霞。',
+    title: '四川佛教地标札记',
+    status: '资料库',
+    desc: '围绕峨眉山、乐山大佛等试点资源，补充历史介绍、文化内涵和游览向导。',
   },
 ];
 
@@ -24,21 +24,21 @@ export function ThemeActivitiesPage({ onEnterBuddhism }: ThemeActivitiesPageProp
   return (
     <div className="page nav-page page-fade">
       <section className="nav-page-hero">
-        <p className="eyebrow">主题活动</p>
-        <h1>良辰有约，古意成席</h1>
+        <p className="eyebrow">藏书阁</p>
+        <h1>公域经典阅读与智能释义</h1>
         <p className="hero-subtitle">
-          当山河、器物与传说再度相逢，一场场雅集便在云烟深处亮起灯火。
+          藏书阁只展示当前佛教主题相关书籍，区分原文、翻译、释义和用户感悟，保持权威内容边界。
         </p>
       </section>
 
-      <section className="activity-grid">
-        {activities.map((activity) => (
-          <article className="activity-card" key={activity.title}>
-            <span>{activity.status}</span>
-            <h2>{activity.title}</h2>
-            <p>{activity.desc}</p>
-            <button className={activity.status === '已开放' ? 'gold-button' : 'ghost-button'} type="button" onClick={activity.status === '已开放' ? onEnterBuddhism : undefined}>
-              {activity.status === '已开放' ? '入席' : '候启'}
+      <section className="activity-grid library-grid">
+        {books.map((book) => (
+          <article className="activity-card" key={book.title}>
+            <span>{book.status}</span>
+            <h2>{book.title}</h2>
+            <p>{book.desc}</p>
+            <button className="gold-button" type="button" onClick={onEnterBuddhism}>
+              取书阅读
             </button>
           </article>
         ))}

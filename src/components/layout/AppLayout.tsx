@@ -17,24 +17,24 @@ export function AppLayout({ children, currentRoute, onNavigate }: AppLayoutProps
       <main>{children}</main>
       <nav className="mobile-bottom-nav" aria-label="移动端底部导航">
         <button className={activeRoute === 'home' ? 'active' : ''} type="button" onClick={() => onNavigate('home')}>
-          <i>首</i>
-          <span>首页</span>
+          <i>选</i>
+          <span>文化选择</span>
         </button>
         <button className={activeRoute === 'culture-map' ? 'active' : ''} type="button" onClick={() => onNavigate('culture-map')}>
           <i>图</i>
-          <span>文化地图</span>
+          <span>万象图</span>
         </button>
         <button className={currentRoute === 'buddhism' ? 'active' : ''} type="button" onClick={() => onNavigate('buddhism')}>
-          <i>卷</i>
-          <span>文脉长图</span>
+          <i>佛</i>
+          <span>佛教主题</span>
         </button>
         <button className={activeRoute === 'experiences' ? 'active' : ''} type="button" onClick={() => onNavigate('experiences')}>
-          <i>话</i>
-          <span>交流社区</span>
+          <i>应</i>
+          <span>感应场</span>
         </button>
         <button className={activeRoute === 'shop' ? 'active' : ''} type="button" onClick={() => onNavigate('shop')}>
-          <i>我</i>
-          <span>我的</span>
+          <i>修</i>
+          <span>禅修房</span>
         </button>
       </nav>
     </div>

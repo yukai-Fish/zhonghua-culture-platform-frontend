@@ -20,50 +20,50 @@ export interface LongScrollPreview {
 
 export const coreThemes: CultureTheme[] = [
   {
-    id: 'dao',
-    title: '道教文化地图',
-    subtitle: '追溯道教洞天福地、名山宫观与修真文化的空间脉络',
-    image: cultureAssets.daoMap,
-    status: 'coming',
-  },
-  {
     id: 'buddhism',
-    title: '佛教文化地图',
-    subtitle: '从寺院石窟到经文传播，感受佛教文化在中国的融合发展',
+    title: '佛教',
+    subtitle: '一期重点演示：万象图、感应场、藏书阁、禅修房形成完整体验闭环',
     image: cultureAssets.buddhistMap,
     status: 'open',
   },
   {
-    id: 'silk-road',
-    title: '丝绸之路文化地图',
-    subtitle: '沿着古道商旅与文明交流路线，探索中外文化互鉴之路',
-    image: cultureAssets.silkRoadMap,
+    id: 'dao',
+    title: '道教',
+    subtitle: '一期保留入口，后续扩展青城山、道教典籍与修身场景',
+    image: cultureAssets.daoMap,
+    status: 'coming',
+  },
+  {
+    id: 'mazu',
+    title: '妈祖文化',
+    subtitle: '一期保留入口，后续承接福建湄洲岛、海丝地图与文化出海模板',
+    image: cultureAssets.oceanScroll,
     status: 'coming',
   },
 ];
 
-export const comingThemes = ['茶文化', '民族文化', '非遗文化', '海洋文化', '民俗信仰', '更多主题'];
+export const comingThemes = ['四川全域文旅', '福建文化出海', '经典译解', '智能问答', '同修小组', '多语言传播'];
 
 export const longScrollPreviews: LongScrollPreview[] = [
   {
     id: 'dao-scroll',
     title: '道教文脉长卷',
     image: cultureAssets.daoScroll,
-    statusText: '敬请期待',
-    description: '以山川洞天、宫观人物与修真谱系构成长卷式文化预览。',
+    statusText: '一期预留',
+    description: '保留青城山、洞天福地、宫观谱系的扩展位，后续接入完整内容。',
   },
   {
     id: 'buddhist-scroll',
     title: '佛教文脉长卷',
     image: cultureAssets.buddhistScroll,
-    statusText: '已开放',
-    description: '沿佛教圣地与石窟造像，纵览中国佛教艺术与信仰空间。',
+    statusText: '重点演示',
+    description: '沿四川峨眉山、乐山大佛与福建佛教节点，展示一期万象图主路径。',
   },
   {
     id: 'ocean-scroll',
-    title: '海洋信俗长卷',
+    title: '妈祖文化出海长卷',
     image: cultureAssets.oceanScroll,
-    statusText: '敬请期待',
-    description: '以妈祖信俗和沿海民间仪式为线索，展开海洋文化图景。',
+    statusText: '一期预留',
+    description: '预留湄洲岛、沿海庙宇、海上丝绸之路和海外华侨社群传播路径。',
   },
 ];

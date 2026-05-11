@@ -11,7 +11,7 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
   const [toast, setToast] = useState('');
 
   const showComingSoon = () => {
-    setToast('山门未启，敬请期待');
+    setToast('该文化主题为一期预留入口，后续展开完整内容');
     window.setTimeout(() => setToast(''), 2200);
   };
 
@@ -19,13 +19,13 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
     <div className="page home-page page-fade">
       <section className="hero-section">
         <div className="hero-copy">
-          <p className="eyebrow">山河入卷 · 文脉如灯 · 万象同辉</p>
-          <h1>华夏山河文脉</h1>
+          <p className="eyebrow">一期文化选择页</p>
+          <h1>先选择文化，再进入沉浸路径</h1>
           <p className="hero-subtitle">
-            山河有迹，钟磬有声，千年风物在一卷烟岚中缓缓铺陈。
+            平台先以佛教、道教、妈祖文化三类入口分流，避免不同信仰内容混杂；当前演示聚焦佛教完整闭环。
           </p>
           <p className="hero-note">
-            从古道、名山与寺观之间拾取文明回响，让散落在天地间的故事重新相逢。
+            一期围绕四川、福建试点，连接权威文化内容、智能释义、沉浸互动和个人修身空间。
           </p>
         </div>
       </section>
@@ -33,8 +33,8 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       <section className="section-block" id="culture-map">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">山川有信</p>
-            <h2>一图铺开千年烟火</h2>
+            <p className="eyebrow">文化分流</p>
+            <h2>佛教、道教、妈祖文化三大入口</h2>
           </div>
           <span className="line-label">Map Atlas</span>
         </div>
@@ -52,15 +52,15 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       <section className="section-block compact" id="coming-themes">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">未启之门</p>
-            <h2>风物尚在云深处</h2>
+            <p className="eyebrow">一期边界</p>
+            <h2>先保留入口，再逐步扩展</h2>
           </div>
         </div>
         <div className="coming-theme-grid">
           {comingThemes.map((theme) => (
             <button className="coming-chip" type="button" key={theme} onClick={showComingSoon}>
               <span>{theme}</span>
-              <small>即将开放</small>
+              <small>一期预留</small>
             </button>
           ))}
         </div>
@@ -69,8 +69,8 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       <section className="section-block" id="long-scrolls">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">长卷初展</p>
-            <h2>云水之间，文脉成轴</h2>
+            <p className="eyebrow">文脉预览</p>
+            <h2>三类文化的后续扩展方向</h2>
           </div>
           <span className="line-label">Scroll Preview</span>
         </div>

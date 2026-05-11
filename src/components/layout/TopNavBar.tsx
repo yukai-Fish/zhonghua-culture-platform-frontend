@@ -7,11 +7,11 @@ interface TopNavBarProps {
 }
 
 const navItems: Array<{ route: AppRoute; label: string }> = [
-  { route: 'home', label: '首页' },
-  { route: 'culture-map', label: '文化地图' },
-  { route: 'experiences', label: '交互体验' },
-  { route: 'activities', label: '主题活动' },
-  { route: 'shop', label: '文创商城' },
+  { route: 'home', label: '文化选择' },
+  { route: 'culture-map', label: '万象图' },
+  { route: 'experiences', label: '感应场' },
+  { route: 'activities', label: '藏书阁' },
+  { route: 'shop', label: '禅修房' },
 ];
 
 function getActiveRoute(route: AppRoute) {
@@ -23,15 +23,15 @@ export function TopNavBar({ currentRoute, onNavigate }: TopNavBarProps) {
 
   return (
     <header className="top-nav">
-      <button className="brand-mark" type="button" onClick={() => onNavigate('home')} aria-label="返回首页">
-        <img className="brand-logo" src={cultureAssets.brandLogo} alt="中国文化" loading="lazy" decoding="async" />
+      <button className="brand-mark" type="button" onClick={() => onNavigate('home')} aria-label="返回文化选择页">
+        <img className="brand-logo" src={cultureAssets.brandLogo} alt="全域文化传播平台" loading="lazy" decoding="async" />
         <span>
-          <strong>中国文化</strong>
-          <small>中华文明数字平台</small>
+          <strong>全域文化传播平台</strong>
+          <small>权威传播 · 沉浸体验 · 个人修身</small>
         </span>
       </button>
 
-      <nav className="nav-links" aria-label="主导航">
+      <nav className="nav-links" aria-label="佛教主题导航">
         {navItems.map((item) => (
           <button
             className={activeRoute === item.route ? 'active' : ''}
@@ -47,10 +47,10 @@ export function TopNavBar({ currentRoute, onNavigate }: TopNavBarProps) {
       <div className="nav-actions">
         <label className="search-box">
           <span>检索</span>
-          <input type="search" placeholder="搜索文化、地点、人物……" />
+          <input type="search" placeholder="搜索经典、地标、释义……" />
         </label>
         <button className="login-button" type="button">
-          登录 / 注册
+          登录 / 个人空间
         </button>
       </div>
     </header>

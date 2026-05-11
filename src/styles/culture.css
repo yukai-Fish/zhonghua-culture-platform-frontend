@@ -2853,11 +2853,9 @@ h1 {
 
 @keyframes pageFade {
   from {
-    opacity: 0;
     transform: translateY(12px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
@@ -4296,4 +4294,198 @@ h1 {
   .mobile-bottom-nav {
     display: grid;
   }
+}
+
+/* Product document V1.1 refinements: keep the original structure, soften the visual system. */
+:root {
+  color-scheme: light;
+  --ink: #1c2d3d;
+  --ink-soft: #26394a;
+  --panel: rgba(255, 252, 244, 0.78);
+  --panel-strong: rgba(255, 250, 238, 0.94);
+  --gold: #d5a021;
+  --gold-bright: #c23b22;
+  --paper: #f7f3e8;
+  --muted: rgba(28, 45, 61, 0.62);
+  --red: #c23b22;
+  --jade: #2a6b5c;
+  --cyan: #2a6b5c;
+  --border: rgba(28, 45, 61, 0.16);
+  --shadow: 0 18px 48px rgba(80, 58, 32, 0.12);
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(42, 107, 92, 0.1), transparent 28rem),
+    radial-gradient(circle at 84% 18%, rgba(214, 139, 140, 0.14), transparent 30rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent 22rem),
+    #f7f3e8;
+  color: var(--ink);
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(28, 45, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 45, 61, 0.025) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black, transparent 84%);
+}
+
+.top-nav {
+  border-bottom-color: rgba(28, 45, 61, 0.14);
+  background: rgba(247, 243, 232, 0.92);
+  box-shadow: 0 10px 34px rgba(80, 58, 32, 0.08);
+}
+
+.brand-mark strong,
+h1,
+.section-title-row h2,
+.panel-heading h2,
+.nav-page-hero h1,
+.theme-card h3,
+.workshop-card h2,
+.activity-card h2,
+.shop-card h2 {
+  color: var(--ink);
+}
+
+.brand-mark small,
+.hero-note,
+.panel-intro,
+.theme-card-content p,
+.long-preview-body p,
+.activity-card p,
+.shop-card p,
+.workshop-card p,
+.hero-subtitle {
+  color: rgba(28, 45, 61, 0.68);
+}
+
+.nav-links,
+.search-box {
+  border-color: rgba(28, 45, 61, 0.14);
+  background: rgba(255, 252, 244, 0.62);
+}
+
+.nav-links button,
+.login-button {
+  color: rgba(28, 45, 61, 0.74);
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+  background: rgba(194, 59, 34, 0.08);
+  color: #c23b22;
+}
+
+.nav-links button.active {
+  box-shadow: inset 0 0 0 1px rgba(194, 59, 34, 0.22);
+}
+
+.login-button,
+.gold-button,
+.theme-card button,
+.mobile-panel-heading button,
+.mobile-fullscreen-button,
+.mobile-card-copy button {
+  border-color: rgba(194, 59, 34, 0.36);
+  background: rgba(194, 59, 34, 0.1);
+  color: #c23b22;
+}
+
+.ghost-button,
+.back-link {
+  border-color: rgba(42, 107, 92, 0.28);
+  color: #2a6b5c;
+}
+
+.hero-section::after,
+.detail-hero::after {
+  opacity: 0.24;
+}
+
+.section-block,
+.theme-card,
+.long-preview-card,
+.ornate-panel,
+.workshop-card,
+.activity-card,
+.shop-card,
+.culture-map-console,
+.journey-scroll-section,
+.flat-content-section {
+  border-color: rgba(28, 45, 61, 0.14);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.55), rgba(255, 252, 244, 0.32)),
+    rgba(255, 252, 244, 0.68);
+  box-shadow: var(--shadow);
+}
+
+.theme-card-overlay {
+  background:
+    linear-gradient(180deg, rgba(255, 252, 244, 0.06) 0%, rgba(255, 252, 244, 0.22) 42%, rgba(247, 243, 232, 0.88) 100%),
+    radial-gradient(circle at 50% 35%, transparent 0, rgba(247, 243, 232, 0.22) 70%);
+}
+
+.eyebrow,
+.line-label,
+.theme-card-status,
+.long-preview-body span,
+.site-inspector span,
+.fortune-card span,
+.timeline-detail span,
+.activity-card span,
+.shop-card span {
+  color: #c23b22;
+}
+
+.coming-chip,
+.activity-card,
+.shop-card,
+.workshop-card {
+  border-radius: 6px;
+}
+
+.ritual-workshop-grid .workshop-card,
+.library-grid .activity-card,
+.meditation-grid .shop-card {
+  min-height: 18rem;
+}
+
+.woodfish-button {
+  display: grid;
+  width: 8rem;
+  height: 8rem;
+  margin-top: 1rem;
+  place-items: center;
+  border: 1px solid rgba(194, 59, 34, 0.3);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(213, 160, 33, 0.2), rgba(255, 252, 244, 0.92));
+  color: #c23b22;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.merit-preview span {
+  writing-mode: horizontal-tb;
+}
+
+.journal-panel textarea {
+  width: 100%;
+  margin: 0.3rem 0 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(28, 45, 61, 0.16);
+  border-radius: 4px;
+  outline: 0;
+  background: rgba(255, 252, 244, 0.9);
+  color: var(--ink);
+  resize: vertical;
+}
+
+.journal-panel textarea:focus {
+  border-color: rgba(42, 107, 92, 0.5);
+}
+
+.scene-buttons button.active {
+  border-color: rgba(194, 59, 34, 0.44);
+  color: #c23b22;
 }

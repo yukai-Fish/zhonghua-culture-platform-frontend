@@ -1,95 +1,110 @@
-import { useMemo, useState } from 'react';
-import type { CSSProperties } from 'react';
+import { useState } from 'react';
 
-const palettes = [
-  { name: '朱砂金', colors: ['#9d3d27', '#d9ad66', '#2d1b10'] },
-  { name: '青绿山水', colors: ['#2f6f67', '#8aa37b', '#1b2d2a'] },
-  { name: '黛蓝月白', colors: ['#22324f', '#e8ddc4', '#111826'] },
+const verses = [
+  {
+    text: '诸行无常，是生灭法。',
+    meaning: '承认变化，把注意力放回当下能完成的一小步。',
+  },
+  {
+    text: '一切有为法，如梦幻泡影。',
+    meaning: '把执着稍稍放轻，给情绪和判断留出余地。',
+  },
+  {
+    text: '心如工画师，能画诸世间。',
+    meaning: '心念会影响我们理解世界的方式，修心从觉察开始。',
+  },
 ];
 
-const scenes = [
-  {
-    name: '山寺夜钟',
-    verse: '钟声落入松风里，灯火沿着石阶慢慢上山。',
-  },
-  {
-    name: '丝路晓行',
-    verse: '沙色未醒，驼铃先至，远方在晨光里展开褶皱。',
-  },
-  {
-    name: '海潮祈愿',
-    verse: '潮声推开云影，船灯与香火在水面轻轻相认。',
-  },
-];
+const quiz = {
+  question: '一期万象图的三个核心区域是什么？',
+  answer: '文脉长图、文化地图、地点展示',
+  options: ['文脉长图、文化地图、地点展示', '商城、排行、抽奖', '新闻流、直播间、积分榜'],
+};
 
 export function InteractiveExperiencePage() {
-  const [sealText, setSealText] = useState('华夏');
-  const [paletteIndex, setPaletteIndex] = useState(0);
-  const [sceneIndex, setSceneIndex] = useState(0);
+  const [woodfishCount, setWoodfishCount] = useState(0);
+  const [verseIndex, setVerseIndex] = useState(0);
+  const [quizResult, setQuizResult] = useState('');
+  const activeVerse = verses[verseIndex];
 
-  const activePalette = palettes[paletteIndex];
-  const activeScene = scenes[sceneIndex];
-  const sealLetters = useMemo(() => sealText.trim().slice(0, 4).split(''), [sealText]);
+  const drawVerse = () => {
+    setVerseIndex((current) => (current + 1) % verses.length);
+  };
+
+  const answerQuiz = (option: string) => {
+    setQuizResult(option === quiz.answer ? '答对了，已生成一张文化知识卡。' : `再想想：${quiz.answer}`);
+  };
 
   return (
     <div className="page nav-page page-fade">
       <section className="nav-page-hero">
-        <p className="eyebrow">交互体验</p>
-        <h1>案上有风，指间生花</h1>
+        <p className="eyebrow">感应场</p>
+        <h1>仪式感与轻量互动</h1>
         <p className="hero-subtitle">
-          以印、色、声与光影为引，让一缕古意在手边悄然醒来。
+          按产品文档要求，互动功能服务文化理解和情绪舒缓，不做迷信承诺，也不引入强排名。
         </p>
       </section>
 
-      <section className="workshop-grid">
+      <section className="workshop-grid ritual-workshop-grid">
         <article className="workshop-card seal-workshop">
           <div>
-            <p className="eyebrow">印章小案</p>
-            <h2>一方朱印，落纸成声</h2>
-            <label className="field-label">
-              <span>题字</span>
-              <input value={sealText} maxLength={4} onChange={(event) => setSealText(event.target.value)} placeholder="华夏" />
-            </label>
+            <p className="eyebrow">电子木鱼</p>
+            <h2>轻敲一次，烦恼少一分</h2>
+            <p>点击木鱼产生轻反馈，记录为今日修心次数。</p>
+            <button className="woodfish-button" type="button" onClick={() => setWoodfishCount((count) => count + 1)}>
+              木鱼
+            </button>
           </div>
-          <div className="seal-preview" aria-label="印章预览">
-            {sealLetters.length ? sealLetters.map((letter, index) => <span key={`${letter}-${index}`}>{letter}</span>) : <span>印</span>}
-          </div>
-        </article>
-
-        <article className="workshop-card pattern-workshop">
-          <div>
-            <p className="eyebrow">纹样调色</p>
-            <h2>取一抹旧色，染半幅山河</h2>
-            <div className="palette-buttons">
-              {palettes.map((palette, index) => (
-                <button className={paletteIndex === index ? 'active' : ''} type="button" key={palette.name} onClick={() => setPaletteIndex(index)}>
-                  {palette.name}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="pattern-board" style={{ '--tone-a': activePalette.colors[0], '--tone-b': activePalette.colors[1], '--tone-c': activePalette.colors[2] } as CSSProperties}>
-            {Array.from({ length: 16 }).map((_, index) => (
-              <span key={index} />
-            ))}
+          <div className="seal-preview merit-preview" aria-label="功德计数">
+            <span>+{woodfishCount}</span>
           </div>
         </article>
 
         <article className="workshop-card ambience-workshop">
           <div>
-            <p className="eyebrow">灯影听风</p>
-            <h2>换一处风景，听一段回声</h2>
+            <p className="eyebrow">每日偈语</p>
+            <h2>{activeVerse.text}</h2>
+            <p>{activeVerse.meaning}</p>
+            <button className="gold-button" type="button" onClick={drawVerse}>
+              转动偈语轮
+            </button>
+          </div>
+          <div className="ambience-stage">
+            <span>可收藏分享</span>
+            <p>偈语卡片后续可进入禅修房个人书架。</p>
+          </div>
+        </article>
+
+        <article className="workshop-card pattern-workshop">
+          <div>
+            <p className="eyebrow">愿望摇签</p>
+            <h2>给一个温和的今日提醒</h2>
+            <p>摇签只提供鼓励性文化解读，不进行命运断言。</p>
+            <button className="gold-button" type="button" onClick={drawVerse}>
+              摇一支鼓励签
+            </button>
+          </div>
+          <div className="fortune-card">
+            <span>今日提醒</span>
+            <p>{activeVerse.meaning}</p>
+          </div>
+        </article>
+
+        <article className="workshop-card ambience-workshop">
+          <div>
+            <p className="eyebrow">文化小游戏</p>
+            <h2>{quiz.question}</h2>
             <div className="scene-buttons">
-              {scenes.map((scene, index) => (
-                <button className={sceneIndex === index ? 'active' : ''} type="button" key={scene.name} onClick={() => setSceneIndex(index)}>
-                  {scene.name}
+              {quiz.options.map((option) => (
+                <button type="button" key={option} onClick={() => answerQuiz(option)}>
+                  {option}
                 </button>
               ))}
             </div>
           </div>
           <div className="ambience-stage">
-            <span>{activeScene.name}</span>
-            <p>{activeScene.verse}</p>
+            <span>学习反馈</span>
+            <p>{quizResult || '选择一个答案，系统给出知识反馈。'}</p>
           </div>
         </article>
       </section>

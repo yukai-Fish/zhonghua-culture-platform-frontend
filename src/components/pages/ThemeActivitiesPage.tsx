@@ -6,17 +6,17 @@ const books = [
   {
     title: '心经',
     status: '可阅读',
-    desc: '展示原文、现代汉语翻译、关键词解释和段落释义，适合一期经典译解演示。',
+    desc: '以清澈短章照见般若智慧，原文、白话与关键词并读。',
   },
   {
     title: '金刚经',
     status: '可阅读',
-    desc: '用于演示选段解释、收藏批注和公域阅读到私域感悟的路径闭环。',
+    desc: '从“不住于相”的句义进入，慢慢读出放下与观照。',
   },
   {
     title: '四川佛教地标札记',
     status: '资料库',
-    desc: '围绕峨眉山、乐山大佛等试点资源，补充历史介绍、文化内涵和游览向导。',
+    desc: '峨眉山、乐山大佛与山水行旅相连，翻阅一方佛教地景。',
   },
 ];
 
@@ -25,9 +25,9 @@ export function ThemeActivitiesPage({ onEnterBuddhism }: ThemeActivitiesPageProp
     <div className="page nav-page page-fade">
       <section className="nav-page-hero">
         <p className="eyebrow">藏书阁</p>
-        <h1>公域经典阅读与智能释义</h1>
+        <h1>取一卷经典，慢慢读懂</h1>
         <p className="hero-subtitle">
-          藏书阁只展示当前佛教主题相关书籍，区分原文、翻译、释义和用户感悟，保持权威内容边界。
+          经典、注释、地标札记陈列于此。选一段原文，对照白话释义，把当下的理解轻轻记下。
         </p>
       </section>
 

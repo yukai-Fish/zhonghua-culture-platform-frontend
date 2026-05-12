@@ -40,7 +40,7 @@ export function CreativeShopPage() {
         <p className="eyebrow">禅修房</p>
         <h1>私域个人修身空间</h1>
         <p className="hero-subtitle">
-          禅修房承接藏书阁收藏内容，提供打坐冥想、声景、私密感悟和个人书架；记录默认仅本人可见。
+          点一段声景，坐一会儿，写下一点心中所感。这里安静、克制，也只属于你。
         </p>
       </section>
 
@@ -77,7 +77,7 @@ export function CreativeShopPage() {
         <article className="shop-card journal-panel">
           <div>
             <span>私密感悟</span>
-            <h2>默认仅本人可见</h2>
+            <h2>写给自己的片刻</h2>
             <textarea value={note} onChange={(event) => setNote(event.target.value)} placeholder="写下今日读经心得或情绪随笔" rows={5} />
             <button className="gold-button" type="button" onClick={() => {
               setSavedNote(note.trim() || '今天选择安静坐一会儿，也是一条记录。');

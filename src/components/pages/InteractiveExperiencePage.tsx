@@ -16,7 +16,7 @@ const verses = [
 ];
 
 const quiz = {
-  question: '一期万象图的三个核心区域是什么？',
+  question: '万象图中可以看到哪些内容？',
   answer: '文脉长图、文化地图、地点展示',
   options: ['文脉长图、文化地图、地点展示', '商城、排行、抽奖', '新闻流、直播间、积分榜'],
 };
@@ -41,7 +41,7 @@ export function InteractiveExperiencePage() {
         <p className="eyebrow">感应场</p>
         <h1>仪式感与轻量互动</h1>
         <p className="hero-subtitle">
-          按产品文档要求，互动功能服务文化理解和情绪舒缓，不做迷信承诺，也不引入强排名。
+          轻敲木鱼，转动偈语，抽取一张今日提醒，在温和互动里安顿片刻心绪。
         </p>
       </section>
 
@@ -71,7 +71,7 @@ export function InteractiveExperiencePage() {
           </div>
           <div className="ambience-stage">
             <span>可收藏分享</span>
-            <p>偈语卡片后续可进入禅修房个人书架。</p>
+            <p>把喜欢的偈语留在个人书架，日后再读。</p>
           </div>
         </article>
 
@@ -79,7 +79,7 @@ export function InteractiveExperiencePage() {
           <div>
             <p className="eyebrow">愿望摇签</p>
             <h2>给一个温和的今日提醒</h2>
-            <p>摇签只提供鼓励性文化解读，不进行命运断言。</p>
+            <p>把心愿写给自己，也把答案留给时间。</p>
             <button className="gold-button" type="button" onClick={drawVerse}>
               摇一支鼓励签
             </button>

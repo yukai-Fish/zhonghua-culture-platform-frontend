@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   color-scheme: dark;
   font-family:
     "Noto Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
@@ -1109,10 +1109,11 @@ h1 {
 
 .rail-action {
   min-height: 2.5rem;
-  border: 1px solid rgba(217, 173, 102, 0.36);
+  border: 1px solid rgba(213, 160, 33, 0.55);
   border-radius: 999px;
-  background: rgba(217, 173, 102, 0.1);
-  color: var(--gold-bright);
+  background: rgba(213, 160, 33, 0.14);
+  color: #d5a021;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -2050,7 +2051,7 @@ h1 {
 
 .library-shelf button.active {
   border-color: rgba(255, 215, 138, 0.65);
-  background: linear-gradient(135deg, rgba(194, 59, 34, 0.2), rgba(217, 173, 102, 0.14));
+  background: linear-gradient(135deg, rgba(138, 98, 56, 0.2), rgba(217, 173, 102, 0.14));
   color: #fff0c5;
 }
 
@@ -3025,7 +3026,7 @@ h1 {
 
 .timeline-track button.active::before {
   border-color: #c76d45;
-  background: #b53a24;
+  background: #8a6238;
   box-shadow: 0 0 0 7px rgba(181, 58, 36, 0.14), 0 0 20px rgba(190, 112, 62, 0.28);
 }
 
@@ -3054,7 +3055,7 @@ h1 {
 .timeline-detail-redesign span {
   border-color: rgba(181, 58, 36, 0.32);
   background: rgba(181, 58, 36, 0.08);
-  color: #b53a24;
+  color: #8a6238;
   font-weight: 700;
 }
 
@@ -4584,6 +4585,20 @@ h1,
   background: rgba(255, 252, 244, 0.62);
 }
 
+.search-box span {
+  color: #8a6238;
+  font-weight: 700;
+}
+
+.search-box input {
+  color: rgba(28, 45, 61, 0.9);
+}
+
+.search-box input::placeholder,
+.library-search-box input::placeholder {
+  color: rgba(84, 95, 108, 0.74);
+}
+
 .nav-links button,
 .login-button {
   color: rgba(28, 45, 61, 0.74);
@@ -4591,12 +4606,12 @@ h1,
 
 .nav-links button:hover,
 .nav-links button.active {
-  background: rgba(194, 59, 34, 0.08);
-  color: #c23b22;
+  background: rgba(138, 98, 56, 0.1);
+  color: #8a6238;
 }
 
 .nav-links button.active {
-  box-shadow: inset 0 0 0 1px rgba(194, 59, 34, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(138, 98, 56, 0.24);
 }
 
 .login-button,
@@ -4605,9 +4620,9 @@ h1,
 .mobile-panel-heading button,
 .mobile-fullscreen-button,
 .mobile-card-copy button {
-  border-color: rgba(194, 59, 34, 0.36);
-  background: rgba(194, 59, 34, 0.1);
-  color: #c23b22;
+  border-color: rgba(138, 98, 56, 0.36);
+  background: rgba(138, 98, 56, 0.12);
+  color: #8a6238;
 }
 
 .ghost-button,
@@ -4653,7 +4668,7 @@ h1,
 .timeline-detail span,
 .activity-card span,
 .shop-card span {
-  color: #c23b22;
+  color: #8a6238;
 }
 
 .coming-chip,
@@ -4675,10 +4690,10 @@ h1,
   height: 8rem;
   margin-top: 1rem;
   place-items: center;
-  border: 1px solid rgba(194, 59, 34, 0.3);
+  border: 1px solid rgba(138, 98, 56, 0.32);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(213, 160, 33, 0.2), rgba(255, 252, 244, 0.92));
-  color: #c23b22;
+  color: #8a6238;
   cursor: pointer;
   font-weight: 800;
 }
@@ -4704,8 +4719,8 @@ h1,
 }
 
 .scene-buttons button.active {
-  border-color: rgba(194, 59, 34, 0.44);
-  color: #c23b22;
+  border-color: rgba(138, 98, 56, 0.44);
+  color: #8a6238;
 }
 
 /* Flat Buddhist section: improve contrast in light theme */
@@ -4789,7 +4804,7 @@ h1,
 }
 
 .wish-mode-tabs button.active {
-  border-color: rgba(194, 59, 34, 0.36);
+  border-color: rgba(138, 98, 56, 0.36);
   color: #b13823;
 }
 
@@ -4868,10 +4883,10 @@ h1,
   width: fit-content;
   margin: 0;
   padding: 0.5rem 0.72rem;
-  border: 1px solid rgba(194, 59, 34, 0.22);
+  border: 1px solid rgba(138, 98, 56, 0.24);
   border-radius: 2px;
-  background: rgba(194, 59, 34, 0.055);
-  color: #c23b22;
+  background: rgba(138, 98, 56, 0.08);
+  color: #8a6238;
   font-size: 1.02rem;
   font-weight: 700;
 }
@@ -4966,8 +4981,8 @@ h1,
   top: 0.7rem;
   right: 0.75rem;
   margin-bottom: 0;
-  background: rgba(194, 59, 34, 0.08);
-  color: #c23b22;
+  background: rgba(138, 98, 56, 0.1);
+  color: #8a6238;
   font-weight: 700;
 }
 
@@ -4996,10 +5011,10 @@ h1,
 }
 
 .home-page .theme-card.is-open button {
-  border-color: #c23b22;
-  background: #c23b22;
+  border-color: #8a6238;
+  background: #8a6238;
   color: #fff7ea;
-  box-shadow: 0 10px 24px rgba(194, 59, 34, 0.24);
+  box-shadow: 0 10px 24px rgba(138, 98, 56, 0.24);
 }
 
 .home-page .theme-card.is-open button:hover {
@@ -5200,7 +5215,7 @@ h1,
 }
 
 .meditation-card-body > span {
-  color: #9d432b;
+  color: #8a6238;
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -5317,8 +5332,8 @@ h1,
 
 .library-filter-row button.active {
   border-color: rgba(188, 66, 44, 0.34);
-  background: rgba(194, 59, 34, 0.08);
-  color: #b53a24;
+  background: rgba(138, 98, 56, 0.1);
+  color: #8a6238;
   font-weight: 700;
 }
 
@@ -5369,9 +5384,9 @@ h1,
   display: inline-flex;
   margin-bottom: 0.52rem;
   padding: 0.22rem 0.5rem;
-  border: 1px solid rgba(194, 59, 34, 0.26);
+  border: 1px solid rgba(138, 98, 56, 0.28);
   border-radius: 999px;
-  color: #b63a24;
+  color: #8a6238;
   font-size: 0.78rem;
 }
 
@@ -5490,7 +5505,7 @@ h1,
 .ritual-primary {
   margin-top: 0.65rem;
   padding-inline: 1.2rem;
-  border-color: rgba(194, 59, 34, 0.44);
+  border-color: rgba(138, 98, 56, 0.44);
   background: linear-gradient(180deg, #c9472e, #a52f1c);
   color: #fff5e7;
 }
@@ -5603,8 +5618,8 @@ h1,
 }
 
 .ritual-tag-row button.active {
-  border-color: rgba(194, 59, 34, 0.42);
-  color: #b33923;
+  border-color: rgba(138, 98, 56, 0.42);
+  color: #8a6238;
 }
 
 .ritual-fortune-result {
@@ -5707,7 +5722,7 @@ h1,
 }
 
 .ritual-quiz-panel button strong {
-  color: #9f4028;
+  color: #8a6238;
 }
 
 @media (max-width: 1200px) {
@@ -5949,3 +5964,4 @@ h1,
 .home-page .theme-card.is-open button:hover {
   background: linear-gradient(180deg, #8c653d, #6c4b2c);
 }
+

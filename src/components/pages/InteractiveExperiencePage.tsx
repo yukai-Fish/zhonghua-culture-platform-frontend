@@ -49,9 +49,7 @@ export function InteractiveExperiencePage() {
 
       <section className="ritual-grid">
         <article className="ritual-card ritual-card-woodfish">
-          <p className="eyebrow">电子木鱼</p>
-          <h2>轻敲一下，留一分静心</h2>
-          <p>点击木鱼，记录今日静心次数。</p>
+          <h2>电子木鱼</h2>
           <div className="ritual-count-ring">
             <span>今日</span>
             <strong>{String(woodfishCount).padStart(2, '0')}</strong>
@@ -64,11 +62,9 @@ export function InteractiveExperiencePage() {
         </article>
 
         <article className="ritual-card ritual-card-verse">
-          <p className="eyebrow">每日偈语</p>
-          <h2>今日一句，安放心绪</h2>
+          <h2>每日偈语</h2>
           <div className="ritual-verse-paper">
             <blockquote>{activeVerse.text}</blockquote>
-            <p>{activeVerse.meaning}</p>
           </div>
           <div className="ritual-actions">
             <button className="gold-button ritual-primary" type="button" onClick={drawVerse}>
@@ -82,9 +78,7 @@ export function InteractiveExperiencePage() {
         </article>
 
         <article className="ritual-card ritual-card-fortune">
-          <p className="eyebrow">愿望摇签</p>
-          <h2>给今天一个温和提醒</h2>
-          <p>把心愿写给自己，也把答案留给时间。</p>
+          <h2>愿望摇签</h2>
           <div className="ritual-tag-row">
             {['学业', '家庭', '事业', '心绪'].map((tag) => (
               <button
@@ -108,9 +102,7 @@ export function InteractiveExperiencePage() {
         </article>
 
         <article className="ritual-card ritual-card-merit">
-          <p className="eyebrow">功德林 / 今日记录</p>
-          <h2>一点积累，慢慢生长</h2>
-          <p>每一次善意与坚持，都是向上的力量。</p>
+          <h2>功德林</h2>
           <button className="gold-button ritual-primary" type="button">
             查看记录
           </button>
@@ -124,14 +116,12 @@ export function InteractiveExperiencePage() {
 
         <article className="ritual-card ritual-card-quiz">
           <div className="ritual-quiz-main">
-            <p className="eyebrow">文化小游戏</p>
-            <h2>今日一题，轻松知文化</h2>
-            <p>趣味答题，了解文化，收获新知。</p>
+            <h2>文化小游戏</h2>
             <div className="ritual-actions">
               <button className="gold-button ritual-primary" type="button">开始答题</button>
               <button className="ghost-button" type="button">排行榜</button>
             </div>
-            <p className="ritual-quiz-feedback">{quizResult || '选择右侧答案，查看反馈。'}</p>
+            {!!quizResult && <p className="ritual-quiz-feedback">{quizResult}</p>}
           </div>
           <div className="ritual-quiz-panel">
             <h3>{quiz.question}</h3>

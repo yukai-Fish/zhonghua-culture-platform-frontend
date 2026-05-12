@@ -5480,14 +5480,14 @@ h1,
 .ritual-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.8rem;
+  gap: 1rem;
   margin-bottom: 2.2rem;
 }
 
 .ritual-card {
   position: relative;
   overflow: hidden;
-  min-height: 21rem;
+  min-height: 19.2rem;
   padding: 1.1rem;
   border: 1px solid rgba(153, 110, 60, 0.25);
   border-radius: 0.6rem;
@@ -5497,22 +5497,11 @@ h1,
   box-shadow: 0 12px 34px rgba(84, 61, 38, 0.08);
 }
 
-.ritual-card .eyebrow {
-  margin-bottom: 0.35rem;
-  color: #8f4c1b;
-}
-
 .ritual-card h2 {
-  max-width: 70%;
-  margin-bottom: 0.45rem;
+  max-width: 66%;
+  margin-bottom: 0.7rem;
   color: #1f2f40;
-  font-size: clamp(1.65rem, 2.2vw, 2.45rem);
-}
-
-.ritual-card p {
-  max-width: 68%;
-  color: rgba(31, 48, 64, 0.82);
-  line-height: 1.75;
+  font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
 .ritual-primary {
@@ -5542,7 +5531,7 @@ h1,
 .ritual-card-woodfish .ritual-woodfish-image {
   right: 0.7rem;
   bottom: 0.5rem;
-  width: min(57%, 16rem);
+  width: min(48%, 12.8rem);
 }
 
 .ritual-count-ring {
@@ -5570,11 +5559,11 @@ h1,
 .ritual-card-verse .ritual-scroll-image {
   right: 0.7rem;
   bottom: 0.7rem;
-  width: min(36%, 10rem);
+  width: min(30%, 8.6rem);
 }
 
 .ritual-verse-paper {
-  max-width: 68%;
+  max-width: 64%;
   margin-top: 0.55rem;
   padding: 0.68rem;
   border: 1px solid rgba(153, 110, 60, 0.24);
@@ -5585,19 +5574,14 @@ h1,
 .ritual-verse-paper blockquote {
   margin: 0;
   color: #2a3544;
-  font-size: 1.65rem;
-  line-height: 1.38;
-}
-
-.ritual-verse-paper p {
-  max-width: 100%;
-  margin: 0.65rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
 }
 
 .ritual-card-fortune .ritual-fortune-image {
   right: 0.6rem;
   bottom: 0.5rem;
-  width: min(37%, 11rem);
+  width: min(29%, 8.4rem);
 }
 
 .ritual-tag-row {
@@ -5623,7 +5607,7 @@ h1,
 }
 
 .ritual-fortune-result {
-  max-width: 62%;
+  max-width: 60%;
   min-height: auto;
   margin-inline: 0;
   text-align: left;
@@ -5637,7 +5621,7 @@ h1,
 .ritual-card-merit .ritual-tree-image {
   right: 1.1rem;
   bottom: 0.45rem;
-  width: min(50%, 19rem);
+  width: min(35%, 13.8rem);
 }
 
 .ritual-metrics {
@@ -5734,7 +5718,6 @@ h1,
   }
 
   .ritual-card h2,
-  .ritual-card p,
   .ritual-verse-paper,
   .ritual-fortune-result,
   .ritual-metrics {

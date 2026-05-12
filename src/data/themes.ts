@@ -7,6 +7,7 @@ export interface CultureTheme {
   title: string;
   subtitle: string;
   image: string;
+  icon: string;
   status: ThemeStatus;
 }
 
@@ -24,6 +25,7 @@ export const coreThemes: CultureTheme[] = [
     title: '佛教',
     subtitle: '入山观寺，读经听钟，在万象图、感应场、藏书阁与禅修房之间缓步游历',
     image: cultureAssets.buddhistMap,
+    icon: cultureAssets.iconThemeBuddhism,
     status: 'open',
   },
   {
@@ -31,6 +33,7 @@ export const coreThemes: CultureTheme[] = [
     title: '道教',
     subtitle: '青城幽径、洞天福地与宫观云烟，待你循着清气慢慢探访',
     image: cultureAssets.daoMap,
+    icon: cultureAssets.iconThemeDao,
     status: 'coming',
   },
   {
@@ -38,6 +41,7 @@ export const coreThemes: CultureTheme[] = [
     title: '妈祖文化',
     subtitle: '海潮、帆影与湄洲香火，照见护航信俗与远洋乡愁',
     image: cultureAssets.oceanScroll,
+    icon: cultureAssets.iconThemeMore,
     status: 'coming',
   },
 ];

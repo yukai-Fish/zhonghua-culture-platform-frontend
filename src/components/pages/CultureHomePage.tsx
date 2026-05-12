@@ -27,6 +27,7 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
           <p className="hero-note">
             从地图、长卷、经典与静修场景进入，在安静的浏览中与千年风物相逢。
           </p>
+          <p className="hero-guide">请选择你想进入的文化脉络</p>
         </div>
       </section>
 

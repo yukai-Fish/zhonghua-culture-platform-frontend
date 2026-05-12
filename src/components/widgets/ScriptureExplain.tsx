@@ -12,20 +12,27 @@ export function ScriptureExplain() {
   };
 
   return (
-    <section className="experience-module">
-      <h3>经文释义</h3>
-      <div className="scripture-card">
+    <section className="experience-module scripture-module">
+      <div className="module-heading">
+        <h3>经文释义</h3>
+      </div>
+      <div className="scripture-card scripture-card-paper">
         <blockquote>{scripture.text}</blockquote>
         {expanded && <p>{scripture.meaning}</p>}
       </div>
-      <div className="button-row">
-        <button className="gold-button" type="button" onClick={() => setExpanded((value) => !value)}>
+      <div className="button-row scripture-actions">
+        <button className="gold-button ritual-primary" type="button" onClick={() => setExpanded((value) => !value)}>
           {expanded ? '收起释义' : '查看释义'}
         </button>
         <button className="ghost-button" type="button" onClick={nextScripture}>
           换一句
         </button>
       </div>
+      {expanded && (
+        <p className="scripture-extended-copy">
+          世间万物皆由因缘和合而生，瞬息万变，终将归于无常。放下执念，回归本心，方能见性成佛，得大自在。
+        </p>
+      )}
     </section>
   );
 }

@@ -11,28 +11,42 @@ export function WishFortune() {
   };
 
   return (
-    <section className="experience-module">
-      <h3>愿望摇签</h3>
+    <section className="experience-module wish-module">
+      <div className="module-heading">
+        <h3>愿望摇签</h3>
+      </div>
       <label className="field-label">
-        <span>写下一个愿望</span>
-        <input
+        <span>写下一个愿望或想问的问题</span>
+        <textarea
           value={wish}
           onChange={(event) => setWish(event.target.value)}
-          placeholder="愿此心安住清明"
+          placeholder="在此输入您的愿望或问题..."
+          maxLength={100}
+          rows={3}
         />
+        <small className="wish-count">{wish.length}/100</small>
       </label>
-      <button className="gold-button" type="button" onClick={drawFortune}>
+      <button className="gold-button ritual-primary wish-submit" type="button" onClick={drawFortune}>
         摇一签
       </button>
-      {fortune && (
-        <div className="fortune-card" key={`${fortune.name}-${wish.length}`}>
-          <span>签文</span>
-          <h4>{fortune.name}</h4>
-          <p>偈语：{fortune.verse}</p>
-          <p>解签：{fortune.explanation}</p>
-        </div>
-      )}
-      <small className="disclaimer">此签只作文化互动参考，愿你以清明心自照当下。</small>
+      <div className="fortune-card wish-result-card" key={`${fortune?.name ?? 'none'}-${wish.length}`}>
+        <span>此签结果</span>
+        {fortune ? (
+          <>
+            <h4>{fortune.name}</h4>
+            <p>偈语：{fortune.verse}</p>
+            <p>解签：{fortune.explanation}</p>
+          </>
+        ) : (
+          <p>此签结果将在您摇签后显示</p>
+        )}
+      </div>
+      <div className="wish-mode-tabs" aria-label="祈愿步骤">
+        <button type="button">写愿</button>
+        <button type="button" className="active">抽签</button>
+        <button type="button">读句</button>
+        <button type="button">观影</button>
+      </div>
     </section>
   );
 }

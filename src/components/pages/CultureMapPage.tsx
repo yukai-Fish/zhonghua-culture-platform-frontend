@@ -1066,6 +1066,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="flat-section-copy exhibit-section-heading">
               <p className="eyebrow">禅意互动</p>
               <h3>经文释义与愿望摇签</h3>
+              <img className="ritual-ink-deco" src={cultureAssets.ritualInkBackground} alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </div>
             <DeferredRender className="quadrant-exhibit-grid" minHeight="38rem">
               <div className="quadrant-column">
@@ -1073,7 +1074,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                   <ScriptureExplain />
                 </div>
                 <div className="quadrant-cell">
-                  <div className="inline-video-card narrative-video-card">
+                  <div className="inline-video-card narrative-video-card ritual-media-card">
                     <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline preload="auto" />
                     <div className="video-caption">
                       <span>大佛静观</span>
@@ -1084,22 +1085,16 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               </div>
               <div className="quadrant-column">
                 <div className="quadrant-cell">
-                  <div className="inline-video-card narrative-video-card">
+                  <div className="inline-video-card narrative-video-card ritual-media-card">
                     <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline preload="auto" />
                     <div className="video-caption">
-                      <span>红丝带祈福</span>
-                      <p>红色愿带随风摇曳，与经文释义里的放下、清明和祝愿互相呼应。</p>
+                      <span>红丝祈愿树</span>
+                      <p>红色丝带随风飘动，与经文祈愿树相映成辉，愿望随风飞起，善缘随心生。</p>
                     </div>
                   </div>
                 </div>
                 <div className="quadrant-cell interaction-cell">
                   <WishFortune />
-                  <div className="exhibit-note-grid" aria-label="摇签祈福导览">
-                    <span>写愿</span>
-                    <span>摇签</span>
-                    <span>读偈</span>
-                    <span>观影</span>
-                  </div>
                 </div>
               </div>
             </DeferredRender>

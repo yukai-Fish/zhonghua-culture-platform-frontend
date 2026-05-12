@@ -45,10 +45,12 @@ export function TopNavBar({ currentRoute, onNavigate }: TopNavBarProps) {
       </nav>
 
       <div className="nav-actions">
-        <label className="search-box">
-          <span>检索</span>
-          <input type="search" placeholder="搜索经典、地标、释义……" />
-        </label>
+        {currentRoute !== 'home' && (
+          <label className="search-box">
+            <span>检索</span>
+            <input type="search" placeholder="搜索经典、地标、释义……" />
+          </label>
+        )}
         <button className="login-button" type="button">
           登录 / 个人空间
         </button>

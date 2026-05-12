@@ -1,18 +1,35 @@
-import { useState } from 'react';
-import { comingThemes, coreThemes, longScrollPreviews } from '../../data/themes';
+import { useRef, useState } from 'react';
+import type { AppRoute } from '../../App';
+import { coreThemes, longScrollPreviews } from '../../data/themes';
 import { ThemeLongScrollPreview } from '../cards/ThemeLongScrollPreview';
 import { ThemeOverviewCard } from '../cards/ThemeOverviewCard';
 
 interface CultureHomePageProps {
   onEnterBuddhism: () => void;
+  onOpenRoute: (route: AppRoute) => void;
 }
 
-export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
+const coreFeatures: Array<{ title: string; desc: string; route: AppRoute }> = [
+  { title: '万象图', desc: '看山河文脉', route: 'culture-map' },
+  { title: '感应场', desc: '做互动体验', route: 'experiences' },
+  { title: '藏书阁', desc: '读经典译解', route: 'activities' },
+  { title: '禅修房', desc: '进入私域修行', route: 'shop' },
+];
+
+export function CultureHomePage({ onEnterBuddhism, onOpenRoute }: CultureHomePageProps) {
   const [toast, setToast] = useState('');
+  const scrollRailRef = useRef<HTMLDivElement | null>(null);
 
   const showComingSoon = () => {
     setToast('山门未启，敬请期待');
     window.setTimeout(() => setToast(''), 2200);
+  };
+
+  const scrollLongPreviews = (direction: 'left' | 'right') => {
+    scrollRailRef.current?.scrollBy({
+      left: direction === 'left' ? -620 : 620,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -50,18 +67,18 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
         </div>
       </section>
 
-      <section className="section-block compact" id="coming-themes">
+      <section className="section-block compact" id="core-features">
         <div className="section-title-row">
           <div>
-            <p className="eyebrow">更多风物</p>
-            <h2>山海之间，静候相逢</h2>
+            <p className="eyebrow">进入之后</p>
+            <h2>四个核心文化场景</h2>
           </div>
         </div>
-        <div className="coming-theme-grid">
-          {comingThemes.map((theme) => (
-            <button className="coming-chip" type="button" key={theme} onClick={showComingSoon}>
-              <span>{theme}</span>
-              <small>即将开放</small>
+        <div className="core-feature-grid">
+          {coreFeatures.map((feature) => (
+            <button className="core-feature-card" type="button" key={feature.title} onClick={() => onOpenRoute(feature.route)}>
+              <span>{feature.title}</span>
+              <small>{feature.desc}</small>
             </button>
           ))}
         </div>
@@ -73,9 +90,16 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
             <p className="eyebrow">长卷初展</p>
             <h2>云水之间，文脉成轴</h2>
           </div>
-          <span className="line-label">Scroll Preview</span>
+          <span className="line-label">长卷预览</span>
         </div>
-        <div className="scroll-preview-grid">
+        <div className="scroll-preview-toolbar" aria-label="长卷预览切换">
+          <button type="button" onClick={() => scrollLongPreviews('left')} aria-label="上一组长卷">‹</button>
+          <div className="scroll-preview-dots" aria-hidden="true">
+            {longScrollPreviews.map((preview) => <span key={preview.id} />)}
+          </div>
+          <button type="button" onClick={() => scrollLongPreviews('right')} aria-label="下一组长卷">›</button>
+        </div>
+        <div className="scroll-preview-grid" ref={scrollRailRef}>
           {longScrollPreviews.map((preview) => (
             <ThemeLongScrollPreview key={preview.id} preview={preview} />
           ))}

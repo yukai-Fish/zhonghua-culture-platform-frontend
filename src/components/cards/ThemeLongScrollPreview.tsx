@@ -8,7 +8,7 @@ export function ThemeLongScrollPreview({ preview }: ThemeLongScrollPreviewProps)
   return (
     <article className="long-preview-card">
       <div className="long-preview-image">
-        <img src={preview.image} alt={preview.title} loading="lazy" decoding="async" />
+        <img src={preview.image} alt={preview.title} loading="eager" decoding="async" />
       </div>
       <div className="long-preview-body">
         <span>{preview.statusText}</span>

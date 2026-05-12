@@ -2647,6 +2647,15 @@ h1 {
   margin-top: 0.8rem;
 }
 
+.scripture-actions .gold-button,
+.scripture-actions .ghost-button {
+  min-width: 7.8rem;
+  min-height: 3rem;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  text-align: center;
+}
+
 .fortune-card {
   max-width: 16rem;
   min-height: 13rem;

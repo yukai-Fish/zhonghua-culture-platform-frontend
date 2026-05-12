@@ -24,7 +24,7 @@ export function ScriptureExplain() {
         <button className="gold-button ritual-primary" type="button" onClick={() => setExpanded((value) => !value)}>
           {expanded ? '收起释义' : '查看释义'}
         </button>
-        <button className="ghost-button" type="button" onClick={nextScripture}>
+        <button className="ghost-button ritual-secondary" type="button" onClick={nextScripture}>
           换一句
         </button>
       </div>

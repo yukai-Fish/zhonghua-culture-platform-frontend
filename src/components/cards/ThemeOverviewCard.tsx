@@ -16,7 +16,7 @@ export function ThemeOverviewCard({ theme, onOpen }: ThemeOverviewCardProps) {
         <img src={theme.icon} alt="" loading="lazy" decoding="async" />
       </div>
       <div className="theme-card-content">
-        <span className="theme-card-status">{isOpen ? '已开放' : '即将开放'}</span>
+        <span className="theme-card-status">{isOpen ? '已开放' : '敬请期待'}</span>
         <h3>{theme.title}</h3>
         <p>{theme.subtitle}</p>
         <button type="button" onClick={onOpen}>

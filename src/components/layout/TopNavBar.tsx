@@ -7,7 +7,6 @@ interface TopNavBarProps {
 }
 
 const navItems: Array<{ route: AppRoute; label: string }> = [
-  { route: 'home', label: '文化选择' },
   { route: 'culture-map', label: '万象图' },
   { route: 'experiences', label: '感应场' },
   { route: 'activities', label: '藏书阁' },
@@ -20,9 +19,10 @@ function getActiveRoute(route: AppRoute) {
 
 export function TopNavBar({ currentRoute, onNavigate }: TopNavBarProps) {
   const activeRoute = getActiveRoute(currentRoute);
+  const isHome = currentRoute === 'home';
 
   return (
-    <header className="top-nav">
+    <header className={`top-nav ${isHome ? 'home-nav' : 'section-nav'}`}>
       <button className="brand-mark" type="button" onClick={() => onNavigate('home')} aria-label="返回文化选择页">
         <img className="brand-logo" src={cultureAssets.brandLogo} alt="全域文化传播平台" loading="lazy" decoding="async" />
         <span>
@@ -31,21 +31,23 @@ export function TopNavBar({ currentRoute, onNavigate }: TopNavBarProps) {
         </span>
       </button>
 
-      <nav className="nav-links" aria-label="佛教主题导航">
-        {navItems.map((item) => (
-          <button
-            className={activeRoute === item.route ? 'active' : ''}
-            type="button"
-            key={item.route}
-            onClick={() => onNavigate(item.route)}
-          >
-            {item.label}
-          </button>
-        ))}
-      </nav>
+      {!isHome && (
+        <nav className="nav-links" aria-label="佛教文化空间导航">
+          {navItems.map((item) => (
+            <button
+              className={activeRoute === item.route ? 'active' : ''}
+              type="button"
+              key={item.route}
+              onClick={() => onNavigate(item.route)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+      )}
 
       <div className="nav-actions">
-        {currentRoute !== 'home' && (
+        {!isHome && (
           <label className="search-box">
             <span>检索</span>
             <input type="search" placeholder="搜索经典、地标、释义……" />

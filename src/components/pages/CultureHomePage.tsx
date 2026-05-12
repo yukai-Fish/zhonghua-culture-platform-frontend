@@ -1,6 +1,5 @@
-import { useRef, useState } from 'react';
-import { coreThemes, longScrollPreviews } from '../../data/themes';
-import { ThemeLongScrollPreview } from '../cards/ThemeLongScrollPreview';
+import { useState } from 'react';
+import { coreThemes } from '../../data/themes';
 import { ThemeOverviewCard } from '../cards/ThemeOverviewCard';
 
 interface CultureHomePageProps {
@@ -9,18 +8,10 @@ interface CultureHomePageProps {
 
 export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
   const [toast, setToast] = useState('');
-  const scrollRailRef = useRef<HTMLDivElement | null>(null);
 
   const showComingSoon = () => {
     setToast('山门未启，敬请期待');
     window.setTimeout(() => setToast(''), 2200);
-  };
-
-  const scrollLongPreviews = (direction: 'left' | 'right') => {
-    scrollRailRef.current?.scrollBy({
-      left: direction === 'left' ? -620 : 620,
-      behavior: 'smooth',
-    });
   };
 
   return (
@@ -45,7 +36,7 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
             <p className="eyebrow">文化入口</p>
             <h2>佛教、道教、妈祖文化</h2>
           </div>
-          <span className="line-label">Map Atlas</span>
+          <span className="line-label">文化选择</span>
         </div>
         <div className="theme-grid">
           {coreThemes.map((theme) => (
@@ -54,28 +45,6 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
               theme={theme}
               onOpen={theme.status === 'open' ? onEnterBuddhism : showComingSoon}
             />
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block" id="long-scrolls">
-        <div className="section-title-row">
-          <div>
-            <p className="eyebrow">长卷初展</p>
-            <h2>云水之间，文脉成轴</h2>
-          </div>
-          <span className="line-label">长卷预览</span>
-        </div>
-        <div className="scroll-preview-toolbar" aria-label="长卷预览切换">
-          <button type="button" onClick={() => scrollLongPreviews('left')} aria-label="上一组长卷">‹</button>
-          <div className="scroll-preview-dots" aria-hidden="true">
-            {longScrollPreviews.map((preview) => <span key={preview.id} />)}
-          </div>
-          <button type="button" onClick={() => scrollLongPreviews('right')} aria-label="下一组长卷">›</button>
-        </div>
-        <div className="scroll-preview-grid" ref={scrollRailRef}>
-          {longScrollPreviews.map((preview) => (
-            <ThemeLongScrollPreview key={preview.id} preview={preview} />
           ))}
         </div>
       </section>

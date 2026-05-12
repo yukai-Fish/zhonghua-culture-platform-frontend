@@ -80,6 +80,14 @@ button {
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.34);
 }
 
+.top-nav.home-nav {
+  grid-template-columns: minmax(240px, 1fr) auto;
+}
+
+.top-nav.home-nav .nav-actions {
+  grid-column: 2;
+}
+
 .brand-mark,
 .nav-links button,
 .login-button,
@@ -3510,7 +3518,7 @@ h1 {
     bottom: 0.45rem;
     z-index: 80;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     height: 68px;
     padding: 0.35rem 0.25rem;
     border: 1px solid rgba(178, 126, 55, 0.38);
@@ -4296,7 +4304,6 @@ h1 {
   }
 }
 
-/* Product document V1.1 refinements: keep the original structure, soften the visual system. */
 :root {
   color-scheme: light;
   --ink: #1c2d3d;
@@ -4544,7 +4551,7 @@ h1,
 }
 
 .home-page .theme-card {
-  height: clamp(18rem, 22vw, 20rem);
+  height: clamp(21.5rem, 24vw, 24rem);
   min-height: 0;
   border-color: rgba(28, 45, 61, 0.24);
   border-radius: 6px;
@@ -4598,12 +4605,11 @@ h1,
 }
 
 .home-page .theme-card-content {
-  inset: 4.15rem 0 auto;
+  inset: auto 0 1rem;
   display: flex;
-  height: 9.25rem;
+  min-height: 12.4rem;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: auto;
   margin: 0 1rem 1rem;
   padding: 1.05rem 1rem 0.95rem;
   border: 1px solid rgba(28, 45, 61, 0.2);
@@ -4630,7 +4636,7 @@ h1,
 }
 
 .home-page .theme-card-content p {
-  min-height: 2.9rem;
+  min-height: 4rem;
   margin-bottom: 0;
   color: rgba(28, 45, 61, 0.78);
   font-size: 0.96rem;
@@ -4779,7 +4785,7 @@ h1,
   }
 
   .home-page .theme-card {
-    height: 18rem;
+    height: 21.5rem;
   }
 }
 

@@ -18,7 +18,7 @@ export function WishFortune() {
         <input
           value={wish}
           onChange={(event) => setWish(event.target.value)}
-          placeholder="希望项目成功"
+          placeholder="愿此心安住清明"
         />
       </label>
       <button className="gold-button" type="button" onClick={drawFortune}>
@@ -32,7 +32,7 @@ export function WishFortune() {
           <p>解签：{fortune.explanation}</p>
         </div>
       )}
-      <small className="disclaimer">本功能仅为文化互动体验，不具有真实预测或宗教占卜含义。</small>
+      <small className="disclaimer">此签只作文化互动参考，愿你以清明心自照当下。</small>
     </section>
   );
 }

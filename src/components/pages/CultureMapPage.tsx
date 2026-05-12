@@ -162,6 +162,18 @@ const cultureMapThemes: CultureMapTheme[] = [
         keywords: ['江南禅林', '飞来峰', '寺院山水'],
       },
       {
+        id: 'emei',
+        name: '峨眉山',
+        label: '普贤道场',
+        x: 46,
+        y: 61,
+        photo: cultureAssets.siteWutai,
+        description: '云海绕峰，金顶向光，普贤信愿在川西群山之间化作清晨钟声。',
+        location: '四川乐山',
+        period: '晋唐以来',
+        keywords: ['普贤道场', '四川佛教', '金顶云海'],
+      },
+      {
         id: 'longmen',
         name: '龙门石窟',
         label: '石窟造像',
@@ -174,16 +186,16 @@ const cultureMapThemes: CultureMapTheme[] = [
         keywords: ['石窟造像', '皇家营建', '中原审美'],
       },
       {
-        id: 'potala',
-        name: '布达拉宫',
-        label: '高原佛宫',
-        x: 26,
-        y: 57,
-        photo: cultureAssets.sitePotala,
-        description: '白墙红宫倚雪域而起，云影、经幡与晨光共同托起高原的庄严。',
-        location: '西藏拉萨',
-        period: '吐蕃至清',
-        keywords: ['高原佛宫', '藏传佛教', '宫堡建筑'],
+        id: 'leshan',
+        name: '乐山大佛',
+        label: '凌云造像',
+        x: 45,
+        y: 63,
+        photo: cultureAssets.siteLongmenBuddha,
+        description: '三江汇流处，大佛临水而坐，山势、江声与造像共同守望一方安澜。',
+        location: '四川乐山',
+        period: '唐代以来',
+        keywords: ['凌云造像', '三江汇流', '四川佛教'],
       },
       {
         id: 'wutai',
@@ -562,24 +574,28 @@ const cultureMapThemes: CultureMapTheme[] = [
 ];
 
 function getInitialSite(theme: CultureMapTheme) {
+  if (theme.id === 'buddhism') {
+    return 'emei';
+  }
+
   return theme.sites[Math.min(2, theme.sites.length - 1)].id;
 }
 
 const scrollTourNodes = [
+  { id: 'emei', name: '峨眉山', x: 46, y: 58 },
   { id: 'longmen', name: '龙门石窟', x: 52, y: 44 },
-  { id: 'putuo', name: '普陀山', x: 74, y: 62 },
   { id: 'lingyin', name: '灵隐寺', x: 34, y: 24 },
-  { id: 'potala', name: '布达拉宫', x: 47, y: 70 },
+  { id: 'putuo', name: '普陀山', x: 74, y: 62 },
   { id: 'wutai', name: '五台山', x: 30, y: 86 },
 ];
 
 const mobileTimelineNodes: Array<{ id: string; title: string; period: string; siteId?: string }> = [
   { id: 'arrival', title: '佛教传入中国', period: '东汉时期' },
   { id: 'changan', title: '长安题壁', period: '隋唐时期' },
+  { id: 'emei', title: '峨眉山', period: '普贤道场', siteId: 'emei' },
   { id: 'longmen', title: '龙门石窟', period: '北魏时期', siteId: 'longmen' },
   { id: 'wutai', title: '五台山', period: '文殊道场', siteId: 'wutai' },
   { id: 'putuo', title: '普陀山', period: '观音圣地', siteId: 'putuo' },
-  { id: 'potala', title: '布达拉宫', period: '藏传佛教', siteId: 'potala' },
 ];
 
 const mobileFeatureItems: Array<{ id: MobileFeature; title: string; icon: string }> = [
@@ -612,7 +628,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   const mobileViewportQuery = '(max-width: 767px), (max-device-width: 767px), (hover: none) and (pointer: coarse)';
   const [isMobileViewport, setIsMobileViewport] = useState(() => window.matchMedia(mobileViewportQuery).matches);
   const [activeMobilePanel, setActiveMobilePanel] = useState<MobilePanel>('scroll');
-  const [activeMobileMilestone, setActiveMobileMilestone] = useState('longmen');
+  const [activeMobileMilestone, setActiveMobileMilestone] = useState('emei');
   const [activeMobileFeature, setActiveMobileFeature] = useState<MobileFeature>('chat');
   const [mobileChatText, setMobileChatText] = useState('');
   const [mobileChatReply, setMobileChatReply] = useState('静心片刻，把愿望说清楚，答案便会从当下的行动里慢慢显现。');
@@ -625,7 +641,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   const [activeThemeId, setActiveThemeId] = useState<ThemeId>('buddhism');
   const activeTheme = cultureMapThemes.find((theme) => theme.id === activeThemeId) ?? cultureMapThemes[0];
   const [activeSiteIdByTheme, setActiveSiteIdByTheme] = useState<Record<string, string>>({
-    buddhism: 'longmen',
+    buddhism: 'emei',
   });
   const activeSiteId = activeSiteIdByTheme[activeTheme.id] ?? getInitialSite(activeTheme);
   const activeSite = activeTheme.sites.find((site) => site.id === activeSiteId) ?? activeTheme.sites[0];
@@ -758,24 +774,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   return (
     <div className="page culture-map-page page-fade">
       <section className="culture-map-console" aria-label={activeTheme.title}>
-        <div className="culture-theme-tabs" aria-label="文化主题菜单">
-          {cultureMapThemes.map((theme) => (
-            <button
-              className={activeTheme.id === theme.id ? 'active' : ''}
-              type="button"
-              key={theme.id}
-              aria-disabled={!theme.enabled}
-              onClick={() => selectTheme(theme.id)}
-            >
-              <i>
-                <img src={theme.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-              </i>
-              <span>{theme.shortTitle}</span>
-              <small>{theme.subtitle}</small>
-            </button>
-          ))}
-        </div>
-
         <div className="culture-map-grid flat-map-grid">
           {!isMobileViewport && (
           <aside className="map-scroll-rail" aria-label={activeTheme.scrollTitle}>
@@ -890,7 +888,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 aria-selected={activeMobilePanel === 'experience'}
                 onClick={() => setActiveMobilePanel('experience')}
               >
-                佛教文化体验中心
+                感应场
               </button>
             </div>
 
@@ -931,7 +929,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                         style={{ left: `${node.x}%`, top: `${node.y}%` }}
                         onClick={() => {
                           setActiveMobileMilestone(node.id);
-                          setActiveSiteIdByTheme((current) => ({ ...current, buddhism: node.id }));
+                          selectScrollNode(node.id);
                         }}
                       >
                         {node.name}
@@ -948,10 +946,10 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             )}
 
             {activeMobilePanel === 'experience' && (
-              <section className="mobile-experience-panel" aria-label="佛教文化体验中心" ref={videoSectionRef}>
+              <section className="mobile-experience-panel" aria-label="佛教感应场" ref={videoSectionRef}>
                 <div className="mobile-experience-heading">
                   <p className="eyebrow">互动体验</p>
-                  <h2>佛教文化体验中心</h2>
+                  <h2>佛教感应场</h2>
                   <p>探索佛教智慧，感悟心灵启迪</p>
                 </div>
 
@@ -1033,7 +1031,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                     <h3>摇签问卜</h3>
                     <p>{mobileFortune.name}：{mobileFortune.verse}</p>
                     <button type="button" onClick={drawMobileFortune}>开始摇签</button>
-                    <small className="mobile-disclaimer">本功能仅为文化互动体验，不具有真实预测或宗教占卜含义。</small>
+                    <small className="mobile-disclaimer">此签只作文化互动参考，愿你以清明心自照当下。</small>
                   </div>
                   <div className="fortune-tube" aria-hidden="true">上上签</div>
                 </article>

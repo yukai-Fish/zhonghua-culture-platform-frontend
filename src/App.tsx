@@ -40,7 +40,7 @@ export default function App() {
 
   return (
     <AppLayout currentRoute={route} onNavigate={navigate}>
-      {route === 'home' && <CultureHomePage onEnterBuddhism={() => navigate('buddhism')} />}
+      {route === 'home' && <CultureHomePage onEnterBuddhism={() => navigate('culture-map')} />}
       {route === 'culture-map' && <CultureMapPage onEnterBuddhism={() => navigate('buddhism')} />}
       {route === 'experiences' && <InteractiveExperiencePage />}
       {route === 'activities' && <ThemeActivitiesPage onEnterBuddhism={() => navigate('buddhism')} />}

@@ -1,22 +1,13 @@
 import { useRef, useState } from 'react';
-import type { AppRoute } from '../../App';
 import { coreThemes, longScrollPreviews } from '../../data/themes';
 import { ThemeLongScrollPreview } from '../cards/ThemeLongScrollPreview';
 import { ThemeOverviewCard } from '../cards/ThemeOverviewCard';
 
 interface CultureHomePageProps {
   onEnterBuddhism: () => void;
-  onOpenRoute: (route: AppRoute) => void;
 }
 
-const coreFeatures: Array<{ title: string; desc: string; route: AppRoute }> = [
-  { title: '万象图', desc: '看山河文脉', route: 'culture-map' },
-  { title: '感应场', desc: '做互动体验', route: 'experiences' },
-  { title: '藏书阁', desc: '读经典译解', route: 'activities' },
-  { title: '禅修房', desc: '进入私域修行', route: 'shop' },
-];
-
-export function CultureHomePage({ onEnterBuddhism, onOpenRoute }: CultureHomePageProps) {
+export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
   const [toast, setToast] = useState('');
   const scrollRailRef = useRef<HTMLDivElement | null>(null);
 
@@ -63,23 +54,6 @@ export function CultureHomePage({ onEnterBuddhism, onOpenRoute }: CultureHomePag
               theme={theme}
               onOpen={theme.status === 'open' ? onEnterBuddhism : showComingSoon}
             />
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block compact" id="core-features">
-        <div className="section-title-row">
-          <div>
-            <p className="eyebrow">进入之后</p>
-            <h2>四个核心文化场景</h2>
-          </div>
-        </div>
-        <div className="core-feature-grid">
-          {coreFeatures.map((feature) => (
-            <button className="core-feature-card" type="button" key={feature.title} onClick={() => onOpenRoute(feature.route)}>
-              <span>{feature.title}</span>
-              <small>{feature.desc}</small>
-            </button>
           ))}
         </div>
       </section>

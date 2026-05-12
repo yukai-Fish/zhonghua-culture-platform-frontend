@@ -1042,19 +1042,21 @@ h1 {
   max-height: none;
   border: 1px solid rgba(217, 173, 102, 0.28);
   border-radius: 0.45rem;
-  background: #160e09;
+  background: rgba(255, 248, 233, 0.25);
   scrollbar-color: rgba(217, 173, 102, 0.7) rgba(24, 14, 8, 0.66);
   scrollbar-width: thin;
 }
 
 .rail-scroll-canvas {
   position: relative;
+  display: flex;
+  justify-content: center;
   min-height: 0;
 }
 
 .rail-scroll-frame img {
   display: block;
-  width: 100%;
+  width: min(100%, 23rem);
   min-height: 0;
   height: auto;
   filter: saturate(0.86) contrast(1.04);
@@ -1103,20 +1105,6 @@ h1 {
   border-color: rgba(255, 238, 190, 0.9);
   box-shadow: 0 0 26px rgba(255, 215, 138, 0.34);
   transform: translate(-50%, -50%) scale(1.04);
-}
-
-.rail-longmen-node {
-  padding: 0.48rem 0.72rem;
-  border-color: rgba(255, 238, 190, 0.92);
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255, 215, 138, 0.28), transparent 72%),
-    rgba(89, 42, 18, 0.94);
-  color: #fff3ca;
-  font-size: 0.84rem;
-  box-shadow:
-    0 0 0 4px rgba(255, 215, 138, 0.1),
-    0 0 34px rgba(255, 215, 138, 0.48);
-  animation: railLongmenGlow 2200ms ease-in-out infinite;
 }
 
 .rail-action {
@@ -1599,15 +1587,6 @@ h1 {
 
 .ritual-scripture-section {
   position: relative;
-}
-
-.ritual-ink-deco {
-  position: absolute;
-  right: 0;
-  top: -0.4rem;
-  width: min(36%, 19rem);
-  opacity: 0.32;
-  pointer-events: none;
 }
 
 .flat-section-copy {
@@ -4543,10 +4522,10 @@ h1 {
   --panel: rgba(255, 252, 244, 0.78);
   --panel-strong: rgba(255, 250, 238, 0.94);
   --gold: #d5a021;
-  --gold-bright: #c23b22;
+  --gold-bright: #8a6238;
   --paper: #f7f3e8;
   --muted: rgba(28, 45, 61, 0.62);
-  --red: #c23b22;
+  --red: #8a6238;
   --jade: #2a6b5c;
   --cyan: #2a6b5c;
   --border: rgba(28, 45, 61, 0.16);
@@ -5151,15 +5130,24 @@ h1,
 .culture-map-page::before,
 .journey-page::before {
   position: absolute;
-  right: 0.4rem;
-  top: 0.5rem;
-  width: min(36%, 22rem);
-  height: 12rem;
+  inset: 0;
   content: "";
-  background: url("/assets/ink/ink-2.png") right top / contain no-repeat;
-  opacity: 0.22;
+  background: url("/assets/ink/ink-2.png") center top / cover no-repeat;
+  opacity: 0.1;
   pointer-events: none;
   z-index: 0;
+}
+
+.home-page::before {
+  background-image: url("/assets/ink/ink-1.png");
+}
+
+.culture-map-page::before {
+  background-image: url("/assets/ink/ink-3.png");
+}
+
+.journey-page::before {
+  background-image: url("/assets/ink/ink-6.png");
 }
 
 .nav-page > *,
@@ -5171,10 +5159,8 @@ h1,
 }
 
 .meditation-page::before {
-  width: min(42%, 26rem);
-  height: 15rem;
   background-image: url("/assets/ink/ink-4.png");
-  opacity: 0.26;
+  opacity: 0.12;
 }
 
 .meditation-hero h1 {
@@ -5268,12 +5254,9 @@ h1,
 
 .meditation-scene-card {
   grid-column: span 2;
-  background-image:
-    url("/assets/ink/ink-5.png"),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(252, 245, 232, 0.7));
-  background-position: right bottom, center;
-  background-size: 42% auto, auto;
-  background-repeat: no-repeat;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(252, 245, 232, 0.7)),
+    rgba(255, 250, 241, 0.9);
 }
 
 .meditation-summary-grid {
@@ -5522,6 +5505,11 @@ h1,
   margin-top: 0.7rem;
 }
 
+.ritual-card-verse .ritual-actions,
+.ritual-card-quiz .ritual-actions {
+  justify-content: center;
+}
+
 .ritual-asset {
   position: absolute;
   pointer-events: none;
@@ -5610,7 +5598,27 @@ h1,
   max-width: 60%;
   min-height: auto;
   margin-inline: 0;
+  border: 1px solid rgba(151, 113, 69, 0.38);
+  border-radius: 0.55rem;
+  background:
+    linear-gradient(145deg, rgba(255, 253, 246, 0.96), rgba(248, 239, 221, 0.9));
   text-align: left;
+}
+
+.ritual-card-fortune .ritual-primary {
+  display: block;
+  margin: 0.65rem auto 0;
+}
+
+.ritual-fortune-result span {
+  border-color: rgba(151, 113, 69, 0.36);
+  background: rgba(151, 113, 69, 0.08);
+  color: #8a6238;
+}
+
+.ritual-fortune-result p {
+  color: rgba(38, 55, 72, 0.92);
+  line-height: 1.8;
 }
 
 .ritual-card-merit {
@@ -5689,13 +5697,6 @@ h1,
   color: #9f4028;
 }
 
-.ritual-quiz-bg {
-  right: -2.5rem;
-  bottom: -1.8rem;
-  width: 16rem;
-  opacity: 0.09;
-}
-
 @media (max-width: 1200px) {
   .ritual-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5736,10 +5737,6 @@ h1,
 @media (max-width: 1180px) {
   .library-passages {
     grid-template-columns: 1fr;
-  }
-
-  .ritual-ink-deco {
-    width: min(44%, 15rem);
   }
 
   .meditation-grid-redesign {
@@ -5827,4 +5824,115 @@ h1,
   .home-page .long-preview-image {
     min-height: 13rem;
   }
+}
+
+.library-reader-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(9, 8, 7, 0.58);
+  backdrop-filter: blur(4px);
+}
+
+.library-reader-modal-inner {
+  width: min(52rem, 92vw);
+  max-height: 86vh;
+  overflow: auto;
+  padding: 1.1rem;
+  border: 1px solid rgba(155, 123, 82, 0.34);
+  border-radius: 0.8rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(252, 245, 232, 0.76)),
+    rgba(255, 250, 241, 0.96);
+}
+
+.library-reader-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: center;
+  margin: 0.35rem 0 0.8rem;
+}
+
+.library-reader-head h3 {
+  margin: 0;
+  color: #1a334b;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+}
+
+.library-reader-head span {
+  color: rgba(70, 67, 60, 0.75);
+}
+
+.library-reader-text {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid rgba(155, 123, 82, 0.26);
+  border-radius: 0.6rem;
+  background: rgba(255, 252, 245, 0.9);
+  color: rgba(40, 54, 68, 0.9);
+  line-height: 1.9;
+  white-space: pre-wrap;
+  transform-origin: center;
+}
+
+.library-reader-text.turn-next {
+  animation: pageTurnNext 260ms ease;
+}
+
+.library-reader-text.turn-prev {
+  animation: pageTurnPrev 260ms ease;
+}
+
+.library-reader-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.library-reader-actions button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+@keyframes pageTurnNext {
+  0% { opacity: 1; transform: perspective(900px) rotateY(0deg); }
+  45% { opacity: 0.28; transform: perspective(900px) rotateY(-16deg) translateX(-4px); }
+  100% { opacity: 1; transform: perspective(900px) rotateY(0deg) translateX(0); }
+}
+
+@keyframes pageTurnPrev {
+  0% { opacity: 1; transform: perspective(900px) rotateY(0deg); }
+  45% { opacity: 0.28; transform: perspective(900px) rotateY(16deg) translateX(4px); }
+  100% { opacity: 1; transform: perspective(900px) rotateY(0deg) translateX(0); }
+}
+
+/* unify former bright red accents to warm brown */
+.eyebrow,
+.line-label,
+.theme-card-status,
+.activity-card span,
+.shop-card span,
+.library-feature-body > span,
+.library-filter-row button.active,
+.library-note-card small {
+  color: #8a6238;
+}
+
+.gold-button,
+.ritual-primary,
+.home-page .theme-card.is-open button {
+  border-color: rgba(138, 98, 56, 0.42);
+  background: linear-gradient(180deg, #9a6f42, #7b5633);
+  color: #fff7ea;
+}
+
+.gold-button:hover,
+.ritual-primary:hover,
+.home-page .theme-card.is-open button:hover {
+  background: linear-gradient(180deg, #8c653d, #6c4b2c);
 }

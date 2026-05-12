@@ -126,7 +126,7 @@ const cultureMapThemes: CultureMapTheme[] = [
     headline: '佛教文化地图',
     intro: '古道带来经声，石壁留住光影，寺塔在山河间静候一次回望。',
     mapImage: cultureAssets.buddhistMap,
-    scrollImage: cultureAssets.buddhistScrollPreview,
+    scrollImage: cultureAssets.buddhistScroll,
     scrollTitle: '佛教文脉长图',
     actionText: '入卷观影',
     timeline: ['东汉', '魏晋', '隋唐', '宋元', '明清', '近现代'],
@@ -783,7 +783,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
                 <img src={activeTheme.scrollImage} alt={activeTheme.scrollTitle} loading="lazy" decoding="async" />
                 {activeTheme.id === 'buddhism' && scrollTourNodes.map((node) => (
                   <button
-                    className={`rail-site-node ${node.id === 'longmen' ? 'rail-longmen-node' : ''} ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
+                    className={`rail-site-node ${activeSiteIdByTheme.buddhism === node.id ? 'is-selected' : ''}`}
                     type="button"
                     key={node.id}
                     style={{ left: `${node.x}%`, top: `${node.y}%` }}
@@ -1066,7 +1066,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="flat-section-copy exhibit-section-heading">
               <p className="eyebrow">禅意互动</p>
               <h3>经文释义与愿望摇签</h3>
-              <img className="ritual-ink-deco" src={cultureAssets.ritualInkBackground} alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </div>
             <DeferredRender className="quadrant-exhibit-grid" minHeight="38rem">
               <div className="quadrant-column">

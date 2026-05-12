@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { AppLayout } from './components/layout/AppLayout';
 import { BuddhistDetailPage } from './components/pages/BuddhistDetailPage';
 import { CultureHomePage } from './components/pages/CultureHomePage';
@@ -43,9 +43,10 @@ export default function App() {
       {route === 'home' && <CultureHomePage onEnterBuddhism={() => navigate('culture-map')} />}
       {route === 'culture-map' && <CultureMapPage onEnterBuddhism={() => navigate('buddhism')} />}
       {route === 'experiences' && <InteractiveExperiencePage />}
-      {route === 'activities' && <ThemeActivitiesPage onEnterBuddhism={() => navigate('buddhism')} />}
+      {route === 'activities' && <ThemeActivitiesPage />}
       {route === 'shop' && <CreativeShopPage />}
       {route === 'buddhism' && <BuddhistDetailPage onHome={() => navigate('home')} />}
     </AppLayout>
   );
 }
+

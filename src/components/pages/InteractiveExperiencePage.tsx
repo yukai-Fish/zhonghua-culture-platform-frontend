@@ -25,12 +25,18 @@ const quiz = {
 export function InteractiveExperiencePage() {
   const [woodfishCount, setWoodfishCount] = useState(0);
   const [verseIndex, setVerseIndex] = useState(0);
+  const [fortuneIndex, setFortuneIndex] = useState(0);
   const [quizResult, setQuizResult] = useState('');
   const [selectedTag, setSelectedTag] = useState('学业');
   const activeVerse = verses[verseIndex];
+  const activeFortune = verses[fortuneIndex];
 
   const drawVerse = () => {
     setVerseIndex((current) => (current + 1) % verses.length);
+  };
+
+  const drawFortune = () => {
+    setFortuneIndex((current) => (current + 1) % verses.length);
   };
 
   const answerQuiz = (option: string) => {
@@ -91,12 +97,12 @@ export function InteractiveExperiencePage() {
               </button>
             ))}
           </div>
-          <button className="gold-button ritual-primary" type="button" onClick={drawVerse}>
+          <button className="gold-button ritual-primary" type="button" onClick={drawFortune}>
             摇一支签
           </button>
           <div className="fortune-card ritual-fortune-result">
             <span>{selectedTag}</span>
-            <p>{activeVerse.meaning}</p>
+            <p>{activeFortune.meaning}</p>
           </div>
           <img className="ritual-asset ritual-fortune-image" src={cultureAssets.ritualFortuneTube} alt="摇签签筒" loading="lazy" decoding="async" />
         </article>
@@ -132,7 +138,6 @@ export function InteractiveExperiencePage() {
               </button>
             ))}
           </div>
-          <img className="ritual-asset ritual-quiz-bg" src={cultureAssets.ritualQuizBackground} alt="" aria-hidden="true" loading="lazy" decoding="async" />
         </article>
       </section>
     </div>

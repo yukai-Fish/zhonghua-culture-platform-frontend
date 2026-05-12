@@ -1,10 +1,6 @@
 import { useMemo, useState } from 'react';
 import { cultureAssets } from '../../data/assets';
 
-interface ThemeActivitiesPageProps {
-  onEnterBuddhism: () => void;
-}
-
 interface LibraryItem {
   id: string;
   title: string;
@@ -12,6 +8,7 @@ interface LibraryItem {
   desc: string;
   image: string;
   action: string;
+  pages: string[];
 }
 
 const libraryItems: LibraryItem[] = [
@@ -22,6 +19,11 @@ const libraryItems: LibraryItem[] = [
     desc: '以清澈短章照见般若智慧，原文、白话与关键词并读，于简净文字中体会会心的自在与明澈。',
     image: cultureAssets.libraryHeartSutra,
     action: '取书阅读',
+    pages: [
+      '观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。',
+      '色不异空，空不异色；色即是空，空即是色。受想行识，亦复如是。',
+      '心无罣碍，无罣碍故，无有恐怖，远离颠倒梦想，究竟涅槃。',
+    ],
   },
   {
     id: 'diamond',
@@ -30,6 +32,11 @@ const libraryItems: LibraryItem[] = [
     desc: '从“不住于相”的句义进入，慢慢读出放下与观照，在字里行间安住当下。',
     image: cultureAssets.libraryDiamondSutra,
     action: '取书阅读',
+    pages: [
+      '应无所住，而生其心。于一切境，不取于相，如如不动。',
+      '凡所有相，皆是虚妄。若见诸相非相，即见如来。',
+      '一切有为法，如梦幻泡影，如露亦如电，应作如是观。',
+    ],
   },
   {
     id: 'sichuan',
@@ -38,6 +45,11 @@ const libraryItems: LibraryItem[] = [
     desc: '串联峨眉山、乐山大佛与川西佛教胜迹，记录山水人文与信仰印记，翻阅一方佛教地景。',
     image: cultureAssets.librarySichuanNotes,
     action: '翻阅札记',
+    pages: [
+      '峨眉金顶云海，梵音与山色相映，朝山步道在晨雾中缓缓展开。',
+      '乐山大佛临三江而坐，千年风雨与水声共同塑造庄严气象。',
+      '川西古刹依山就势，山门、经幢与香火构成一方佛教地景记忆。',
+    ],
   },
 ];
 
@@ -48,9 +60,44 @@ const recentNotes = [
   { id: 'n4', quote: '乐山大佛的水与山，见证千年信仰的沉静。', from: '地标札记', time: '5月16日 16:20', image: cultureAssets.librarySichuanNotes },
 ];
 
-export function ThemeActivitiesPage({ onEnterBuddhism }: ThemeActivitiesPageProps) {
+export function ThemeActivitiesPage() {
   const [activeFilter, setActiveFilter] = useState('经典阅读');
+  const [readerBookId, setReaderBookId] = useState<string | null>(null);
+  const [readerPageIndex, setReaderPageIndex] = useState(0);
+  const [turnClass, setTurnClass] = useState('');
   const displayItems = useMemo(() => libraryItems, []);
+  const readerBook = displayItems.find((item) => item.id === readerBookId) ?? null;
+
+  const openReader = (id: string) => {
+    setReaderBookId(id);
+    setReaderPageIndex(0);
+  };
+
+  const closeReader = () => {
+    setReaderBookId(null);
+    setReaderPageIndex(0);
+    setTurnClass('');
+  };
+
+  const turnPage = (direction: 'next' | 'prev') => {
+    if (!readerBook) {
+      return;
+    }
+    if (direction === 'next' && readerPageIndex >= readerBook.pages.length - 1) {
+      return;
+    }
+    if (direction === 'prev' && readerPageIndex <= 0) {
+      return;
+    }
+
+    setTurnClass(direction === 'next' ? 'turn-next' : 'turn-prev');
+    window.setTimeout(() => {
+      setReaderPageIndex((current) => current + (direction === 'next' ? 1 : -1));
+    }, 110);
+    window.setTimeout(() => {
+      setTurnClass('');
+    }, 280);
+  };
 
   return (
     <div className="page nav-page page-fade library-page-redesign">
@@ -87,7 +134,7 @@ export function ThemeActivitiesPage({ onEnterBuddhism }: ThemeActivitiesPageProp
               <button
                 className="ghost-button"
                 type="button"
-                onClick={() => onEnterBuddhism()}
+                onClick={() => openReader(item.id)}
               >
                 {item.action}
               </button>
@@ -113,7 +160,37 @@ export function ThemeActivitiesPage({ onEnterBuddhism }: ThemeActivitiesPageProp
           ))}
         </div>
       </section>
+
+      {readerBook && (
+        <div className="library-reader-modal" role="dialog" aria-modal="true" aria-label={`${readerBook.title}阅读弹窗`}>
+          <div className="library-reader-modal-inner">
+            <button className="close-button" type="button" onClick={closeReader}>关闭</button>
+            <div className="library-reader-head">
+              <h3>{readerBook.title}</h3>
+              <span>第 {readerPageIndex + 1} / {readerBook.pages.length} 页</span>
+            </div>
+            <p className={`library-reader-text ${turnClass}`}>{readerBook.pages[readerPageIndex]}</p>
+            <div className="library-reader-actions">
+              <button
+                className="ghost-button"
+                type="button"
+                onClick={() => turnPage('prev')}
+                disabled={readerPageIndex === 0}
+              >
+                上一页
+              </button>
+              <button
+                className="gold-button ritual-primary"
+                type="button"
+                onClick={() => turnPage('next')}
+                disabled={readerPageIndex === readerBook.pages.length - 1}
+              >
+                下一页
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-

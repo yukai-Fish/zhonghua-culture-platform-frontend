@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { cultureAssets } from '../../data/assets';
 
 const verses = [
@@ -27,6 +27,7 @@ export function InteractiveExperiencePage() {
   const [verseIndex, setVerseIndex] = useState(0);
   const [fortuneIndex, setFortuneIndex] = useState(0);
   const [quizResult, setQuizResult] = useState('');
+  const [quizOpen, setQuizOpen] = useState(false);
   const [selectedTag, setSelectedTag] = useState('学业');
   const activeVerse = verses[verseIndex];
   const activeFortune = verses[fortuneIndex];
@@ -47,7 +48,7 @@ export function InteractiveExperiencePage() {
     <div className="page nav-page page-fade ritual-page">
       <section className="nav-page-hero ritual-hero">
         <p className="eyebrow">感应场</p>
-        <h1>仪式感与轻量互动</h1>
+        <h1>感应场</h1>
         <p className="hero-subtitle">
           轻敲木鱼，转动偈语，抽取一张今日提醒，在温和互动里安顿片刻心绪。
         </p>
@@ -76,7 +77,7 @@ export function InteractiveExperiencePage() {
             <button className="gold-button ritual-primary" type="button" onClick={drawVerse}>
               换一句
             </button>
-            <button className="ghost-button" type="button">
+            <button className="ghost-button ritual-secondary" type="button">
               收藏
             </button>
           </div>
@@ -124,22 +125,38 @@ export function InteractiveExperiencePage() {
           <div className="ritual-quiz-main">
             <h2>文化小游戏</h2>
             <div className="ritual-actions">
-              <button className="gold-button ritual-primary" type="button">开始答题</button>
+              <button className="gold-button ritual-primary" type="button" onClick={() => setQuizOpen(true)}>开始答题</button>
               <button className="ghost-button" type="button">排行榜</button>
             </div>
             {!!quizResult && <p className="ritual-quiz-feedback">{quizResult}</p>}
           </div>
-          <div className="ritual-quiz-panel">
-            <h3>{quiz.question}</h3>
-            {quiz.options.map((option, index) => (
-              <button type="button" key={option} onClick={() => answerQuiz(option)}>
-                <strong>{String.fromCharCode(65 + index)}</strong>
-                <span>{option.replace('文脉长图、文化地图、地点展示', '佛教')}</span>
-              </button>
-            ))}
-          </div>
         </article>
       </section>
+
+      {quizOpen && (
+        <div className="library-reader-modal" role="dialog" aria-modal="true" aria-label="文化小游戏答题弹窗">
+          <div className="library-reader-modal-inner ritual-quiz-modal">
+            <button className="close-button" type="button" onClick={() => setQuizOpen(false)}>关闭</button>
+            <div className="ritual-quiz-panel">
+              <h3>{quiz.question}</h3>
+              {quiz.options.map((option, index) => (
+                <button
+                  type="button"
+                  key={option}
+                  onClick={() => {
+                    answerQuiz(option);
+                    setQuizOpen(false);
+                  }}
+                >
+                  <strong>{String.fromCharCode(65 + index)}</strong>
+                  <span>{option.replace('文脉长图、文化地图、地点展示', '佛教')}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+

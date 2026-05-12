@@ -5138,6 +5138,7 @@ h1,
 .culture-map-page,
 .journey-page {
   position: relative;
+  isolation: isolate;
 }
 
 .nav-page::before,
@@ -5147,22 +5148,48 @@ h1,
   position: absolute;
   inset: 0;
   content: "";
-  background: url("/assets/ink/ink-2.png") center top / cover no-repeat;
-  opacity: 0.1;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.78)),
+    url("/assets/ink/ink-2.png") center center / cover no-repeat;
+  opacity: 0.3;
+  filter: contrast(1.04) saturate(0.92);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nav-page::after,
+.home-page::after,
+.culture-map-page::after,
+.journey-page::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: min(38vw, 34rem);
+  height: min(24vw, 18rem);
+  content: "";
+  background: url("/assets/ink/ink-2.png") right top / contain no-repeat;
+  opacity: 0.22;
   pointer-events: none;
   z-index: 0;
 }
 
 .home-page::before {
-  background-image: url("/assets/ink/ink-1.png");
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.78)),
+    url("/assets/ink/ink-1.png") center center / cover no-repeat;
 }
 
 .culture-map-page::before {
-  background-image: url("/assets/ink/ink-3.png");
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.7), rgba(255, 251, 243, 0.76)),
+    url("/assets/ink/ink-3.png") center center / cover no-repeat;
 }
 
 .journey-page::before {
-  background-image: url("/assets/ink/ink-6.png");
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.8)),
+    url("/assets/ink/ink-6.png") center center / cover no-repeat;
 }
 
 .nav-page > *,
@@ -5174,8 +5201,10 @@ h1,
 }
 
 .meditation-page::before {
-  background-image: url("/assets/ink/ink-4.png");
-  opacity: 0.12;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.68), rgba(255, 251, 243, 0.76)),
+    url("/assets/ink/ink-4.png") center center / cover no-repeat;
+  opacity: 0.34;
 }
 
 .meditation-hero h1 {
@@ -5303,9 +5332,10 @@ h1,
 }
 
 .library-page-redesign::before {
-  background-image: url("/assets/ink/ink-3.png");
-  width: min(44%, 27rem);
-  opacity: 0.24;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.76)),
+    url("/assets/ink/ink-3.png") center center / cover no-repeat;
+  opacity: 0.34;
 }
 
 .library-hero h1 {
@@ -5535,6 +5565,18 @@ h1,
   text-align: center;
 }
 
+.ritual-secondary {
+  border-color: rgba(138, 98, 56, 0.38);
+  background: rgba(248, 240, 226, 0.82);
+  color: #8a6238;
+  font-weight: 700;
+}
+
+.ritual-secondary:hover {
+  border-color: rgba(138, 98, 56, 0.55);
+  background: rgba(244, 233, 214, 0.9);
+}
+
 .ritual-asset {
   position: absolute;
   pointer-events: none;
@@ -5723,6 +5765,10 @@ h1,
 
 .ritual-quiz-panel button strong {
   color: #8a6238;
+}
+
+.ritual-quiz-modal {
+  width: min(32rem, 92vw);
 }
 
 @media (max-width: 1200px) {

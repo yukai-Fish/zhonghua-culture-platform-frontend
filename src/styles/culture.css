@@ -5150,7 +5150,7 @@ h1,
   content: "";
   background:
     linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.78)),
-    url("/assets/ink/ink-2.png") center center / cover no-repeat;
+    url("/assets/ink/ink-2.png") left center / cover no-repeat;
   opacity: 0.3;
   filter: contrast(1.04) saturate(0.92);
   mix-blend-mode: multiply;
@@ -5158,38 +5158,22 @@ h1,
   z-index: 0;
 }
 
-.nav-page::after,
-.home-page::after,
-.culture-map-page::after,
-.journey-page::after {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: min(38vw, 34rem);
-  height: min(24vw, 18rem);
-  content: "";
-  background: url("/assets/ink/ink-2.png") right top / contain no-repeat;
-  opacity: 0.22;
-  pointer-events: none;
-  z-index: 0;
-}
-
 .home-page::before {
   background:
     linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.78)),
-    url("/assets/ink/ink-1.png") center center / cover no-repeat;
+    url("/assets/ink/ink-1.png") left center / cover no-repeat;
 }
 
 .culture-map-page::before {
   background:
     linear-gradient(180deg, rgba(255, 251, 243, 0.7), rgba(255, 251, 243, 0.76)),
-    url("/assets/ink/ink-3.png") center center / cover no-repeat;
+    url("/assets/ink/ink-3.png") left center / cover no-repeat;
 }
 
 .journey-page::before {
   background:
     linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.8)),
-    url("/assets/ink/ink-6.png") center center / cover no-repeat;
+    url("/assets/ink/ink-6.png") left center / cover no-repeat;
 }
 
 .nav-page > *,
@@ -5203,7 +5187,7 @@ h1,
 .meditation-page::before {
   background:
     linear-gradient(180deg, rgba(255, 251, 243, 0.68), rgba(255, 251, 243, 0.76)),
-    url("/assets/ink/ink-4.png") center center / cover no-repeat;
+    url("/assets/ink/ink-4.png") left center / cover no-repeat;
   opacity: 0.34;
 }
 
@@ -5566,6 +5550,13 @@ h1,
 }
 
 .ritual-secondary {
+  border-color: rgba(138, 98, 56, 0.38);
+  background: rgba(248, 240, 226, 0.82);
+  color: #8a6238;
+  font-weight: 700;
+}
+
+.ritual-actions .ghost-button {
   border-color: rgba(138, 98, 56, 0.38);
   background: rgba(248, 240, 226, 0.82);
   color: #8a6238;

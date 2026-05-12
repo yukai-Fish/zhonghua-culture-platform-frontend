@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { cultureAssets } from '../../data/assets';
 
 const scenes = ['四川云海', '福建听雨', '山间风声', '海潮祈愿'];
@@ -37,11 +37,7 @@ export function CreativeShopPage() {
   return (
     <div className="page nav-page page-fade meditation-page">
       <section className="nav-page-hero meditation-hero">
-        <p className="eyebrow">禅修房</p>
-        <h1>私域个人修身空间</h1>
-        <p className="hero-subtitle">
-          点一段声景，坐一会儿，写下一点心中所感。这里安静、克制，也只属于你。
-        </p>
+        <h1>禅修房</h1>
       </section>
 
       <section className="meditation-grid-redesign">
@@ -124,3 +120,4 @@ export function CreativeShopPage() {
     </div>
   );
 }
+

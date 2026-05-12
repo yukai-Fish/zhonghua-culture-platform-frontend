@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+﻿import { useMemo, useState } from 'react';
 import { cultureAssets } from '../../data/assets';
 
 interface LibraryItem {
@@ -102,9 +102,7 @@ export function ThemeActivitiesPage() {
   return (
     <div className="page nav-page page-fade library-page-redesign">
       <section className="nav-page-hero library-hero">
-        <p className="eyebrow">藏书阁</p>
-        <h1>取一卷经典，慢慢读懂</h1>
-        <p className="hero-subtitle">经典、注释、地标札记陈列于此。选一段原文，对照白话释义，把当下的理解轻记下。</p>
+        <h1>藏书阁</h1>
       </section>
 
       <section className="library-filter-row" aria-label="藏书阁功能筛选">
@@ -194,3 +192,4 @@ export function ThemeActivitiesPage() {
     </div>
   );
 }
+

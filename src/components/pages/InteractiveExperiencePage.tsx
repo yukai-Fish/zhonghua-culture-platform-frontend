@@ -47,11 +47,7 @@ export function InteractiveExperiencePage() {
   return (
     <div className="page nav-page page-fade ritual-page">
       <section className="nav-page-hero ritual-hero">
-        <p className="eyebrow">感应场</p>
         <h1>感应场</h1>
-        <p className="hero-subtitle">
-          轻敲木鱼，转动偈语，抽取一张今日提醒，在温和互动里安顿片刻心绪。
-        </p>
       </section>
 
       <section className="ritual-grid">

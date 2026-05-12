@@ -80,7 +80,7 @@ export function InteractiveExperiencePage() {
               收藏
             </button>
           </div>
-          <img className="ritual-asset ritual-scroll-image" src={cultureAssets.ritualScroll} alt="偈语卷轴" loading="lazy" decoding="async" />
+          <img className="ritual-asset ritual-scroll-image" src={cultureAssets.ritualCalendar} alt="每日偈语日历" loading="lazy" decoding="async" />
         </article>
 
         <article className="ritual-card ritual-card-fortune">

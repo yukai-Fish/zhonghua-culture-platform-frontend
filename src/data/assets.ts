@@ -38,6 +38,7 @@ export const cultureAssets = {
   ritualMeritTree: `${assetBase}assets/ritual/merit-tree.png`,
   ritualQuizBackground: `${assetBase}assets/ritual/quiz-bg.png`,
   ritualInkBackground: `${assetBase}assets/ritual/ink-bg.png`,
+  ritualCalendar: `${assetBase}assets/ritual/calendar.png`,
   meditationCloudSea: `${assetBase}assets/meditation/cloud-sea.png`,
   meditationBookshelf: `${assetBase}assets/meditation/bookshelf.png`,
   libraryHeartSutra: `${assetBase}assets/library/heart-sutra.png`,

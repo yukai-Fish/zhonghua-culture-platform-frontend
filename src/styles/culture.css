@@ -5507,7 +5507,17 @@ h1,
 
 .ritual-card-verse .ritual-actions,
 .ritual-card-quiz .ritual-actions {
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.ritual-actions .gold-button,
+.ritual-actions .ghost-button,
+.ritual-card-fortune .ritual-primary {
+  min-width: 7.8rem;
+  min-height: 3rem;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  text-align: center;
 }
 
 .ritual-asset {
@@ -5545,9 +5555,12 @@ h1,
 }
 
 .ritual-card-verse .ritual-scroll-image {
-  right: 0.7rem;
-  bottom: 0.7rem;
-  width: min(30%, 8.6rem);
+  right: 0.55rem;
+  bottom: 0.5rem;
+  width: min(32%, 9.4rem);
+  max-height: 9.2rem;
+  object-fit: contain;
+  object-position: right bottom;
 }
 
 .ritual-verse-paper {
@@ -5607,7 +5620,7 @@ h1,
 
 .ritual-card-fortune .ritual-primary {
   display: block;
-  margin: 0.65rem auto 0;
+  margin: 0.65rem 0 0;
 }
 
 .ritual-fortune-result span {

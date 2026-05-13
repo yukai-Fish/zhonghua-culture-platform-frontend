@@ -1040,6 +1040,11 @@ h1 {
   font-weight: 700;
 }
 
+.culture-map-grid {
+  --map-column-head-h: clamp(7.2rem, 9.6vw, 8.6rem);
+  --map-column-head-gap: 0.7rem;
+}
+
 .rail-scroll-frame {
   position: relative;
   overflow-x: hidden;
@@ -1146,6 +1151,8 @@ h1 {
   align-items: flex-start;
   gap: 1rem;
   padding: 1.35rem 1.45rem 0.9rem;
+  min-height: var(--map-column-head-h);
+  margin-bottom: var(--map-column-head-gap);
 }
 
 .map-stage-heading h1 {
@@ -1157,7 +1164,7 @@ h1 {
 
 .map-stage-heading h1.map-title-unified {
   font-size: clamp(2rem, 2.4vw, 2.6rem);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
 }
 
 .flat-map-grid .map-stage-heading h1 {
@@ -1174,8 +1181,11 @@ h1 {
 
 .site-portrait-card .eyebrow.map-title-unified,
 .rail-title.map-title-unified {
-  display: block;
-  padding-top: 0.2rem;
+  display: flex;
+  align-items: flex-end;
+  min-height: var(--map-column-head-h);
+  margin: 0 0 var(--map-column-head-gap);
+  padding: 0 0 0.65rem;
 }
 
 .map-stage-heading p:last-child {

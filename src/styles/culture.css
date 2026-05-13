@@ -4903,6 +4903,20 @@ h1,
   transform: translateX(0.95rem);
 }
 
+.home-hero-art {
+  display: grid;
+  place-items: center;
+  margin: clamp(0.8rem, 2vw, 1.4rem) auto clamp(1.2rem, 2.8vw, 2rem);
+  pointer-events: none;
+}
+
+.home-hero-art img {
+  width: min(74rem, 92vw);
+  max-height: 38vh;
+  object-fit: contain;
+  opacity: 0.82;
+}
+
 .home-page .hero-subtitle {
   max-width: 1180px;
   margin-bottom: 0.45rem;
@@ -5973,6 +5987,12 @@ h1,
 }
 
 @media (max-width: 860px) {
+  .home-hero-art img {
+    width: min(96vw, 38rem);
+    max-height: 30vh;
+    opacity: 0.76;
+  }
+
   .hero-title-line-top {
     transform: translateX(-0.2rem);
   }

@@ -25,6 +25,10 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
         </div>
       </section>
 
+      <div className="home-hero-art" aria-hidden="true">
+        <img src="/assets/home/home-bg-transparent.png" alt="" loading="lazy" decoding="async" />
+      </div>
+
       <section className="section-block minimal-entry" id="culture-map">
         <div className="minimal-theme-grid" aria-label="文化入口">
           {coreThemes.map((theme) => (

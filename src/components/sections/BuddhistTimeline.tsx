@@ -10,7 +10,7 @@ export function BuddhistTimeline() {
     <section className="section-block timeline-section timeline-section-redesign">
       <div className="timeline-heading">
         <p className="eyebrow">发展脉络</p>
-        <h2>佛教中国化的历史时间轴</h2>
+        <h2>????????</h2>
       </div>
       <div className="timeline-track">
         {buddhistTimeline.map((item, index) => (

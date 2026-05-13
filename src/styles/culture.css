@@ -1033,6 +1033,13 @@ h1 {
   font-weight: 700;
 }
 
+.map-title-unified {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
 .rail-scroll-frame {
   position: relative;
   overflow-x: hidden;
@@ -1136,6 +1143,7 @@ h1 {
 .map-stage-heading {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 1rem;
   padding: 1.35rem 1.45rem 0.9rem;
 }
@@ -1147,8 +1155,23 @@ h1 {
   letter-spacing: 0;
 }
 
+.map-stage-heading h1.map-title-unified {
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  margin-bottom: 0.2rem;
+}
+
 .flat-map-grid .map-stage-heading h1 {
   font-size: clamp(2.25rem, 3.1vw, 3.75rem);
+}
+
+.map-stage-heading .eyebrow {
+  display: none;
+}
+
+.site-portrait-card .eyebrow.map-title-unified,
+.rail-title.map-title-unified {
+  display: block;
+  padding-top: 0.2rem;
 }
 
 .map-stage-heading p:last-child {
@@ -1156,6 +1179,14 @@ h1 {
   margin: 0;
   color: rgba(242, 223, 179, 0.76);
   line-height: 1.7;
+}
+
+.map-timeline-anchor {
+  margin: 0.9rem 1.2rem 1.2rem;
+}
+
+.map-timeline-anchor .timeline-section {
+  margin: 0;
 }
 
 .map-entry-button {
@@ -4880,44 +4911,44 @@ h1,
   justify-items: center;
 }
 
-.hero-title-split {
-  display: inline-grid;
+.hero-title-images {
+  display: grid;
   justify-items: center;
-  margin: 0;
-  font-family: "STKaiti", "KaiTi", "Kaiti SC", "DFKai-SB", "Songti SC", serif;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  line-height: 1.04;
+  gap: clamp(0.1rem, 0.6vw, 0.35rem);
+  margin-top: 0.15rem;
+  margin-bottom: clamp(0.4rem, 1vw, 0.8rem);
 }
 
-.hero-title-line {
+.hero-title-image {
   display: block;
+  width: min(56rem, 80vw);
+  height: auto;
+  object-fit: contain;
 }
 
-.hero-title-line-top {
-  transform: translateX(-0.5rem);
+.hero-title-image-top {
+  transform: translateX(-0.38rem);
 }
 
-.hero-title-line-bottom {
-  margin-top: 0.16em;
-  transform: translateX(0.95rem);
+.hero-title-image-bottom {
+  transform: translateX(0.55rem);
 }
 
 .home-hero-art {
   display: grid;
   place-items: center;
-  height: clamp(20rem, 28vw, 27rem);
-  margin: clamp(0.6rem, 1.8vw, 1.1rem) auto 0;
-  overflow: hidden;
+  height: clamp(16rem, 23vw, 22rem);
+  margin: clamp(1.1rem, 2.2vw, 1.8rem) auto 0;
+  overflow: visible;
   pointer-events: none;
 }
 
 .home-hero-art img {
-  width: min(110rem, 138vw);
+  width: min(112rem, 96vw);
   height: 100%;
-  object-fit: cover;
-  object-position: center 80%;
-  transform: translateY(2%);
+  object-fit: contain;
+  object-position: center bottom;
+  transform: none;
   opacity: 0.9;
 }
 
@@ -4954,7 +4985,7 @@ h1,
 .home-page .section-block.minimal-entry#culture-map {
   position: relative;
   z-index: 2;
-  margin-top: clamp(-20rem, -27vw, -15rem);
+  margin-top: clamp(0.35rem, 0.9vw, 0.85rem);
   margin-bottom: clamp(1.3rem, 2.4vw, 2rem);
   padding: 0;
   border: 0;
@@ -5995,26 +6026,30 @@ h1,
 
 @media (max-width: 860px) {
   .home-hero-art img {
-    width: min(150vw, 46rem);
-    object-position: center 82%;
-    transform: translateY(3%);
+    width: min(98vw, 46rem);
+    object-position: center bottom;
+    transform: none;
     opacity: 0.85;
   }
 
   .home-hero-art {
-    height: clamp(15rem, 38vw, 19rem);
+    height: clamp(12.5rem, 33vw, 16rem);
   }
 
   .home-page .section-block.minimal-entry#culture-map {
-    margin-top: clamp(-12.8rem, -31vw, -8.2rem);
+    margin-top: clamp(0.2rem, 0.8vw, 0.7rem);
   }
 
-  .hero-title-line-top {
-    transform: translateX(-0.2rem);
+  .hero-title-image {
+    width: min(92vw, 34rem);
   }
 
-  .hero-title-line-bottom {
-    transform: translateX(0.36rem);
+  .hero-title-image-top {
+    transform: translateX(-0.1rem);
+  }
+
+  .hero-title-image-bottom {
+    transform: translateX(0.18rem);
   }
 
   .minimal-theme-grid {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { coreThemes } from '../../data/themes';
 
 interface CultureHomePageProps {
@@ -8,6 +8,8 @@ interface CultureHomePageProps {
 export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
   const [toast, setToast] = useState('');
   const homeHeroArtSrc = `${import.meta.env.BASE_URL}assets/home/home-bg-transparent.png`;
+  const titleLine1Src = `${import.meta.env.BASE_URL}assets/home/title-1-transparent.png`;
+  const titleLine2Src = `${import.meta.env.BASE_URL}assets/home/title-2-transparent.png`;
 
   const showComingSoon = () => {
     setToast('山门未启，敬请期待');
@@ -19,16 +21,12 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       <section className="hero-section">
         <div className="hero-copy">
           <p className="eyebrow">山河入卷 · 文脉如灯</p>
-          <h1 className="hero-title-split" aria-label="选择一脉天地，进入一方天地">
-            <span className="hero-title-line hero-title-line-top">选择一脉天地</span>
-            <span className="hero-title-line hero-title-line-bottom">进入一方天地</span>
-          </h1>
+          <div className="hero-title-images" aria-label="首页标题">
+            <img className="hero-title-image hero-title-image-top" src={titleLine1Src} alt="" loading="eager" decoding="async" />
+            <img className="hero-title-image hero-title-image-bottom" src={titleLine2Src} alt="" loading="eager" decoding="async" />
+          </div>
         </div>
       </section>
-
-      <div className="home-hero-art" aria-hidden="true">
-        <img src={homeHeroArtSrc} alt="" loading="lazy" decoding="async" />
-      </div>
 
       <section className="section-block minimal-entry" id="culture-map">
         <div className="minimal-theme-grid" aria-label="文化入口">
@@ -46,6 +44,10 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
           ))}
         </div>
       </section>
+
+      <div className="home-hero-art" aria-hidden="true">
+        <img src={homeHeroArtSrc} alt="" loading="lazy" decoding="async" />
+      </div>
 
       {toast && <div className="toast-panel">{toast}</div>}
     </div>

@@ -645,6 +645,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
   });
   const activeSiteId = activeSiteIdByTheme[activeTheme.id] ?? getInitialSite(activeTheme);
   const activeSite = activeTheme.sites.find((site) => site.id === activeSiteId) ?? activeTheme.sites[0];
+  const stripBuddhismWord = (text: string) => text.replaceAll('\u4f5b\u6559', '').trim();
   const mobileVerse = mobileVerses[mobileVerseIndex];
   const mobileFortune = fortunes[mobileFortuneIndex % fortunes.length];
   useEffect(() => {
@@ -777,7 +778,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
         <div className="culture-map-grid flat-map-grid">
           {!isMobileViewport && (
           <aside className="map-scroll-rail" aria-label={activeTheme.scrollTitle}>
-            <div className="rail-title">{activeTheme.scrollTitle}</div>
+            <div className="rail-title map-title-unified">{stripBuddhismWord(activeTheme.scrollTitle)}</div>
             <div className="rail-scroll-frame">
               <div className="rail-scroll-canvas">
                 <img src={activeTheme.scrollImage} alt={activeTheme.scrollTitle} loading="lazy" decoding="async" />
@@ -804,7 +805,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             <div className="map-stage-heading">
               <div>
                 <p className="eyebrow">{activeTheme.eyebrow}</p>
-                <h1>{activeTheme.headline}</h1>
+                <h1 className="map-title-unified">{stripBuddhismWord(activeTheme.headline)}</h1>
                 <p>{activeTheme.intro}</p>
               </div>
               <div className="map-compass" aria-hidden="true">
@@ -828,12 +829,17 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               ))}
             </div>
             <p className="mobile-map-hint">点击地图上的标记，查看详细介绍。</p>
+            {activeTheme.id === 'buddhism' && !isMobileViewport && (
+              <div className="map-timeline-anchor">
+                <BuddhistTimeline />
+              </div>
+            )}
           </main>
 
           {!isMobileViewport && (
           <aside className="map-side-panel">
             <div className="side-card site-portrait-card" aria-live="polite">
-              <p className="eyebrow">画中一隅</p>
+              <p className="eyebrow map-title-unified">画中一隅</p>
               <figure className="site-portrait-figure">
                 <img src={activeSite.photo} alt={`${activeSite.name}图景`} loading="lazy" decoding="async" />
                 <figcaption>{activeSite.label}</figcaption>
@@ -1099,9 +1105,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             </DeferredRender>
           </div>
 
-          <DeferredRender minHeight="28rem">
-            <BuddhistTimeline />
-          </DeferredRender>
         </section>
       )}
       {scrollViewer}

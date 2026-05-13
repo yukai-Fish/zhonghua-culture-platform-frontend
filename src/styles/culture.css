@@ -4906,15 +4906,19 @@ h1,
 .home-hero-art {
   display: grid;
   place-items: center;
-  margin: clamp(0.8rem, 2vw, 1.4rem) auto clamp(1.2rem, 2.8vw, 2rem);
+  height: clamp(18rem, 25vw, 24rem);
+  margin: clamp(0.6rem, 1.8vw, 1.1rem) auto 0;
+  overflow: hidden;
   pointer-events: none;
 }
 
 .home-hero-art img {
-  width: min(74rem, 92vw);
-  max-height: 38vh;
-  object-fit: contain;
-  opacity: 0.82;
+  width: min(110rem, 138vw);
+  height: 100%;
+  object-fit: cover;
+  object-position: center 66%;
+  transform: translateY(6%);
+  opacity: 0.9;
 }
 
 .home-page .hero-subtitle {
@@ -4948,6 +4952,9 @@ h1,
 }
 
 .home-page .section-block.minimal-entry#culture-map {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-4.8rem, -7vw, -3rem);
   margin-bottom: clamp(1.3rem, 2.4vw, 2rem);
   padding: 0;
   border: 0;
@@ -5988,9 +5995,18 @@ h1,
 
 @media (max-width: 860px) {
   .home-hero-art img {
-    width: min(96vw, 38rem);
-    max-height: 30vh;
-    opacity: 0.76;
+    width: min(150vw, 46rem);
+    object-position: center 68%;
+    transform: translateY(9%);
+    opacity: 0.85;
+  }
+
+  .home-hero-art {
+    height: clamp(13rem, 34vw, 17rem);
+  }
+
+  .home-page .section-block.minimal-entry#culture-map {
+    margin-top: clamp(-3rem, -8vw, -1.8rem);
   }
 
   .hero-title-line-top {

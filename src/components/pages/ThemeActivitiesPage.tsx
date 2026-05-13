@@ -102,7 +102,7 @@ export function ThemeActivitiesPage() {
   return (
     <div className="page nav-page page-fade library-page-redesign">
       <section className="nav-page-hero library-hero">
-        <h1>藏书阁</h1>
+        <h1>翻一卷清风，照见本心</h1>
       </section>
 
       <section className="library-filter-row" aria-label="藏书阁功能筛选">

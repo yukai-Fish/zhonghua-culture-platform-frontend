@@ -27,12 +27,12 @@ export const buddhistTimeline: TimelineItem[] = [
   },
   {
     period: '明清',
-    description: '佛教进入更加广泛的民间生活，名山朝圣和地域信仰不断延展。',
+    description: '佛教进入更广泛的民间生活，名山朝圣和地域信仰不断延展。',
     focus: '五台山、普陀山、九华山、峨眉山',
   },
   {
     period: '近现代',
     description: '文化遗产保护与数字传播兴起，石窟寺院和经典文献获得新的展示方式。',
-    focus: '遗产保护、数字展馆',
+    focus: '遗产保护、数字展陈',
   },
 ];

@@ -4,8 +4,6 @@ import { cultureAssets } from '../../data/assets';
 import { fortunes } from '../../data/fortunes';
 import { BuddhistTimeline } from '../sections/BuddhistTimeline';
 import { LongmenVideoDemo } from '../widgets/LongmenVideoDemo';
-import { ScriptureExplain } from '../widgets/ScriptureExplain';
-import { WishFortune } from '../widgets/WishFortune';
 
 interface CultureMapPageProps {
   onEnterBuddhism: () => void;
@@ -1068,44 +1066,7 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
             </DeferredRender>
           </div>
 
-          <div className="flat-content-section ritual-scripture-section exhibit-stack-section">
-            <div className="flat-section-copy exhibit-section-heading">
-              <p className="eyebrow">禅意互动</p>
-              <h3>经文释义与愿望摇签</h3>
-            </div>
-            <DeferredRender className="quadrant-exhibit-grid" minHeight="38rem">
-              <div className="quadrant-column">
-                <div className="quadrant-cell interaction-cell">
-                  <ScriptureExplain />
-                </div>
-                <div className="quadrant-cell">
-                  <div className="inline-video-card narrative-video-card ritual-media-card">
-                    <video src={cultureAssets.scriptureVideo} autoPlay muted loop controls playsInline preload="auto" />
-                    <div className="video-caption">
-                      <span>大佛静观</span>
-                      <p>以大佛影像承接签文的静心片刻，让愿望在庄严造像前缓缓沉淀。</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="quadrant-column">
-                <div className="quadrant-cell">
-                  <div className="inline-video-card narrative-video-card ritual-media-card">
-                    <video src={cultureAssets.blessingVideo} autoPlay muted loop controls playsInline preload="auto" />
-                    <div className="video-caption">
-                      <span>红丝祈愿树</span>
-                      <p>红色丝带随风飘动，与经文祈愿树相映成辉，愿望随风飞起，善缘随心生。</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="quadrant-cell interaction-cell">
-                  <WishFortune />
-                </div>
-              </div>
-            </DeferredRender>
-          </div>
-
-        </section>
+                  </section>
       )}
       {scrollViewer}
       {toast && <div className="toast-panel">{toast}</div>}

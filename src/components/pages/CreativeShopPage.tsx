@@ -37,7 +37,7 @@ export function CreativeShopPage() {
   return (
     <div className="page nav-page page-fade meditation-page">
       <section className="nav-page-hero meditation-hero">
-        <h1>禅修房</h1>
+        <h1>静坐片刻，听见心声</h1>
       </section>
 
       <section className="meditation-grid-redesign">

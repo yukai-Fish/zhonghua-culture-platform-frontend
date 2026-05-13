@@ -47,7 +47,7 @@ export function InteractiveExperiencePage() {
   return (
     <div className="page nav-page page-fade ritual-page">
       <section className="nav-page-hero ritual-hero">
-        <h1>感应场</h1>
+        <h1>一念起处，万象有回应</h1>
       </section>
 
       <section className="ritual-grid">

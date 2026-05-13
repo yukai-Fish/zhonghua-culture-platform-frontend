@@ -1023,7 +1023,7 @@ h1 {
   gap: 0.7rem;
   min-height: 0;
   height: 100%;
-  padding: 0.66rem;
+  padding: 1rem;
 }
 
 .rail-title {
@@ -1130,6 +1130,9 @@ h1 {
 }
 
 .map-stage-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-content: start;
   overflow: hidden;
   min-height: 48rem;
   transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
@@ -1150,7 +1153,7 @@ h1 {
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  padding: 1.35rem 1.45rem 0.9rem;
+  padding: 1rem 1rem 0;
   min-height: var(--map-column-head-h);
   margin-bottom: var(--map-column-head-gap);
 }
@@ -1229,7 +1232,7 @@ h1 {
 
 .china-map-canvas {
   position: relative;
-  margin: 0 1rem 1rem;
+  margin: 0 1rem;
   overflow: hidden;
   border: 1px solid rgba(217, 173, 102, 0.26);
   border-radius: 0.58rem;

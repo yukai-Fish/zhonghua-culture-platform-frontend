@@ -804,7 +804,6 @@ export function CultureMapPage({ onEnterBuddhism: _onEnterBuddhism }: CultureMap
               <div>
                 <p className="eyebrow">{activeTheme.eyebrow}</p>
                 <h1 className="map-title-unified">{stripBuddhismWord(activeTheme.headline)}</h1>
-                <p>{activeTheme.intro}</p>
               </div>
               <div className="map-compass" aria-hidden="true">
                 <span>北</span>

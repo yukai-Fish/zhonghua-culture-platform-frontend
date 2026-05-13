@@ -5340,9 +5340,14 @@ h1,
 }
 
 .culture-map-page::before {
+  position: fixed;
+  inset: 0;
   background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.7), rgba(255, 251, 243, 0.76)),
-    url("/assets/ink/ink-3.png") left center / cover no-repeat;
+    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.74)),
+    url("/assets/page-bg/secondary-bg-transparent.png") center bottom / 100% auto repeat-y;
+  opacity: 0.34;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .journey-page::before {
@@ -5360,10 +5365,14 @@ h1,
 }
 
 .meditation-page::before {
+  position: fixed;
+  inset: 0;
   background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.68), rgba(255, 251, 243, 0.76)),
-    url("/assets/ink/ink-4.png") left center / cover no-repeat;
+    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.74)),
+    url("/assets/page-bg/secondary-bg-transparent.png") center bottom / 100% auto repeat-y;
   opacity: 0.34;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .meditation-hero h1 {
@@ -5491,10 +5500,14 @@ h1,
 }
 
 .library-page-redesign::before {
+  position: fixed;
+  inset: 0;
   background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.76)),
-    url("/assets/ink/ink-3.png") center center / cover no-repeat;
+    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.74)),
+    url("/assets/page-bg/secondary-bg-transparent.png") center bottom / 100% auto repeat-y;
   opacity: 0.34;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .library-hero h1 {
@@ -5658,6 +5671,17 @@ h1,
 
 .ritual-page {
   width: min(1420px, calc(100vw - 1.6rem));
+}
+
+.ritual-page::before {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.74)),
+    url("/assets/page-bg/secondary-bg-transparent.png") center bottom / 100% auto repeat-y;
+  opacity: 0.34;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .ritual-hero {

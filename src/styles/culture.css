@@ -4875,6 +4875,34 @@ h1,
   line-height: 1.02;
 }
 
+.home-page .hero-copy {
+  display: grid;
+  justify-items: center;
+}
+
+.hero-title-split {
+  display: inline-grid;
+  justify-items: center;
+  margin: 0;
+  font-family: "STKaiti", "KaiTi", "Kaiti SC", "DFKai-SB", "Songti SC", serif;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  line-height: 1.04;
+}
+
+.hero-title-line {
+  display: block;
+}
+
+.hero-title-line-top {
+  transform: translateX(-0.5rem);
+}
+
+.hero-title-line-bottom {
+  margin-top: 0.16em;
+  transform: translateX(0.95rem);
+}
+
 .home-page .hero-subtitle {
   max-width: 1180px;
   margin-bottom: 0.45rem;
@@ -5945,6 +5973,14 @@ h1,
 }
 
 @media (max-width: 860px) {
+  .hero-title-line-top {
+    transform: translateX(-0.2rem);
+  }
+
+  .hero-title-line-bottom {
+    transform: translateX(0.36rem);
+  }
+
   .minimal-theme-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

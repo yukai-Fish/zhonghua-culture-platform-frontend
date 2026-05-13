@@ -18,14 +18,10 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       <section className="hero-section">
         <div className="hero-copy">
           <p className="eyebrow">山河入卷 · 文脉如灯</p>
-          <h1>选择一脉文化，进入一方天地</h1>
-          <p className="hero-subtitle">
-            佛教清净，道教玄远，妈祖护航。每一脉文化都有自己的山川、典籍、仪式与生活回响。
-          </p>
-          <p className="hero-note">
-            从地图、长卷、经典与静修场景进入，在安静的浏览中与千年风物相逢。
-          </p>
-          <p className="hero-guide">点击图标进入文化空间</p>
+          <h1 className="hero-title-split" aria-label="选择一脉天地，进入一方天地">
+            <span className="hero-title-line hero-title-line-top">选择一脉天地</span>
+            <span className="hero-title-line hero-title-line-bottom">进入一方天地</span>
+          </h1>
         </div>
       </section>
 

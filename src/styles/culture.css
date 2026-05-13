@@ -26,6 +26,9 @@
   --page-overlay-z: 0;
   --page-content-z: 1;
   --space-page-x: 2rem;
+  --touch-target-min: 44px;
+  --focus-ring-color: #ffe29f;
+  --focus-ring-shadow: rgba(58, 35, 16, 0.28);
 }
 
 * {
@@ -69,6 +72,19 @@ textarea {
 
 button {
   color: inherit;
+}
+
+:where(
+  button,
+  [role="button"],
+  a,
+  input,
+  textarea,
+  select
+):focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--focus-ring-shadow);
 }
 
 .museum-shell {
@@ -6234,5 +6250,144 @@ h1,
 .ritual-primary:hover,
 .home-page .theme-card.is-open button:hover {
   background: linear-gradient(180deg, #8c653d, #6c4b2c);
+}
+
+/* Accessibility and mobile hardening: 768 / 390 / 360 breakpoints */
+@media (max-width: 768px) {
+  .page,
+  .culture-map-page,
+  .journey-page,
+  .ritual-page {
+    width: min(100vw - 0.75rem, 768px);
+  }
+
+  .hero-subtitle,
+  .hero-note,
+  .panel-intro,
+  .timeline-detail p,
+  .site-inspector p {
+    line-height: 1.7;
+  }
+
+  .nav-links button,
+  .login-button,
+  .gold-button,
+  .ghost-button,
+  .library-filter-row button,
+  .ritual-tag-row button,
+  .ritual-quiz-panel button,
+  .site-action-row .gold-button,
+  .site-action-row .ghost-button {
+    min-height: var(--touch-target-min);
+  }
+}
+
+@media (max-width: 390px) {
+  .top-nav {
+    padding: 0.42rem;
+  }
+
+  .brand-mark {
+    min-width: 6.2rem;
+  }
+
+  .brand-mark strong {
+    font-size: 0.88rem;
+  }
+
+  .brand-mark small {
+    max-width: 4.8rem;
+    font-size: 0.56rem;
+  }
+
+  .mobile-bottom-nav {
+    left: 0.32rem;
+    right: 0.32rem;
+    bottom: 0.32rem;
+    height: 64px;
+  }
+
+  .mobile-bottom-nav button {
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .top-nav {
+    grid-template-columns: minmax(6rem, auto) minmax(0, 1fr);
+    gap: 0.28rem;
+    padding: 0.36rem;
+  }
+
+  .search-box {
+    padding: 0.3rem 0.4rem;
+  }
+
+  .search-box span {
+    display: none;
+  }
+
+  .search-box input {
+    font-size: 0.72rem;
+  }
+
+  .mobile-panel-heading,
+  .mobile-experience-heading,
+  .mobile-experience-card,
+  .mobile-scroll-card {
+    border-radius: 0.72rem;
+  }
+
+  .mobile-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-timeline button {
+    flex-basis: 6.3rem;
+  }
+}
+
+/* Quick contrast pass for light textured surfaces */
+.mobile-map-hint,
+.mobile-panel-heading,
+.mobile-experience-heading,
+.mobile-scroll-panel,
+.mobile-experience-panel,
+.library-note-card,
+.library-feature-card,
+.ritual-card {
+  color: #2f2115;
+}
+
+.mobile-panel-heading h2,
+.mobile-experience-heading h2,
+.library-feature-body h2,
+.ritual-card h2 {
+  color: #2a1a0f;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .journey-pin,
+  .map-node,
+  .mobile-scroll-node,
+  .toast-panel,
+  .library-reader-text {
+    animation: none !important;
+    transform: none;
+  }
 }
 

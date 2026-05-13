@@ -13,7 +13,7 @@ export function ThemeOverviewCard({ theme, onOpen }: ThemeOverviewCardProps) {
       <img src={theme.image} alt={theme.title} loading="lazy" decoding="async" />
       <div className="theme-card-overlay" />
       <div className="theme-card-symbol" aria-hidden="true">
-        <img src={theme.icon} alt="" loading="lazy" decoding="async" />
+        <img src={theme.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
       </div>
       <div className="theme-card-content">
         <span className="theme-card-status">{isOpen ? '已开放' : '敬请期待'}</span>

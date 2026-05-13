@@ -22,8 +22,8 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
         <div className="hero-copy">
           <p className="eyebrow">山河入卷 · 文脉如灯</p>
           <div className="hero-title-images" aria-label="首页标题">
-            <img className="hero-title-image hero-title-image-top" src={titleLine1Src} alt="" loading="eager" decoding="async" />
-            <img className="hero-title-image hero-title-image-bottom" src={titleLine2Src} alt="" loading="eager" decoding="async" />
+            <img className="hero-title-image hero-title-image-top" src={titleLine1Src} alt="" aria-hidden="true" loading="eager" decoding="async" />
+            <img className="hero-title-image hero-title-image-bottom" src={titleLine2Src} alt="" aria-hidden="true" loading="eager" decoding="async" />
           </div>
         </div>
       </section>
@@ -38,7 +38,7 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
               onClick={theme.status === 'open' ? onEnterBuddhism : showComingSoon}
               aria-label={theme.status === 'open' ? `进入${theme.title}` : `${theme.title}敬请期待`}
             >
-              <img src={theme.icon} alt="" loading="lazy" decoding="async" />
+              <img src={theme.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
               <span>{theme.title}</span>
             </button>
           ))}
@@ -46,7 +46,7 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       </section>
 
       <div className="home-hero-art" aria-hidden="true">
-        <img src={homeHeroArtSrc} alt="" loading="lazy" decoding="async" />
+        <img src={homeHeroArtSrc} alt="" aria-hidden="true" loading="lazy" decoding="async" />
       </div>
 
       {toast && <div className="toast-panel">{toast}</div>}

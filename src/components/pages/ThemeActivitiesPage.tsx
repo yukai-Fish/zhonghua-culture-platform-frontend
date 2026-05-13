@@ -149,7 +149,7 @@ export function ThemeActivitiesPage() {
         <div className="library-note-list">
           {recentNotes.map((item) => (
             <article className="library-note-card" key={item.id}>
-              <img src={item.image} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              <img src={item.image} alt={`${item.from}相关插图`} loading="lazy" decoding="async" />
               <div>
                 <p>{item.quote}</p>
                 <small>{item.from} · {item.time}</small>

@@ -7,6 +7,7 @@ interface CultureHomePageProps {
 
 export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
   const [toast, setToast] = useState('');
+  const homeHeroArtSrc = `${import.meta.env.BASE_URL}assets/home/home-bg-transparent.png`;
 
   const showComingSoon = () => {
     setToast('山门未启，敬请期待');
@@ -26,7 +27,7 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
       </section>
 
       <div className="home-hero-art" aria-hidden="true">
-        <img src="/assets/home/home-bg-transparent.png" alt="" loading="lazy" decoding="async" />
+        <img src={homeHeroArtSrc} alt="" loading="lazy" decoding="async" />
       </div>
 
       <section className="section-block minimal-entry" id="culture-map">

@@ -15,6 +15,17 @@
   --cyan: #6ea7a4;
   --border: rgba(217, 173, 102, 0.34);
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
+  --page-overlay-top: rgba(255, 251, 243, 0.72);
+  --page-overlay-bottom: rgba(255, 251, 243, 0.78);
+  --page-overlay-opacity: 0.3;
+  --page-overlay-image: url("/assets/ink/ink-2.png");
+  --page-overlay-position: left center;
+  --page-overlay-size: cover;
+  --page-overlay-repeat: no-repeat;
+  --page-overlay-fixed: absolute;
+  --page-overlay-z: 0;
+  --page-content-z: 1;
+  --space-page-x: 2rem;
 }
 
 * {
@@ -5311,68 +5322,73 @@ h1,
 .nav-page,
 .home-page,
 .culture-map-page,
-.journey-page {
+.journey-page,
+.meditation-page,
+.library-page-redesign,
+.ritual-page {
+  --page-overlay-gradient: linear-gradient(
+    180deg,
+    var(--page-overlay-top),
+    var(--page-overlay-bottom)
+  );
   position: relative;
   isolation: isolate;
 }
 
-.nav-page::before,
-.home-page::before,
-.culture-map-page::before,
-.journey-page::before {
-  position: absolute;
+:where(
+  .nav-page,
+  .home-page,
+  .culture-map-page,
+  .journey-page,
+  .meditation-page,
+  .library-page-redesign,
+  .ritual-page
+)::before {
+  position: var(--page-overlay-fixed);
   inset: 0;
   content: "";
   background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.78)),
-    url("/assets/ink/ink-2.png") left center / cover no-repeat;
-  opacity: 0.3;
+    var(--page-overlay-gradient),
+    var(--page-overlay-image) var(--page-overlay-position) / var(--page-overlay-size) var(--page-overlay-repeat);
+  opacity: var(--page-overlay-opacity);
   filter: contrast(1.04) saturate(0.92);
   mix-blend-mode: multiply;
   pointer-events: none;
-  z-index: 0;
+  z-index: var(--page-overlay-z);
 }
 
 .home-page::before {
-  background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.78)),
-    url("/assets/ink/ink-1.png") left center / cover no-repeat;
+  --page-overlay-image: url("/assets/ink/ink-1.png");
 }
 
-.culture-map-page::before {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.74)),
-    url("/assets/page-bg/secondary-bg-transparent.png") center bottom / 100% auto repeat-y;
-  opacity: 0.34;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.journey-page::before {
-  background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.72), rgba(255, 251, 243, 0.8)),
-    url("/assets/ink/ink-6.png") left center / cover no-repeat;
+.culture-map-page,
+.meditation-page,
+.library-page-redesign,
+.ritual-page {
+  --page-overlay-top: rgba(255, 251, 243, 0.66);
+  --page-overlay-bottom: rgba(255, 251, 243, 0.74);
+  --page-overlay-opacity: 0.34;
+  --page-overlay-image: url("/assets/page-bg/secondary-bg-transparent.png");
+  --page-overlay-position: center bottom;
+  --page-overlay-size: 100% auto;
+  --page-overlay-repeat: repeat-y;
+  --page-overlay-fixed: fixed;
 }
 
 .nav-page > *,
 .home-page > *,
 .culture-map-page > *,
-.journey-page > * {
+.journey-page > *,
+.meditation-page > *,
+.library-page-redesign > *,
+.ritual-page > * {
   position: relative;
-  z-index: 1;
+  z-index: var(--page-content-z);
 }
 
-.meditation-page::before {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.74)),
-    url("/assets/page-bg/secondary-bg-transparent.png") center bottom / 100% auto repeat-y;
-  opacity: 0.34;
-  z-index: 0;
-  pointer-events: none;
+.journey-page {
+  --page-overlay-bottom: rgba(255, 251, 243, 0.8);
+  --page-overlay-image: url("/assets/ink/ink-6.png");
 }
 
 .meditation-hero h1 {
@@ -5497,17 +5513,6 @@ h1,
   color: #1b3448;
   font-size: 2.2rem;
   line-height: 1.1;
-}
-
-.library-page-redesign::before {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.74)),
-    url("/assets/page-bg/secondary-bg-transparent.png") center bottom / 100% auto repeat-y;
-  opacity: 0.34;
-  z-index: 0;
-  pointer-events: none;
 }
 
 .library-hero h1 {
@@ -5671,17 +5676,6 @@ h1,
 
 .ritual-page {
   width: min(1420px, calc(100vw - 1.6rem));
-}
-
-.ritual-page::before {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 251, 243, 0.66), rgba(255, 251, 243, 0.74)),
-    url("/assets/page-bg/secondary-bg-transparent.png") center bottom / 100% auto repeat-y;
-  opacity: 0.34;
-  z-index: 0;
-  pointer-events: none;
 }
 
 .ritual-hero {

@@ -1,8 +1,22 @@
-node_modules/
+﻿node_modules/
 dist/
-图片、视频/
 *.tsbuildinfo
 vite.config.d.ts
 vite.config.js
 vite-dev.log
 vite-dev.err.log
+
+# Local docs and meeting materials
+产品文档/
+会议/
+图片、视频/
+
+# Raw design sources and export packages
+design-assets/raw/**
+*.zip
+*.7z
+*.rar
+
+# Keep deployable assets in public/assets only
+public/assets/**/source/
+public/assets/**/*-source.*

@@ -7,7 +7,8 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
     "lint": "tsc --noEmit",
-    "test": "npm run lint"
+    "repo:guard": "node scripts/repo-guard.mjs",
+    "test": "npm run repo:guard && npm run lint"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.4",

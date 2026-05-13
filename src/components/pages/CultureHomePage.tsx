@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { coreThemes } from '../../data/themes';
-import { ThemeOverviewCard } from '../cards/ThemeOverviewCard';
 
 interface CultureHomePageProps {
   onEnterBuddhism: () => void;
@@ -26,25 +25,23 @@ export function CultureHomePage({ onEnterBuddhism }: CultureHomePageProps) {
           <p className="hero-note">
             从地图、长卷、经典与静修场景进入，在安静的浏览中与千年风物相逢。
           </p>
-          <p className="hero-guide">请选择你想进入的文化脉络</p>
+          <p className="hero-guide">点击图标进入文化空间</p>
         </div>
       </section>
 
-      <section className="section-block" id="culture-map">
-        <div className="section-title-row">
-          <div>
-            <p className="eyebrow">文化入口</p>
-            <h2>佛教、道教、妈祖文化</h2>
-          </div>
-          <span className="line-label">文化选择</span>
-        </div>
-        <div className="theme-grid">
+      <section className="section-block minimal-entry" id="culture-map">
+        <div className="minimal-theme-grid" aria-label="文化入口">
           {coreThemes.map((theme) => (
-            <ThemeOverviewCard
+            <button
               key={theme.id}
-              theme={theme}
-              onOpen={theme.status === 'open' ? onEnterBuddhism : showComingSoon}
-            />
+              type="button"
+              className={`minimal-theme-button ${theme.status === 'open' ? 'is-open' : 'is-coming'}`}
+              onClick={theme.status === 'open' ? onEnterBuddhism : showComingSoon}
+              aria-label={theme.status === 'open' ? `进入${theme.title}` : `${theme.title}敬请期待`}
+            >
+              <img src={theme.icon} alt="" loading="lazy" decoding="async" />
+              <span>{theme.title}</span>
+            </button>
           ))}
         </div>
       </section>
